@@ -1,1 +1,1 @@
-{"_app": "banli-homework", "_version": 1, "_updated_at": "2026-09-24T21:00:00Z", "_updated_by": "init", "data": {}}
+{"_app": "banli-homework", "_version": 1, "_updated_at": "2026-09-24T21:30:00Z", "_updated_by": "test-from-bash", "data": {"banli_subjects_2026-09-24": {"subjects": [{"name": "数学", "emoji": "🔢", "items": [{"id": "test01", "text": "测试题目 1", "done": true}, {"id": "test02", "text": "测试题目 2", "done": false}]}]}}}

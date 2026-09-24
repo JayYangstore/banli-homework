@@ -459,7 +459,7 @@
 
   <div class="toolbar">
     <span class="streak">🔥 <span id="streak-count">0</span> 天连胜</span>
-    <span class="toolbar-right"><button id="theme-toggle" class="theme-toggle" title="切换深色/浅色">🌙</button><span class="toolbar-hint">左滑删除 · 拖 ≡ 排序</span><button id="data-backup" class="data-btn" title="下载 localStorage 全部作业数据">导出</button><button id="data-restore" class="data-btn" title="从备份 JSON 文件还原">还原</button></span>
+    <span class="toolbar-right"><button id="theme-toggle" class="theme-toggle" title="切换深色/浅色">🌙</button><span class="toolbar-hint">左滑删除 · 拖 ≡ 排序</span><button id="data-backup" class="data-btn" title="下载 localStorage 全部作业数据">导出</button><button id="data-restore" class="data-btn" title="从备份 JSON 文件还原">还原</button><button id="sync-setup" class="data-btn" title="关联同步短码和 token">同步</button><button id="sync-now" class="data-btn" title="立即推送本地到云端" style="display:none">↑推</button><button id="sync-break" class="data-btn" title="解除同步关联" style="display:none">解绑</button></span>
   </div>
 
   <div class="subject-list" id="subjects"></div>
@@ -1312,10 +1312,235 @@ function restoreFromFile() {
 document.getElementById("data-backup").addEventListener("click", backupAll);
 document.getElementById("data-restore").addEventListener("click", restoreFromFile);
 
+// ============= 跨端同步（Gist 模式）=============
+const SYNC_GIST_PATH = "sync/data.json";
+const SYNC_REPO = "JayYangstore/banli-homework";
+const SYNC_BRANCH = "main";
+const SYNC_TOKEN_KEY = "banli_sync_token";        // 首次关联填的短码映射
+const SYNC_SHORT_KEY = "banli_sync_short_id";     // 当前端短码（12位 hex）
+const SYNC_LAST_PULL_KEY = "banli_sync_last_pull";
+const SYNC_LAST_PUSH_KEY = "banli_sync_last_push";
+const SYNC_OWNER_KEY = "banli_sync_owner";        // 这个端是谁（"dad"/"ipad"/"phone"）
+
+let _syncTimer = null;
+let _syncShortId = null;  // 缓存当前端短码
+
+// 获取短码对应的完整 sha（用 GitHub Search API? 不行——私有文件搜不到。
+// 方案：每个端首次关联时直接填 40 位 sha。本地存 sha，不用短码）。
+// 简化：短码 = sha 前 12 位（足够唯一）
+function getFullSha(shortId) {
+  // 直接用 shortId 作路径参数 — GitHub API 接受完整 sha 或 filepath
+  // 我们这里只用 sha,所以直接传短码作查询
+  return shortId;
+}
+
+async function syncPull() {
+  const shortId = localStorage.getItem(SYNC_SHORT_KEY);
+  const token = localStorage.getItem(SYNC_TOKEN_KEY);
+  if (!shortId || !token) return null;  // 未关联
+  // GET https://api.github.com/repos/{owner}/{repo}/contents/{path}?ref={branch}
+  const url = "https://api.github.com/repos/" + SYNC_REPO + "/contents/" + SYNC_GIST_PATH + "?ref=" + SYNC_BRANCH;
+  try {
+    const resp = await fetch(url, { headers: { "Authorization": "token " + token } });
+    if (!resp.ok) {
+      flashToast("同步拉取失败 HTTP " + resp.status);
+      return null;
+    }
+    const data = await resp.json();
+    if (data.type !== "file" || !data.content) return null;
+    const content = JSON.parse(atob(data.content.replace(/\s/g, "")));
+    return { content, sha: data.sha, path: data.path };
+  } catch (err) {
+    console.error("syncPull error:", err);
+    return null;
+  }
+}
+
+async function syncPush() {
+  const shortId = localStorage.getItem(SYNC_SHORT_KEY);
+  const token = localStorage.getItem(SYNC_TOKEN_KEY);
+  if (!shortId || !token) return;
+  const owner = localStorage.getItem(SYNC_OWNER_KEY) || "device";
+
+  // 1) 打包所有 banli_ 前缀 key 到 JSON
+  const dump = { data: {} };
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("banli_") && !k.startsWith("banli_sync_")) {
+      try { dump.data[k] = JSON.parse(localStorage.getItem(k)); }
+      catch { dump.data[k] = localStorage.getItem(k); }
+    }
+  }
+  dump._app = "banli-homework";
+  dump._version = 1;
+  dump._updated_at = new Date().toISOString();
+  dump._updated_by = owner;
+
+  // 2) GET 当前 sha
+  const getUrl = "https://api.github.com/repos/" + SYNC_REPO + "/contents/" + SYNC_GIST_PATH + "?ref=" + SYNC_BRANCH;
+  let currentSha = null;
+  try {
+    const getResp = await fetch(getUrl, { headers: { "Authorization": "token " + token } });
+    if (getResp.ok) {
+      const d = await getResp.json();
+      currentSha = d.sha;
+    }
+  } catch (e) { /* 可能首次 push,无 sha */ }
+
+  // 3) PUT
+  const body = {
+    message: "sync: " + owner + " @ " + dump._updated_at,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(dump, null, 2)))),
+    branch: SYNC_BRANCH
+  };
+  if (currentSha) body.sha = currentSha;
+
+  try {
+    const putResp = await fetch("https://api.github.com/repos/" + SYNC_REPO + "/contents/" + SYNC_GIST_PATH, {
+      method: "PUT",
+      headers: {
+        "Authorization": "token " + token,
+        "Content-Type": "application/json",
+        "Accept": "application/vnd.github+json"
+      },
+      body: JSON.stringify(body)
+    });
+    if (putResp.ok) {
+      localStorage.setItem(SYNC_LAST_PUSH_KEY, new Date().toISOString());
+      flashToast("✅ 已同步到云端");
+      return true;
+    } else {
+      const err = await putResp.json();
+      flashToast("同步失败: " + (err.message || putResp.status));
+      return false;
+    }
+  } catch (err) {
+    console.error("syncPush error:", err);
+    flashToast("同步失败: " + err.message);
+    return false;
+  }
+}
+
+async function syncMaybePull() {
+  const lastPull = localStorage.getItem(SYNC_LAST_PULL_KEY);
+  const result = await syncPull();
+  if (!result) return;
+  const remoteUpdatedAt = result.content._updated_at || "1970-01-01T00:00:00Z";
+  if (!lastPull || remoteUpdatedAt > lastPull) {
+    // 远端较新,合并（last-write-wins:按 _updated_at 逐 key 比较）
+    let pulled = 0;
+    for (const [k, v] of Object.entries(result.content.data || {})) {
+      if (!k.startsWith("banli_")) continue;
+      const existing = localStorage.getItem(k);
+      const existingJson = existing ? (() => { try { return JSON.parse(existing); } catch { return existing; } })() : null;
+      // 简化:本地无 key 就拉取,有则比较时间戳 — 但 banli_ keys 不带时间戳
+      // 直接 overwrite(简化版,后续可优化冲突合并)
+      if (!existing) {
+        localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+        pulled++;
+      }
+    }
+    if (pulled > 0) {
+      localStorage.setItem(SYNC_LAST_PULL_KEY, new Date().toISOString());
+      flashToast("✅ 从云端拉取 " + pulled + " 项数据,刷新中...");
+      setTimeout(() => location.reload(), 1500);
+    } else {
+      localStorage.setItem(SYNC_LAST_PULL_KEY, new Date().toISOString());
+    }
+  }
+}
+
+// 防抖触发 push
+function syncTriggerPush() {
+  if (_syncTimer) clearTimeout(_syncTimer);
+  _syncTimer = setTimeout(syncPush, 3000);  // 3 秒防抖
+}
+
+// 关联（首次）
+async function setupSync() {
+  const shortId = prompt("输入短码(找老板要):", "");
+  if (!shortId) return;
+  const token = prompt("输入 GitHub Token (ghp_...):", "");
+  if (!token) return;
+  const owner = prompt("这台设备是? (dad / ipad / phone)", "device");
+  localStorage.setItem(SYNC_SHORT_KEY, shortId.trim());
+  localStorage.setItem(SYNC_TOKEN_KEY, token.trim());
+  localStorage.setItem(SYNC_OWNER_KEY, (owner || "device").trim());
+  // 验证:尝试拉一次
+  const result = await syncPull();
+  if (result) {
+    flashToast("✅ 关联成功,正在拉取云端数据...");
+    await syncMaybePull();
+  } else {
+    flashToast("❌ 关联失败:短码或 token 不对");
+    localStorage.removeItem(SYNC_SHORT_KEY);
+    localStorage.removeItem(SYNC_TOKEN_KEY);
+    localStorage.removeItem(SYNC_OWNER_KEY);
+  }
+}
+
+// 解除关联
+function unsetupSync() {
+  if (!confirm("确定解除同步关联?本地数据保留,不再同步。")) return;
+  localStorage.removeItem(SYNC_SHORT_KEY);
+  localStorage.removeItem(SYNC_TOKEN_KEY);
+  localStorage.removeItem(SYNC_OWNER_KEY);
+  localStorage.removeItem(SYNC_LAST_PULL_KEY);
+  localStorage.removeItem(SYNC_LAST_PUSH_KEY);
+  flashToast("✅ 已解除关联");
+  setTimeout(() => location.reload(), 1500);
+}
+
+// 拦截所有改动,自动 push(3 秒防抖)
+// 通过包装几个关键函数实现 — 简单做法:在数据写后 setTimeout 调用 syncTriggerPush
+const _origSetItem = localStorage.setItem.bind(localStorage);
+localStorage.setItem = function(k, v) {
+  _origSetItem(k, v);
+  if (k && k.startsWith("banli_") && !k.startsWith("banli_sync_")) {
+    syncTriggerPush();
+  }
+};
+
+// 暴露供手动触发
+window._syncNow = () => { syncTriggerPush(); clearTimeout(_syncTimer); syncPush(); };
+
+
+
+// ============= 同步启动 =============
+// 启动时:如果已关联 → 拉一次云端
+async function syncBootstrap() {
+  const shortId = localStorage.getItem(SYNC_SHORT_KEY);
+  if (!shortId) return;
+  await syncMaybePull();
+  // 显示已关联按钮
+  document.getElementById("sync-setup").style.display = "none";
+  document.getElementById("sync-now").style.display = "";
+  document.getElementById("sync-break").style.display = "";
+}
+// 兜底定时拉:每 60 秒
+setInterval(() => {
+  if (localStorage.getItem(SYNC_SHORT_KEY)) syncMaybePull();
+}, 60000);
+
+document.getElementById("sync-setup").addEventListener("click", setupSync);
+document.getElementById("sync-now").addEventListener("click", () => {
+  flashToast("推送中...");
+  syncPush();
+});
+document.getElementById("sync-break").addEventListener("click", unsetupSync);
+
+// 页面加载完成后异步启动同步(不阻塞首屏)
+if (document.readyState === "complete") {
+  syncBootstrap();
+} else {
+  window.addEventListener("load", () => setTimeout(syncBootstrap, 1000));
+}
+
 // ============= 启动 =============
 applyTitle();
 applyTheme();
 updateDateUI();
+syncBootstrap();
 </script>
 </body>
 </html>

@@ -449,7 +449,7 @@
 
   <div class="toolbar">
     <span class="streak">🔥 <span id="streak-count">0</span> 天连胜</span>
-    <span class="toolbar-right"><button id="theme-toggle" class="theme-toggle" title="切换深色/浅色">🌙</button><span class="toolbar-hint">左滑删除 · 拖 ≡ 排序</span></span>
+    <span class="toolbar-right"><button id="theme-toggle" class="theme-toggle" title="切换深色/浅色">🌙</button><span class="toolbar-hint">左滑删除 · 拖 ≡ 排序</span><button id="data-backup" class="theme-toggle" title="下载 localStorage 全部作业数据">💾备份</button><button id="data-restore" class="theme-toggle" title="从备份 JSON 文件还原">📥还原</button></span>
   </div>
 
   <div class="subject-list" id="subjects"></div>
@@ -1216,6 +1216,91 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
   localStorage.setItem(THEME_KEY, cur === "dark" ? "light" : "dark");
   applyTheme();
 });
+
+// ============= 备份 / 还原 =============
+// 简易 toast（页面顶部滑入，2.5 秒自动消失），用于备份/还原反馈
+function flashToast(msg) {
+  const t = document.createElement("div");
+  t.textContent = msg;
+  t.style.cssText = "position:fixed;top:24px;left:50%;transform:translateX(-50%);background:rgba(28,30,33,0.92);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:9999;opacity:0;transition:opacity .2s;box-shadow:0 4px 12px rgba(0,0,0,.15)";
+  document.body.appendChild(t);
+  requestAnimationFrame(() => { t.style.opacity = "1"; });
+  setTimeout(() => {
+    t.style.opacity = "0";
+    setTimeout(() => t.remove(), 250);
+  }, 2500);
+}
+
+// 备份:打包所有 banli_ 前缀的 localStorage key 到 JSON 文件下载
+function backupAll() {
+  const dump = {
+    _exported_at: new Date().toISOString(),
+    _app: "banli-homework",
+    _version: 1,
+    keys: {}
+  };
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("banli_")) {
+      try {
+        dump.keys[k] = JSON.parse(localStorage.getItem(k));
+      } catch {
+        dump.keys[k] = localStorage.getItem(k);
+      }
+    }
+  }
+  const json = JSON.stringify(dump, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const ts = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
+  a.href = url;
+  a.download = `banli-homework-backup-${ts}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  flashToast(`✅ 已备份 ${Object.keys(dump.keys).length} 项数据`);
+}
+
+// 还原:从用户选择的 JSON 文件还原到 localStorage
+function restoreFromFile() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".json,application/json";
+  input.onchange = e => {
+    const f = e.target.files[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        if (!data || data._app !== "banli-homework" || !data.keys) {
+          alert("文件格式不对（不是 banli-homework 备份）");
+          return;
+        }
+        if (!confirm(`检测到 ${Object.keys(data.keys).length} 项备份数据。\n\n确定覆盖当前 localStorage 吗？\n（建议先点「💾备份」导出当前数据再还原）`)) {
+          return;
+        }
+        let count = 0;
+        for (const [k, v] of Object.entries(data.keys)) {
+          if (!k.startsWith("banli_")) continue;
+          localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+          count++;
+        }
+        flashToast(`✅ 已还原 ${count} 项数据，3 秒后刷新页面`);
+        setTimeout(() => location.reload(), 3000);
+      } catch (err) {
+        alert("解析失败：" + err.message);
+      }
+    };
+    reader.readAsText(f);
+  };
+  input.click();
+}
+
+document.getElementById("data-backup").addEventListener("click", backupAll);
+document.getElementById("data-restore").addEventListener("click", restoreFromFile);
 
 // ============= 启动 =============
 applyTitle();

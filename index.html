@@ -270,6 +270,25 @@
   }
   .item-text { flex: 1; min-width: 0; }
   .item-text .title { font-size: 17px; font-weight: 500; word-break: break-word; }
+  .item .title-edit {
+    flex: 1;
+    font-size: inherit;
+    font-family: inherit;
+    color: var(--ink);
+    background: var(--input-bg);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin: -4px -4px;  /* 抵消 padding 让位置不跳 */
+    outline: none;
+    min-width: 0;
+    width: 100%;
+  }
+  body.dark .item .title-edit {
+    background: var(--input-bg);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
   .item.done .item-text .title { text-decoration: line-through; color: var(--muted); }
   .item-del {
     visibility: hidden;
@@ -441,7 +460,7 @@
 // ============= 配置 =============
 const STREAK_KEY_PREFIX = "banli_streak_";
 const TITLE_KEY = "banli_title_v1";
-const INIT_DATA = {"subjects": [{"name": "语文", "emoji": "📖", "items": [{"id": "753503822123", "text": "背诵课文第3自然段", "done": false}, {"id": "535038286089", "text": "抄写词语两遍", "done": false}]}, {"name": "数学", "emoji": "🔢", "items": [{"id": "350383117273", "text": "P12 第1-5题", "done": false}, {"id": "535038336969", "text": "口算30道", "done": false}]}, {"name": "英语", "emoji": "🔤", "items": [{"id": "535038347885", "text": "听读Unit2单词3遍", "done": false}]}, {"name": "科学", "emoji": "🔬", "items": [{"id": "535038366219", "text": "观察月相", "done": false}]}], "_initialized": true}; // Python 注入(仅默认今天用)
+const INIT_DATA = {"subjects": [], "_initialized": true}; // Python 注入(仅默认今天用)
 const DEFAULT_STORAGE_KEY = "banli_homework_2026-09-24";
 const SUBJECT_OPTIONS = [
   { name: "语文", emoji: "📖" },
@@ -758,8 +777,19 @@ function renderItem(subj, item) {
       closeAllSwipes();
       return;
     }
-    item.done = !item.done;
-    refresh();
+    // 点勾选框 → 完成/取消;点文字 → 进入编辑
+    if (e.target.classList.contains("check") || e.target === div) {
+      item.done = !item.done;
+      refresh();
+    } else if (e.target.classList.contains("title")) {
+      startEditItem(div, subj, item);
+    }
+  });
+
+  // 作业项文字编辑（点文字触发）
+  div.querySelector(".title").addEventListener("dblclick", e => {
+    e.stopPropagation();
+    startEditItem(div, subj, item);
   });
 
   // 左滑操作按钮(只留删除;完成用圆形勾选框)
@@ -793,6 +823,43 @@ function renderItem(subj, item) {
   div.addEventListener("dragend", () => div.classList.remove("dragging"));
 
   return wrap;
+}
+
+// 进入作业项编辑模式：把 .title 换成 input，回车保存 / Esc 取消 / blur 保存
+function startEditItem(div, subj, item) {
+  if (isFuture()) return;  // 未来日期不可编辑
+  if (div.classList.contains("editing")) return;  // 已经在编辑
+  const titleEl = div.querySelector(".title");
+  if (!titleEl) return;
+  const oldText = item.text;
+  div.classList.add("editing");
+  // 用 input 替换文字
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "title-edit";
+  input.value = oldText;
+  input.maxLength = 80;
+  titleEl.replaceWith(input);
+  input.focus();
+  input.setSelectionRange(input.value.length, input.value.length);  // 光标在末尾
+
+  let done = false;
+  const finish = (save) => {
+    if (done) return;
+    done = true;
+    const newText = save ? (input.value.trim() || oldText) : oldText;
+    item.text = newText;
+    div.classList.remove("editing");
+    save && refresh();
+    if (!save) refresh();  // 取消也 refresh 一次把 input 换回 title
+  };
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); finish(true); }
+    else if (e.key === "Escape") { e.preventDefault(); finish(false); }
+  });
+  input.addEventListener("blur", () => finish(true));
+  // 阻止 input 上的点击冒泡到 row 的 click
+  input.addEventListener("click", e => e.stopPropagation());
 }
 
 let activeSwipe = null;  // 当前打开的 wrap

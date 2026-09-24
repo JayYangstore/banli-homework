@@ -201,6 +201,16 @@
     box-shadow: var(--shadow); font-family: inherit;
     display: flex; align-items: center; justify-content: center;
   }
+  /* 数据备份/还原按钮（与主题切换按钮区分：长方形小按钮） */
+  .data-btn {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    height: 26px; padding: 0 10px; cursor: pointer; font-size: 12px; line-height: 1;
+    color: var(--ink); font-family: inherit;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow);
+  }
+  .data-btn:active { background: var(--active-bg); }
+  body.dark .data-btn { background: var(--card); border-color: var(--line); }
   .theme-toggle:active { transform: scale(0.92); }
 
   /* 学科块 */
@@ -449,7 +459,7 @@
 
   <div class="toolbar">
     <span class="streak">🔥 <span id="streak-count">0</span> 天连胜</span>
-    <span class="toolbar-right"><button id="theme-toggle" class="theme-toggle" title="切换深色/浅色">🌙</button><span class="toolbar-hint">左滑删除 · 拖 ≡ 排序</span><button id="data-backup" class="theme-toggle" title="下载 localStorage 全部作业数据">导出</button><button id="data-restore" class="theme-toggle" title="从备份 JSON 文件还原">还原</button></span>
+    <span class="toolbar-right"><button id="theme-toggle" class="theme-toggle" title="切换深色/浅色">🌙</button><span class="toolbar-hint">左滑删除 · 拖 ≡ 排序</span><button id="data-backup" class="data-btn" title="下载 localStorage 全部作业数据">导出</button><button id="data-restore" class="data-btn" title="从备份 JSON 文件还原">还原</button></span>
   </div>
 
   <div class="subject-list" id="subjects"></div>

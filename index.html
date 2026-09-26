@@ -1110,35 +1110,39 @@ function addCalDay(grid, d, otherMonth) {
 }
 
 function renderDateStrip() {
-  try {
   const strip = document.getElementById("date-strip");
-  strip.innerHTML = "";
-  for (let offset = -3; offset <= 4; offset++) {
-    const iso = dateAddISO(TODAY_ISO, offset);
-    const chip = document.createElement("button");
-    chip.className = "date-chip";
-    if (iso === TODAY_ISO) chip.classList.add("today");
-    if (localStorage.getItem(dateKey(iso))) chip.classList.add("has-data");
-    const wk = isoToDateObject(iso).getDay();
-    chip.innerHTML = `<span class="wk">周${WEEKDAY_CN[wk]}</span><span class="dt">${isoToDateObject(iso).getDate()}</span>`;
-    const hasData = !!localStorage.getItem(dateKey(iso));
-    if (hasData) chip.title = `${formatDate(iso)} · 有作业`;
-    else chip.title = formatDate(iso);
-    chip.addEventListener("click", () => {
-      viewISO = iso;
-      updateDateUI();
-    });
-    strip.appendChild(chip);
-  }
-  requestAnimationFrame(() => {
-    const today = strip.querySelector(".date-chip.today");
-    if (today) {
-      strip.scrollLeft = today.offsetLeft - (strip.clientWidth - today.clientWidth) / 2;
+  if (!strip) return;
+  const t0 = performance.now();
+  console.log("[debug] renderDateStrip start");
+  try {
+    strip.innerHTML = "";
+    for (let offset = -3; offset <= 4; offset++) {
+      const iso = dateAddISO(TODAY_ISO, offset);
+      const chip = document.createElement("button");
+      chip.className = "date-chip";
+      if (iso === TODAY_ISO) chip.classList.add("today");
+      if (localStorage.getItem(dateKey(iso))) chip.classList.add("has-data");
+      const wk = isoToDateObject(iso).getDay();
+      chip.innerHTML = `<span class="wk">周${WEEKDAY_CN[wk]}</span><span class="dt">${isoToDateObject(iso).getDate()}</span>`;
+      const hasData = !!localStorage.getItem(dateKey(iso));
+      if (hasData) chip.title = `${formatDate(iso)} · 有作业`;
+      else chip.title = formatDate(iso);
+      chip.addEventListener("click", () => {
+        viewISO = iso;
+        updateDateUI();
+      });
+      strip.appendChild(chip);
     }
-  });
+    const ms = Math.round(performance.now() - t0);
+    console.log("[debug] renderDateStrip done in " + ms + "ms");
+    requestAnimationFrame(() => {
+      const today = strip.querySelector(".date-chip.today");
+      if (today) {
+        strip.scrollLeft = today.offsetLeft - (strip.clientWidth - today.clientWidth) / 2;
+      }
+    });
   } catch (e) {
     console.error("renderDateStrip error:", e);
-    const strip = document.getElementById("date-strip");
     if (strip) strip.innerHTML = '<div style="color:#fa5151;font-size:13px;padding:8px">日期条渲染失败: ' + e.message + '</div>';
   }
 }

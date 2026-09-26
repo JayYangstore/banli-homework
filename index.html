@@ -1511,16 +1511,24 @@ window._syncNow = () => { syncTriggerPush(); clearTimeout(_syncTimer); syncPush(
 async function syncBootstrap() {
   // 首次访问 URL 携带 sync 参数 → 自动写入 localStorage（用于 Mac 电脑端快速配置）
   // 格式: ?sync=SHORT_ID&token=TOKEN&owner=NAME
+  // 或 ?debug=1 → 显示诊断信息（不写 localStorage）
   try {
     const params = new URLSearchParams(location.search);
     const qShort = params.get("sync");
     const qToken = params.get("token");
     const qOwner = params.get("owner");
-    if (qShort && qToken && qOwner) {
+    if (params.get("debug") === "1") {
+      const curToken = localStorage.getItem(SYNC_TOKEN_KEY) || "(未设置)";
+      const curShort = localStorage.getItem(SYNC_SHORT_KEY) || "(未设置)";
+      const curOwner = localStorage.getItem(SYNC_OWNER_KEY) || "(未设置)";
+      const curLastPull = localStorage.getItem(SYNC_LAST_PULL_KEY) || "(从未拉过)";
+      const msg = "短码: " + curShort + "\n设备: " + curOwner + "\nToken 长度: " + curToken.length + "\nToken 前 4: " + curToken.substring(0,4) + "\nToken 后 4: " + curToken.substring(curToken.length-4) + "\n上次拉取: " + curLastPull + "\nToken 完整值（拷贝）:\n\n" + curToken;
+      alert("🔍 同步诊断\n\n" + msg);
+      history.replaceState({}, "", location.pathname);
+    } else if (qShort && qToken && qOwner) {
       localStorage.setItem(SYNC_SHORT_KEY, qShort);
       localStorage.setItem(SYNC_TOKEN_KEY, qToken);
       localStorage.setItem(SYNC_OWNER_KEY, qOwner);
-      // 清掉 URL 参数,避免 token 暴露在浏览器历史
       history.replaceState({}, "", location.pathname);
       flashToast("✅ 已通过 URL 自动配置同步（" + qOwner + "）");
     }

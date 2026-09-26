@@ -1,1 +1,95 @@
-{"_app": "banli-homework", "_version": 1, "_updated_at": "2026-09-24T14:03:24Z", "_updated_by": "dad-computer", "data": {"banli_subjects_2026-09-24": {"subjects": [{"name": "数学", "emoji": "🔢", "items": [{"id": "sync-test-4Z", "text": "电脑推的测试题", "done": false}]}, {"name": "语文", "emoji": "📖", "items": [{"id": "sync-test2", "text": "语文 背诵第3课", "done": false}]}]}}}
+{
+  "data": {
+    "banli_homework_2026-09-25": {
+      "subjects": [],
+      "_initialized": true
+    },
+    "banli_pvz_v1": {
+      "daily": {},
+      "history": [],
+      "redemptions": [],
+      "customRewards": [],
+      "inventory": {},
+      "unlockedPlants": [],
+      "achievements": {},
+      "stats": {
+        "streakMax": 0,
+        "weeklyFull": 0,
+        "totalEnergy": 0
+      },
+      "pin": "",
+      "totalEnergy": 0
+    },
+    "banli_homework_2026-09-26": {
+      "subjects": [],
+      "_initialized": true
+    },
+    "banli_streak_banli_homework_2026-09-25": 0,
+    "banli_streak_banli_homework_2026-09-24": 0,
+    "banli_homework_2026-09-24": {
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "753503822123",
+              "text": "背诵课文第3自然段",
+              "done": false
+            },
+            {
+              "id": "535038286089",
+              "text": "抄写词语两遍",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "350383117273",
+              "text": "P12 第1-5题",
+              "done": false
+            },
+            {
+              "id": "535038336969",
+              "text": "口算30道",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "535038347885",
+              "text": "听读Unit2单词3遍",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "535038366219",
+              "text": "观察月相",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "_initialized": true
+    },
+    "banli_theme_v1": "dark",
+    "banli_streak_banli_homework_2026-09-26": 0
+  },
+  "_app": "banli-homework",
+  "_version": 1,
+  "_updated_at": "2026-09-26T05:52:28.689Z",
+  "_updated_by": "mac"
+}

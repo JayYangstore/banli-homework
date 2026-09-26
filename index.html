@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>板栗作业 · 2026年09月24日</title>
+<title>板栗作业 · 2026年09月26日</title>
 <style>
   :root {
     --bg: #f4f5f7;
@@ -422,11 +422,11 @@
   <div class="header">
     <div class="title-wrap">
       <span class="title" id="main-title" title="双击修改"></span>
-      <div class="date-sub" id="date-sub">2026年09月24日 · 周四</div>
+      <div class="date-sub" id="date-sub">2026年09月26日 · 周六</div>
     </div>
     <div class="date-nav">
       <button id="prev-day" title="前一天(←键)">‹</button>
-      <div class="date-label" id="date-label">2026年09月24日</div>
+      <div class="date-label" id="date-label">2026年09月26日</div>
       <button id="next-day" title="后一天(→键)">›</button>
       <div class="mini-cal" id="mini-cal">
         <div class="mini-cal-head">
@@ -471,7 +471,7 @@
 const STREAK_KEY_PREFIX = "banli_streak_";
 const TITLE_KEY = "banli_title_v1";
 const INIT_DATA = {"subjects": [], "_initialized": true}; // Python 注入(仅默认今天用)
-const DEFAULT_STORAGE_KEY = "banli_homework_2026-09-24";
+const DEFAULT_STORAGE_KEY = "banli_homework_2026-09-26";
 const SUBJECT_OPTIONS = [
   { name: "语文", emoji: "📖" },
   { name: "数学", emoji: "🔢" },
@@ -1509,6 +1509,23 @@ window._syncNow = () => { syncTriggerPush(); clearTimeout(_syncTimer); syncPush(
 // ============= 同步启动 =============
 // 启动时:如果已关联 → 拉一次云端
 async function syncBootstrap() {
+  // 首次访问 URL 携带 sync 参数 → 自动写入 localStorage（用于 Mac 电脑端快速配置）
+  // 格式: ?sync=SHORT_ID&token=TOKEN&owner=NAME
+  try {
+    const params = new URLSearchParams(location.search);
+    const qShort = params.get("sync");
+    const qToken = params.get("token");
+    const qOwner = params.get("owner");
+    if (qShort && qToken && qOwner) {
+      localStorage.setItem(SYNC_SHORT_KEY, qShort);
+      localStorage.setItem(SYNC_TOKEN_KEY, qToken);
+      localStorage.setItem(SYNC_OWNER_KEY, qOwner);
+      // 清掉 URL 参数,避免 token 暴露在浏览器历史
+      history.replaceState({}, "", location.pathname);
+      flashToast("✅ 已通过 URL 自动配置同步（" + qOwner + "）");
+    }
+  } catch (e) { console.error("sync URL 配置失败:", e); }
+
   const shortId = localStorage.getItem(SYNC_SHORT_KEY);
   if (!shortId) return;
   await syncMaybePull();

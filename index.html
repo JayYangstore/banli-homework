@@ -1386,10 +1386,18 @@ async function syncPull() {
   }
 }
 
+let _pushInFlight = false;
+let _pushPending = false;
 async function syncPush() {
+  if (_pushInFlight) {
+    // 已有 push 在跑,标记需要再 push 一次(避免丢更新)
+    _pushPending = true;
+    return;
+  }
+  _pushInFlight = true;
   const shortId = localStorage.getItem(SYNC_SHORT_KEY);
   const token = localStorage.getItem(SYNC_TOKEN_KEY);
-  if (!shortId || !token) return;
+  if (!shortId || !token) { _pushInFlight = false; return; }
   const owner = localStorage.getItem(SYNC_OWNER_KEY) || "device";
 
   // 1) 打包所有 banli_ 前缀 key 到 JSON
@@ -1438,12 +1446,21 @@ async function syncPush() {
     if (putResp.ok) {
       localStorage.setItem(SYNC_LAST_PUSH_KEY, new Date().toISOString());
       flashToast("✅ 已同步到云端");
-      return true;
     } else {
       const err = await putResp.json();
       flashError("同步失败: " + (err.message || putResp.status));
-      return false;
     }
+  } catch (err) {
+    console.error("syncPush error:", err);
+    flashToast("同步失败: " + err.message);
+  } finally {
+    _pushInFlight = false;
+    if (_pushPending) {
+      _pushPending = false;
+      setTimeout(syncPush, 100);  // 100ms 后再推一次,合并期间的所有变更
+    }
+  }
+}
   } catch (err) {
     console.error("syncPush error:", err);
     flashToast("同步失败: " + err.message);
@@ -1488,8 +1505,8 @@ async function syncMaybePull(force = false) {
     }
   }
   if (pushed > 0) {
-    // 推送本地独有的 key 上去
-    await syncPush();
+    // 推送本地独有的 key 上去(走 syncPush,自动带锁)
+    setTimeout(syncPush, 100);
   }
   if (pulled > 0) {
     localStorage.setItem(SYNC_LAST_PULL_KEY, new Date().toISOString());

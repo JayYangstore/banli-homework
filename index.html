@@ -1461,22 +1461,16 @@ async function syncPush() {
       flashError("同步失败: " + (err.message || putResp.status));
     }
   } catch (err) {
-    console.error("syncPush error:", err);
-    flashToast("同步失败: " + err.message);
-  } finally {
-    _pushInFlight = false;
-    if (_pushPending) {
-      _pushPending = false;
-      setTimeout(syncPush, 100);  // 100ms 后再推一次,合并期间的所有变更
-    }
+        console.error("syncPush error:", err);
+        flashToast("同步失败: " + err.message);
+      } finally {
+        _pushInFlight = false;
+        if (_pushPending) {
+          _pushPending = false;
+          setTimeout(syncPush, 100);  // 100ms 后再推一次,合并期间的所有变更
+        }
+      }
   }
-}
-  } catch (err) {
-    console.error("syncPush error:", err);
-    flashToast("同步失败: " + err.message);
-    return false;
-  }
-}
 
 async function syncMaybePull(force = false) {
   const lastPull = localStorage.getItem(SYNC_LAST_PULL_KEY);

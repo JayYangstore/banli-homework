@@ -1110,6 +1110,7 @@ function addCalDay(grid, d, otherMonth) {
 }
 
 function renderDateStrip() {
+  try {
   const strip = document.getElementById("date-strip");
   strip.innerHTML = "";
   for (let offset = -3; offset <= 4; offset++) {
@@ -1135,6 +1136,11 @@ function renderDateStrip() {
       strip.scrollLeft = today.offsetLeft - (strip.clientWidth - today.clientWidth) / 2;
     }
   });
+  } catch (e) {
+    console.error("renderDateStrip error:", e);
+    const strip = document.getElementById("date-strip");
+    if (strip) strip.innerHTML = '<div style="color:#fa5151;font-size:13px;padding:8px">日期条渲染失败: ' + e.message + '</div>';
+  }
 }
 
 // ============= 添加学科 =============
@@ -1696,6 +1702,13 @@ window._syncNow = () => { syncTriggerPush(); clearTimeout(_syncTimer); syncPush(
 // ============= 同步启动 =============
 // 启动时:如果已关联 → 拉一次云端
 async function syncBootstrap() {
+  // 跳过同步（?nosync=1 用于排障：只看 UI 不跑网络）
+  try {
+    if (new URLSearchParams(location.search).get("nosync") === "1") {
+      console.warn("nosync=1, 跳过同步拉取");
+      return;
+    }
+  } catch (e) {}
   // 首次访问 URL 携带 sync 参数 → 自动写入 localStorage（用于 Mac 电脑端快速配置）
   // 格式: ?sync=SHORT_ID&token=TOKEN&owner=NAME
   // 或 ?debug=1 → 显示诊断信息（不写 localStorage）
@@ -1745,18 +1758,20 @@ document.getElementById("sync-pull").addEventListener("click", () => {
 });
 document.getElementById("sync-break").addEventListener("click", unsetupSync);
 
-// 页面加载完成后异步启动同步(不阻塞首屏)
-if (document.readyState === "complete") {
-  syncBootstrap();
-} else {
-  window.addEventListener("load", () => setTimeout(syncBootstrap, 1000));
+// 页面加载完成后异步启动同步(防止 sync 错误阻塞首屏)
+// 注意:syncBootstrap 已在底部启动块单独调用,这里不再重复
+if (document.readyState !== "complete") {
+  window.addEventListener("load", () => setTimeout(() => {
+    syncBootstrap().catch(e => console.error("late syncBootstrap error:", e));
+  }, 1000));
 }
 
 // ============= 启动 =============
-applyTitle();
-applyTheme();
-updateDateUI();
-syncBootstrap();
+try { applyTitle(); } catch (e) { console.error("applyTitle error:", e); }
+try { applyTheme(); } catch (e) { console.error("applyTheme error:", e); }
+try { updateDateUI(); } catch (e) { console.error("updateDateUI error:", e); }
+// syncBootstrap 异步,单独包 try/catch 不阻塞
+syncBootstrap().catch(e => console.error("syncBootstrap error:", e));
 </script>
 </body>
 </html>

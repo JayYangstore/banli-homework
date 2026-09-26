@@ -1,5 +1,31 @@
 {
   "data": {
+    "banli_subjects_2026-09-24": {
+      "subjects": [
+        {
+          "name": "æ°å­¦",
+          "emoji": "ð¢",
+          "items": [
+            {
+              "id": "sync-test-4Z",
+              "text": "çµèæ¨çæµè¯é¢",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "è¯­æ",
+          "emoji": "ð",
+          "items": [
+            {
+              "id": "sync-test2",
+              "text": "è¯­æ èè¯µç¬¬3è¯¾",
+              "done": false
+            }
+          ]
+        }
+      ]
+    },
     "banli_homework_2026-09-25": {
       "subjects": [],
       "_initialized": true
@@ -90,6 +116,6 @@
   },
   "_app": "banli-homework",
   "_version": 1,
-  "_updated_at": "2026-09-26T05:52:28.689Z",
+  "_updated_at": "2026-09-26T05:59:57.479Z",
   "_updated_by": "mac"
 }

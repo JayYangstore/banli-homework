@@ -3,107 +3,37 @@
     "banli_subjects_2026-09-24": {
       "subjects": [
         {
-          "name": "Ã¦ÂÂ°Ã¥Â­Â¦",
-          "emoji": "Ã°ÂÂÂ¢",
+          "name": "ÃÂ¦ÃÂÃÂ°ÃÂ¥ÃÂ­ÃÂ¦",
+          "emoji": "ÃÂ°ÃÂÃÂÃÂ¢",
           "items": [
             {
               "id": "sync-test-4Z",
-              "text": "Ã§ÂÂµÃ¨ÂÂÃ¦ÂÂ¨Ã§ÂÂÃ¦ÂµÂÃ¨Â¯ÂÃ©Â¢Â",
+              "text": "ÃÂ§ÃÂÃÂµÃÂ¨ÃÂÃÂÃÂ¦ÃÂÃÂ¨ÃÂ§ÃÂÃÂÃÂ¦ÃÂµÃÂÃÂ¨ÃÂ¯ÃÂÃÂ©ÃÂ¢ÃÂ",
               "done": false
             }
           ]
         },
         {
-          "name": "Ã¨Â¯Â­Ã¦ÂÂ",
-          "emoji": "Ã°ÂÂÂ",
+          "name": "ÃÂ¨ÃÂ¯ÃÂ­ÃÂ¦ÃÂÃÂ",
+          "emoji": "ÃÂ°ÃÂÃÂÃÂ",
           "items": [
             {
               "id": "sync-test2",
-              "text": "Ã¨Â¯Â­Ã¦ÂÂ Ã¨ÂÂÃ¨Â¯ÂµÃ§Â¬Â¬3Ã¨Â¯Â¾",
+              "text": "ÃÂ¨ÃÂ¯ÃÂ­ÃÂ¦ÃÂÃÂ ÃÂ¨ÃÂÃÂÃÂ¨ÃÂ¯ÃÂµÃÂ§ÃÂ¬ÃÂ¬3ÃÂ¨ÃÂ¯ÃÂ¾",
               "done": false
             }
           ]
         }
       ]
     },
-    "banli_theme_v1": "dark",
-    "banli_streak_banli_homework_2026-09-25": 0,
-    "banli_homework_2026-09-24": {
-      "subjects": [
-        {
-          "name": "语文",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "mufl9igap7ih",
-              "text": "补充练习第三页",
-              "done": true
-            },
-            {
-              "id": "mufla0pqqulg",
-              "text": "习作",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "数学",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "muflflm2kxaj",
-              "text": "堂p13",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "英语",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "mufjk2dz4iwi",
-              "text": "e英语宝",
-              "done": true
-            },
-            {
-              "id": "mufjkrwkcxxu",
-              "text": "学评p3-4",
-              "done": true
-            },
-            {
-              "id": "mufjn41tpc2p",
-              "text": "抄写字幕a-Z每个2遍",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "科学",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "mufjq5i1vkui",
-              "text": "完成练习第14页",
-              "done": true
-            },
-            {
-              "id": "mufjqccqoiq5",
-              "text": "复习练习册错题",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "画画",
-          "emoji": "📌",
-          "items": []
-        }
-      ],
-      "_initialized": true,
-      "_celebrated": true
+    "banli_homework_2026-09-25": {
+      "subjects": [],
+      "_initialized": true
     },
-    "banli_streak_banli_homework_2026-09-26": 0,
+    "banli_homework_2026-09-23": {
+      "subjects": [],
+      "_initialized": true
+    },
     "banli_pvz_v1": {
       "daily": {},
       "history": [],
@@ -120,28 +50,98 @@
       "pin": "",
       "totalEnergy": 0
     },
-    "banli_homework_2026-09-25": {
+    "banli_homework_2026-09-26": {
       "subjects": [],
       "_initialized": true
+    },
+    "banli_streak_banli_homework_2026-09-25": 0,
+    "banli_streak_banli_homework_2026-09-24": 1,
+    "banli_homework_2026-09-24": {
+      "subjects": [
+        {
+          "name": "è¯­æ",
+          "emoji": "ð",
+          "items": [
+            {
+              "id": "mufl9igap7ih",
+              "text": "è¡¥åç»ä¹ ç¬¬ä¸é¡µ",
+              "done": true
+            },
+            {
+              "id": "mufla0pqqulg",
+              "text": "ä¹ ä½",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "æ°å­¦",
+          "emoji": "ð",
+          "items": [
+            {
+              "id": "muflflm2kxaj",
+              "text": "å p13",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "è±è¯­",
+          "emoji": "ð",
+          "items": [
+            {
+              "id": "mufjk2dz4iwi",
+              "text": "eè±è¯­å®",
+              "done": true
+            },
+            {
+              "id": "mufjkrwkcxxu",
+              "text": "å­¦è¯p3-4",
+              "done": true
+            },
+            {
+              "id": "mufjn41tpc2p",
+              "text": "æåå­å¹a-Zæ¯ä¸ª2é",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "ç§å­¦",
+          "emoji": "ð",
+          "items": [
+            {
+              "id": "mufjq5i1vkui",
+              "text": "å®æç»ä¹ ç¬¬14é¡µ",
+              "done": true
+            },
+            {
+              "id": "mufjqccqoiq5",
+              "text": "å¤ä¹ ç»ä¹ åéé¢",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "ç»ç»",
+          "emoji": "ð",
+          "items": []
+        }
+      ],
+      "_initialized": true,
+      "_celebrated": true
     },
     "banli_homework_2026-09-27": {
       "subjects": [],
       "_initialized": true
     },
-    "banli_streak_banli_homework_2026-09-23": 0,
-    "banli_homework_2026-09-23": {
-      "subjects": [],
-      "_initialized": true
-    },
     "banli_streak_banli_homework_2026-09-27": 0,
-    "banli_streak_banli_homework_2026-09-24": 1,
-    "banli_homework_2026-09-26": {
-      "subjects": [],
-      "_initialized": true
-    }
+    "banli_theme_v1": "dark",
+    "banli_streak_banli_homework_2026-09-23": 0,
+    "banli_streak_banli_homework_2026-09-26": 0
   },
   "_app": "banli-homework",
   "_version": 1,
-  "_updated_at": "2026-09-26T09:02:12.439Z",
-  "_updated_by": "device"
+  "_updated_at": "2026-09-26T09:02:19.972Z",
+  "_updated_by": "mac"
 }

@@ -1497,12 +1497,41 @@ function showSetupDialog() {
       resolve(val);
     };
     modal.querySelector("#setup-cancel").onclick = () => close(null);
+    // 实时诊断 token 状态
+    const tokenInput = modal.querySelector("#setup-token");
+    const tokenHint = document.createElement("div");
+    tokenHint.style.cssText = "margin-bottom:14px;font-size:12px;min-height:18px";
+    tokenInput.parentNode.insertBefore(tokenHint, tokenInput.nextSibling);
+    const updateHint = () => {
+      const t = tokenInput.value.trim();
+      if (!t) { tokenHint.textContent = ""; return; }
+      if (t.length < 36) {
+        tokenHint.style.color = "#fa5151";
+        tokenHint.textContent = "✗ 太短(" + t.length + "字符),完整 40 字符";
+      } else if (!t.startsWith("ghp_") && !t.startsWith("github_pat_")) {
+        tokenHint.style.color = "#fa5151";
+        tokenHint.textContent = "✗ 必须以 ghp_ 或 github_pat_ 开头,你的是 " + t.substring(0,4);
+      } else if (t.includes("...")) {
+        tokenHint.style.color = "#fa5151";
+        tokenHint.textContent = "✗ 有省略号 ! 这是截断版 token,请去 github.com/settings/tokens 复制完整版";
+      } else {
+        tokenHint.style.color = "#34c759";
+        tokenHint.textContent = "✓ Token 格式正确(" + t.length + "字符)";
+      }
+    };
+    tokenInput.addEventListener("input", updateHint);
+    setTimeout(updateHint, 100);
+
     modal.querySelector("#setup-ok").onclick = () => {
       const shortId = modal.querySelector("#setup-short").value.trim();
-      const token = modal.querySelector("#setup-token").value.trim();
+      const token = tokenInput.value.trim();
       const owner = modal.querySelector("#setup-owner").value.trim() || "device";
       if (!shortId || !token) {
         flashToast("❌ 短码和 token 必填");
+        return;
+      }
+      if (token.length < 36 || (!token.startsWith("ghp_") && !token.startsWith("github_pat_")) || token.includes("...")) {
+        flashToast("✗ Token 格式不对,看下方红色提示");
         return;
       }
       close({ shortId, token, owner });
@@ -1527,15 +1556,40 @@ async function setupSync() {
 
   // 验证:尝试拉一次
   flashToast("⏳ 验证 token...");
+  // 详细诊断
+  const tokenLen = inputs.token.length;
+  const tokenHead = inputs.token.substring(0, 4);
+  const tokenTail = inputs.token.substring(inputs.token.length - 4);
+  if (!inputs.token.startsWith("ghp_") && !inputs.token.startsWith("github_pat_")) {
+    flashToast("⚠️ Token 应以 ghp_ 或 github_pat_ 开头,你的是 " + tokenHead);
+    return;
+  }
+  if (inputs.token.length < 36) {
+    flashToast("⚠️ Token 太短(" + tokenLen + "字符),完整 PAT 应有 40 字符");
+    return;
+  }
+  if (inputs.token.includes("...") || inputs.token.endsWith("...") || inputs.token.includes("\u2026")) {
+    flashToast("⚠️ Token 里有省略号 ! 老板你从 gh auth token 拿的 token 是截断版。请去 github.com/settings/tokens 重新复制完整的");
+    return;
+  }
+  // 调 GitHub API 验证
   const result = await syncPull();
   if (result) {
     flashToast("✅ 关联成功,正在拉取云端数据...");
     await syncMaybePull();
   } else {
-    flashToast("❌ 关联失败:token 无效或网络问题");
-    localStorage.removeItem(SYNC_SHORT_KEY);
-    localStorage.removeItem(SYNC_TOKEN_KEY);
-    localStorage.removeItem(SYNC_OWNER_KEY);
+    // 详细错误信息
+    let detail = "";
+    try {
+      const testResp = await fetch("https://api.github.com/repos/JayYangstore/banli-homework", {
+        headers: { "Authorization": "token " + inputs.token }
+      });
+      if (testResp.status === 401) detail = "401 = token 无效/过期/被撤销";
+      else if (testResp.status === 403) detail = "403 = token 没 repo scope";
+      else detail = "HTTP " + testResp.status;
+    } catch (e) { detail = "网络错误"; }
+    flashToast("❌ 失败: " + detail + " | token 长度 " + tokenLen + " | 头 " + tokenHead + " 尾 " + tokenTail);
+    // 不删 localStorage,让用户能看到详细信息再决定
   }
 }
 

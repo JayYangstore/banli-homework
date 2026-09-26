@@ -1228,6 +1228,20 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
 });
 
 // ============= 备份 / 还原 =============
+// UTF-8 字符串 ↔ Base64 双向转换（解决 btoa 不支持中文/emoji 的问题）
+function utf8ToBase64(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+function base64ToUtf8(b64) {
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
 // 简易 toast（页面顶部滑入，2.5 秒自动消失），用于备份/还原反馈
 function flashToast(msg, duration = 2500) {
   const t = document.createElement("div");
@@ -1265,7 +1279,7 @@ function backupAll() {
     }
   }
   const json = JSON.stringify(dump, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
+  const blob = new Blob([json], { type: "application/json;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   const ts = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
@@ -1353,7 +1367,7 @@ async function syncPull() {
     }
     const data = await resp.json();
     if (data.type !== "file" || !data.content) return null;
-    const content = JSON.parse(atob(data.content.replace(/\s/g, "")));
+    const content = JSON.parse(base64ToUtf8(data.content.replace(/\s/g, "")));
     return { content, sha: data.sha, path: data.path };
   } catch (err) {
     console.error("syncPull error:", err);
@@ -1395,7 +1409,7 @@ async function syncPush() {
   // 3) PUT
   const body = {
     message: "sync: " + owner + " @ " + dump._updated_at,
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(dump, null, 2)))),
+    content: utf8ToBase64(JSON.stringify(dump, null, 2)),
     branch: SYNC_BRANCH
   };
   if (currentSha) body.sha = currentSha;

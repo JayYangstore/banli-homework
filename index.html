@@ -1229,16 +1229,21 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
 
 // ============= 备份 / 还原 =============
 // 简易 toast（页面顶部滑入，2.5 秒自动消失），用于备份/还原反馈
-function flashToast(msg) {
+function flashToast(msg, duration = 2500) {
   const t = document.createElement("div");
   t.textContent = msg;
-  t.style.cssText = "position:fixed;top:24px;left:50%;transform:translateX(-50%);background:rgba(28,30,33,0.92);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:9999;opacity:0;transition:opacity .2s;box-shadow:0 4px 12px rgba(0,0,0,.15)";
+  t.style.cssText = "position:fixed;top:24px;left:50%;transform:translateX(-50%);background:rgba(28,30,33,0.92);color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;line-height:1.5;z-index:9999;opacity:0;transition:opacity .2s;box-shadow:0 4px 12px rgba(0,0,0,.15);max-width:90vw;white-space:pre-wrap;word-break:break-word;text-align:left";
   document.body.appendChild(t);
   requestAnimationFrame(() => { t.style.opacity = "1"; });
   setTimeout(() => {
     t.style.opacity = "0";
     setTimeout(() => t.remove(), 250);
-  }, 2500);
+  }, duration);
+}
+
+// 错误专用（停留更久,显示完整信息）
+function flashError(msg) {
+  flashToast("⚠️ " + msg, 6000);
 }
 
 // 备份:打包所有 banli_ 前缀的 localStorage key 到 JSON 文件下载
@@ -1343,7 +1348,7 @@ async function syncPull() {
   try {
     const resp = await fetch(url, { headers: { "Authorization": "token " + token } });
     if (!resp.ok) {
-      flashToast("同步拉取失败 HTTP " + resp.status);
+      flashError("拉取失败 HTTP " + resp.status);
       return null;
     }
     const data = await resp.json();
@@ -1411,7 +1416,7 @@ async function syncPush() {
       return true;
     } else {
       const err = await putResp.json();
-      flashToast("同步失败: " + (err.message || putResp.status));
+      flashError("同步失败: " + (err.message || putResp.status));
       return false;
     }
   } catch (err) {

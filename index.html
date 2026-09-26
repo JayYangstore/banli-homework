@@ -459,7 +459,8 @@
 
   <div class="toolbar">
     <span class="streak">🔥 <span id="streak-count">0</span> 天连胜</span>
-    <span class="toolbar-right"><button id="theme-toggle" class="theme-toggle" title="切换深色/浅色">🌙</button><span class="toolbar-hint">左滑删除 · 拖 ≡ 排序</span><button id="data-backup" class="data-btn" title="下载 localStorage 全部作业数据">导出</button><button id="data-restore" class="data-btn" title="从备份 JSON 文件还原">还原</button><button id="sync-setup" class="data-btn" title="关联同步短码和 token">同步</button><button id="sync-now" class="data-btn" title="立即推送本地到云端" style="display:none">↑推</button><button id="sync-pull" class="data-btn" title="从云端拉取最新数据到本地" style="display:none">↓拉</button><button id="sync-break" class="data-btn" title="解除同步关联" style="display:none">解绑</button></span>
+    <span class="toolbar-right"><button id="theme-toggle" class="theme-toggle" title="切换深色/浅色">🌙</button><span class="toolbar-hint">左滑删除 · 拖 ≡ 排序</span><button id="data-backup" class="data-btn" title="下载 localStorage 全部作业数据">导出</button>
+    <button id="data-clean" class="data-btn" title="清空本地所有 banli_ 数据(板栗作业/游戏/同步)" style="color:#fa5151;border-color:#fa5151">清空</button><button id="data-restore" class="data-btn" title="从备份 JSON 文件还原">还原</button><button id="sync-setup" class="data-btn" title="关联同步短码和 token">同步</button><button id="sync-now" class="data-btn" title="立即推送本地到云端" style="display:none">↑推</button><button id="sync-pull" class="data-btn" title="从云端拉取最新数据到本地" style="display:none">↓拉</button><button id="sync-break" class="data-btn" title="解除同步关联" style="display:none">解绑</button></span>
   </div>
 
   <div class="subject-list" id="subjects"></div>
@@ -1292,6 +1293,15 @@ function backupAll() {
   flashToast(`✅ 已备份 ${Object.keys(dump.keys).length} 项数据`);
 }
 
+// 一键清空所有 banli_ 数据(包括同步配置 + 板栗作业 + pvz 游戏数据)
+function cleanLocalAll() {
+  if (!confirm("⚠️ 确定要清空本地所有数据吗?\n\n• 板栗作业所有数据\n• 植物大战僵尸进度\n• 同步配置\n\n云端数据不受影响,之后点 ↓拉 可恢复")) return;
+  const ks = Object.keys(localStorage).filter(k => k.startsWith("banli_"));
+  ks.forEach(k => localStorage.removeItem(k));
+  flashToast("✅ 已清空 \(ks.length) 项本地数据,刷新中...");
+  setTimeout(() => location.reload(), 1500);
+}
+
 // 还原:从用户选择的 JSON 文件还原到 localStorage
 function restoreFromFile() {
   const input = document.createElement("input");
@@ -1330,6 +1340,7 @@ function restoreFromFile() {
 
 document.getElementById("data-backup").addEventListener("click", backupAll);
 document.getElementById("data-restore").addEventListener("click", restoreFromFile);
+document.getElementById("data-clean").addEventListener("click", cleanLocalAll);
 
 // ============= 跨端同步（Gist 模式）=============
 const SYNC_GIST_PATH = "sync/data.json";

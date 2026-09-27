@@ -102,6 +102,20 @@
   .modal button { padding: 10px 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); cursor: pointer; }
   .modal button.primary { background: var(--accent); color: white; border-color: var(--accent); }
   .toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background: rgba(28,30,33,0.92); color: white; padding: 10px 20px; border-radius: 8px; z-index: 99999; font-size: 14px; max-width: 90vw; }
+  .cal-modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99998; display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .cal-modal { background: var(--card); border-radius: 12px; padding: 16px; max-width: 360px; width: 100%; color: var(--ink); }
+  .cal-head { display: flex; align-items: center; justify-content: space-between; padding: 4px 8px 12px; }
+  .cal-nav-btn { background: transparent; border: none; color: var(--ink); font-size: 24px; cursor: pointer; padding: 4px 12px; }
+  .cal-title { font-size: 18px; font-weight: 700; }
+  .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; padding: 4px 0; font-size: 12px; color: var(--muted); text-align: center; }
+  .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; padding: 4px 0; }
+  .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; cursor: pointer; font-size: 15px; user-select: none; }
+  .cal-day.other { color: var(--muted); opacity: 0.4; }
+  .cal-day.today { font-weight: 700; border: 1px solid var(--accent); }
+  .cal-day.selected { background: var(--accent); color: white; }
+  .cal-day:active { background: rgba(127,127,127,0.2); }
+  .cal-foot { display: flex; justify-content: space-between; padding-top: 12px; margin-top: 8px; border-top: 1px solid var(--line); }
+  .cal-btn { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 8px 16px; color: var(--ink); cursor: pointer; font-size: 14px; }
   body.dark .add-item-row { background: #333438; }
   body.dark .check { border-color: #55585e; }
 </style>
@@ -118,7 +132,24 @@
       <div class="date-label" id="date-label"></div>
       <button id="next-day">></button>
       <button id="open-cal" title="打开日历" style="font-size:16px">📅</button>
-      <input type="date" id="cal-input" style="position:absolute;opacity:0;pointer-events:none;width:0;height:0">
+      <!-- 自定义日历弹窗 (iOS Safari 不能用 input type=date 的 showPicker/click) -->
+<div class="cal-modal-bg" id="cal-modal" style="display:none">
+  <div class="cal-modal">
+    <div class="cal-head">
+      <button id="cal-prev" class="cal-nav-btn">‹</button>
+      <span id="cal-title" class="cal-title">2026年09月</span>
+      <button id="cal-next" class="cal-nav-btn">›</button>
+    </div>
+    <div class="cal-weekdays">
+      <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+    </div>
+    <div class="cal-days" id="cal-days"></div>
+    <div class="cal-foot">
+      <button id="cal-cancel" class="cal-btn">取消</button>
+      <button id="cal-today" class="cal-btn">今天</button>
+    </div>
+  </div>
+</div>
     </div>
   </div>
   <div class="progress-card">
@@ -232,6 +263,81 @@ function render() {
   $("date-sub").textContent = viewISO + " \u00b7 \u5468" + wkcn(new Date(viewISO));
   $("streak").textContent = "\ud83d\udd25 " + loadStreak() + " \u5929\u8fde\u80dc";
 }
+
+// ============ 自定义日历弹窗 ============
+let _calYear = 0, _calMonth = 0;
+
+function openCalendar() {
+  const d = new Date(viewISO);
+  _calYear = d.getFullYear();
+  _calMonth = d.getMonth();
+  _renderCal();
+  $("cal-modal").style.display = "flex";
+}
+
+function _renderCal() {
+  $("cal-title").textContent = _calYear + "\u5e74" + (_calMonth + 1) + "\u6708";
+  const days = $("cal-days");
+  days.innerHTML = "";
+
+  const first = new Date(_calYear, _calMonth, 1);
+  const firstWk = first.getDay();
+  const monthDays = new Date(_calYear, _calMonth + 1, 0).getDate();
+  const prevMonthDays = new Date(_calYear, _calMonth, 0).getDate();
+
+  for (let i = firstWk - 1; i >= 0; i--) {
+    const d = prevMonthDays - i;
+    const el = document.createElement("div");
+    el.className = "cal-day other";
+    el.textContent = d;
+    days.appendChild(el);
+  }
+
+  const todayStr = todayISO();
+  for (let d = 1; d <= monthDays; d++) {
+    const iso = _calYear + "-" + String(_calMonth + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
+    const el = document.createElement("div");
+    el.className = "cal-day";
+    if (iso === todayStr) el.className += " today";
+    if (iso === viewISO) el.className += " selected";
+    el.textContent = d;
+    el.onclick = function() {
+      viewISO = iso;
+      $("cal-modal").style.display = "none";
+      render();
+    };
+    days.appendChild(el);
+  }
+
+  const totalCells = days.children.length;
+  const next = 42 - totalCells;
+  for (let d = 1; d <= next; d++) {
+    const el = document.createElement("div");
+    el.className = "cal-day other";
+    el.textContent = d;
+    days.appendChild(el);
+  }
+}
+
+$("cal-prev").onclick = function() {
+  _calMonth--;
+  if (_calMonth < 0) { _calMonth = 11; _calYear--; }
+  _renderCal();
+};
+$("cal-next").onclick = function() {
+  _calMonth++;
+  if (_calMonth > 11) { _calMonth = 0; _calYear++; }
+  _renderCal();
+};
+$("cal-cancel").onclick = function() { $("cal-modal").style.display = "none"; };
+$("cal-today").onclick = function() {
+  viewISO = todayISO();
+  $("cal-modal").style.display = "none";
+  render();
+};
+$("cal-modal").onclick = function(e) {
+  if (e.target.id === "cal-modal") $("cal-modal").style.display = "none";
+};
 
 function renderSubject(subj) {
   const card = document.createElement("div");
@@ -618,23 +724,57 @@ async function pullSync() {
   if (_syncInFlight) return;
   _syncInFlight = true;
   try {
+    const token = localStorage.getItem(SYNC_TOKEN_KEY);
+    if (!token) { showToast("\u26a0\ufe0f \u6ca1\u5173\u8054,\u8bf7\u70b9 [\u540c\u6b65] \u8bbe\u7f6e"); return; }
+
     const r = await ghApi("/repos/" + SYNC_REPO + "/contents/" + SYNC_PATH + "?ref=" + SYNC_BRANCH);
     const bytes = new Uint8Array(atob(r.content).split("").map(function(c) { return c.charCodeAt(0); }));
     const json = JSON.parse(new TextDecoder("utf-8").decode(bytes));
-    let pulled = 0;
-    for (const k in json.data) {
+    const remote = json.data || {};
+
+    let added = 0, overwritten = 0, skipped = 0;
+    for (const k in remote) {
       if (!k.startsWith("banli_")) continue;
+      if (k.startsWith("banli_sync_")) continue;  // 不覆盖自己的 token/short/owner
       const cur = localStorage.getItem(k);
+      const v = remote[k];
+
       if (!cur) {
-        const v = json.data[k];
+        // 本地没有 → 直接拉
         localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
-        pulled++;
+        added++;
+      } else {
+        // 本地有 → 看值
+        const curVal = cur;
+        const isEmpty = curVal === "" || curVal === "{}" || curVal === "[]" || curVal === "null";
+        if (isEmpty) {
+          // 本地是空值(清空后)→ 用云端覆盖
+          localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+          overwritten++;
+        } else {
+          // 本地有真实数据 → 保留本地
+          skipped++;
+        }
       }
     }
-    if (pulled > 0) { showToast("\u2705 \u62c9\u53d6 " + pulled + " \u9879,\u5237\u65b0\u4e2d..."); setTimeout(function() { location.reload(); }, 1200); }
-    else showToast("\u672c\u5730\u5df2\u662f\u6700\u65b0");
+
+    // 单独显示云端是谁最后改的
+    const owner = json._updated_by || "\u4e0d\u8be6";
+    const ts = json._updated_at || "";
+    const timeStr = ts ? new Date(ts).toLocaleString("zh-CN") : "";
+
+    let msg = "\u2705 \u4ece\u4e91\u7aef(" + owner + ") \u62c9\u53d6\u6210\u529f \u00b7 \u65b0\u589e " + added + " \u00b7 \u8986\u76d6\u7a7a\u503c " + overwritten + " \u00b7 \u4fdd\u7559\u672c\u5730 " + skipped;
+    showToast(msg, 4000);
+    console.log("pullSync:", { owner, time: ts, added, overwritten, skipped });
+    if (added > 0 || overwritten > 0) {
+      setTimeout(function() { location.reload(); }, 1500);
+    }
   } catch (e) {
-    showToast("\u26a0\ufe0f \u62c9\u53d6\u5931\u8d25 " + e.message, 3500);
+    let msg = e.message || String(e);
+    if (msg.includes("401")) msg = "401 Token \u65e0\u6548";
+    else if (msg.includes("404")) msg = "404 \u4e91\u7aef\u6587\u4ef6\u4e0d\u5b58\u5728(\u5148\u63a8\u4e00\u6b21)";
+    console.error("pullSync err:", e);
+    showToast("\u26a0\ufe0f \u62c9\u53d6\u5931\u8d25: " + msg, 4000);
   } finally {
     _syncInFlight = false;
   }
@@ -763,19 +903,7 @@ window.addEventListener("load", function() {
 
   $("prev-day").onclick = function() { viewISO = addDays(viewISO, -1); render(); };
   $("next-day").onclick = function() { viewISO = addDays(viewISO, 1); render(); };
-  $("open-cal").onclick = function() {
-    const inp = $("cal-input");
-    if (inp.showPicker) {
-      try { inp.showPicker(); return; } catch(e) {}
-    }
-    inp.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;opacity:1;width:160px;height:40px";
-    inp.focus();
-    inp.click();
-    setTimeout(function() {
-      inp.style.cssText = "position:absolute;opacity:0;pointer-events:none;width:0;height:0";
-    }, 500);
-  };
-  $("cal-input").onchange = function(e) { if (e.target.value) { viewISO = e.target.value; render(); } };
+  $("open-cal").onclick = function() { openCalendar(); };
   $("theme").onclick = function() {
     localStorage.setItem(THEME_KEY, localStorage.getItem(THEME_KEY) === "dark" ? "" : "dark");
     applyTheme();

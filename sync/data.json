@@ -1,44 +1,7 @@
 {
-  "_updated_at": "2026-09-27T11:43:00.358Z",
-  "_updated_by": "Mac",
+  "_updated_at": "2026-09-27T11:43:48.847Z",
+  "_updated_by": "ipad",
   "data": {
-    "banli_auto_sync": "",
-    "banli_theme_v1": "dark",
-    "banli_streak_banli_homework_2026-09-25": 0,
-    "banli_homework_2026-09-24": {
-      "subjects": [],
-      "_initialized": true
-    },
-    "banli_streak_banli_homework_2026-09-26": 0,
-    "banli_homework_2026-09-25": {
-      "subjects": [],
-      "_initialized": true
-    },
-    "banli_homework_2026-09-27": {
-      "subjects": [
-        {
-          "name": "11",
-          "emoji": "📌",
-          "items": []
-        },
-        {
-          "name": "22",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "5g6copte",
-              "text": "数学作业堂练本",
-              "done": false
-            }
-          ]
-        }
-      ]
-    },
-    "banli_streak_banli_homework_2026-09-24": 0,
-    "banli_theme": "dark",
-    "banli_homework_2026-09-26": {
-      "subjects": [],
-      "_initialized": true
-    }
+    "banli_theme": "dark"
   }
 }

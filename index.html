@@ -69,7 +69,12 @@
   .subject-name .label { padding: 2px 4px; border-radius: 6px; }
   .subject-name .label:hover { background: rgba(127,127,127,0.08); }
   .subject-name .label[contenteditable="true"] { outline: 2px solid var(--accent); background: var(--card); }
-  .subject-count { font-size: 13px; color: var(--muted); font-weight: 500; flex-shrink: 0; margin-left: 8px; }
+  .subject-count { font-size: 13px; color: var(--muted); font-weight: 500; flex-shrink: 0; }
+  .subject-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: 8px; }
+  .subject-del { color: var(--red); font-size: 22px; font-weight: bold; cursor: pointer; padding: 0 6px; line-height: 1; opacity: 0.7; }
+  .subject-del:hover { opacity: 1; }
+  .subject-name .emoji { cursor: pointer; }
+  .subject-name .label { cursor: pointer; }
   .item { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--line); cursor: pointer; }
   .item:last-child { border-bottom: none; }
   .item:active { background: rgba(127,127,127,0.05); }
@@ -255,9 +260,37 @@ function renderSubject(subj) {
   }
   count.textContent = sd + " / " + subj.items.length;
 
+  // 右侧操作区: 计数 + × 删除
+  const right = document.createElement("div");
+  right.className = "subject-right";
+  right.appendChild(count);
+  const del = document.createElement("div");
+  del.className = "subject-del";
+  del.textContent = "×";
+  del.title = "删除整个学科(及里面所有作业)";
+  del.onclick = function(e) {
+    e.stopPropagation();
+    deleteSubject(subj);
+  };
+  right.appendChild(del);
+
   head.appendChild(name);
-  head.appendChild(count);
+  head.appendChild(right);
   card.appendChild(head);
+
+  // 双击 emoji 改图标
+  emoji.title = "双击改 emoji";
+  emoji.ondblclick = function(e) {
+    e.stopPropagation();
+    editSubjectEmoji(emoji, subj);
+  };
+
+  // 双击 label 改名字
+  label.title = "双击改名字";
+  label.ondblclick = function(e) {
+    e.stopPropagation();
+    editSubjectName(label, subj);
+  };
 
   for (let i = 0; i < subj.items.length; i++) {
     card.appendChild(renderItem(subj, subj.items[i]));
@@ -356,6 +389,66 @@ function deleteItem(subj, id) {
     render();
     return;
   }
+}
+
+// ============ 学科改名 / 改 emoji / 删除 ============
+function findSubjectByName(data, name) {
+  for (let i = 0; i < data.subjects.length; i++) {
+    if (data.subjects[i].name === name) return data.subjects[i];
+  }
+  return null;
+}
+
+function editSubjectName(labelEl, subj) {
+  if (isFuture(viewISO)) return;
+  const oldName = subj.name;
+  const next = prompt("改学科名字", oldName);
+  if (next === null) return;  // 用户取消
+  const trimmed = next.trim();
+  if (!trimmed) { showToast("名字不能为空"); return; }
+  if (trimmed === oldName) return;
+  // 检查重名
+  const data = loadDay(viewISO);
+  if (findSubjectByName(data, trimmed)) {
+    showToast("已有同名学科");
+    return;
+  }
+  const s = findSubjectByName(data, oldName);
+  if (s) {
+    s.name = trimmed;
+    subj.name = trimmed;  // 更新引用对象的 name
+    saveDay(viewISO, data);
+    render();
+  }
+}
+
+function editSubjectEmoji(emojiEl, subj) {
+  if (isFuture(viewISO)) return;
+  const oldEmoji = subj.emoji || "📌";
+  const next = prompt("改图标 emoji", oldEmoji);
+  if (next === null) return;
+  const trimmed = next.trim();
+  if (!trimmed) { showToast("emoji 不能为空"); return; }
+  if (trimmed === oldEmoji) return;
+  const data = loadDay(viewISO);
+  const s = findSubjectByName(data, subj.name);
+  if (s) {
+    s.emoji = trimmed;
+    subj.emoji = trimmed;
+    saveDay(viewISO, data);
+    render();
+  }
+}
+
+function deleteSubject(subj) {
+  if (isFuture(viewISO)) return;
+  const n = subj.items.length;
+  if (!confirm("删除学科『" + subj.name + "』？\n里面 " + n + " 项作业也会一起删除")) return;
+  const data = loadDay(viewISO);
+  data.subjects = data.subjects.filter(function(s) { return s.name !== subj.name; });
+  saveDay(viewISO, data);
+  render();
+  showToast("✅ 已删除『" + subj.name + "』");
 }
 
 function editText(el, subj, item) {

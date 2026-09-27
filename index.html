@@ -73,16 +73,17 @@
   .item { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--line); cursor: pointer; }
   .item:last-child { border-bottom: none; }
   .item:active { background: rgba(127,127,127,0.05); }
-  .item.done .text { text-decoration: line-through; color: var(--muted); }
+  .item.done .text { color: var(--ink); }
   .check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #d5d8dd; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center; }
   .item.done .check { background: var(--accent); border-color: var(--accent); }
   .item.done .check::after { content: '\u2713'; color: white; font-size: 14px; font-weight: bold; }
-  .text { flex: 1; word-break: break-word; min-width: 0; }
+  .text { flex: 1; word-break: break-word; min-width: 0; color: var(--ink); }
+  .item.done .text { text-decoration: line-through; color: var(--muted); }
   .text[contenteditable="true"] { outline: 2px solid var(--accent); background: var(--card); border-radius: 4px; padding: 4px 6px; }
   .item-del { color: var(--muted); font-size: 18px; padding: 4px 8px; cursor: pointer; }
   .add-item-row { display: flex; gap: 8px; padding: 10px 14px; background: #fafafa; border-top: 1px dashed var(--line); }
-  .add-item-row input { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: 15px; background: var(--card); }
+  .add-item-row input { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: 15px; background: var(--card); color: var(--ink); }
   .add-item-row button { background: var(--accent); color: white; border: none; border-radius: 8px; padding: 8px 14px; font-weight: bold; cursor: pointer; }
   .add-subject { background: var(--card); border: 2px dashed var(--line); border-radius: 14px; padding: 14px; text-align: center; color: var(--muted); font-size: 14px; cursor: pointer; margin-top: 4px; }
   body.future .item, body.future .add-item-row, body.future .add-subject { pointer-events: none; opacity: 0.5; }
@@ -111,6 +112,8 @@
       <button id="prev-day"><</button>
       <div class="date-label" id="date-label"></div>
       <button id="next-day">></button>
+      <button id="open-cal" title="打开日历" style="font-size:16px">📅</button>
+      <input type="date" id="cal-input" style="position:absolute;opacity:0;pointer-events:none;width:0;height:0">
     </div>
   </div>
   <div class="progress-card">
@@ -122,10 +125,10 @@
   <div class="toolbar">
     <span class="streak" id="streak">\ud83d\udd25 0 天连胜</span>
     <span class="toolbar-right">
-      <button id="sync" class="btn" title="同步到云端">同步</button>
-      <button id="push" class="btn" style="display:none" title="推送到云端">^推</button>
-      <button id="pull" class="btn" style="display:none" title="从云端拉取">v拉</button>
-      <button id="unlink" class="btn btn-danger" style="display:none" title="解除关联">解绑</button>
+      <button id="push-btn" class="btn" title="把本地推送到云端">↑推</button>
+      <button id="pull-btn" class="btn" title="从云端拉到本地">↓拉</button>
+      <button id="sync-set" class="btn" title="关联/解绑同步">同步</button>
+      <button id="auto-sync" class="btn" title="自动同步开关" style="font-size:11px">自动:关</button>
       <button id="export" class="btn" title="下载 JSON 备份">导出</button>
       <button id="import" class="btn" title="从 JSON 备份恢复">还原</button>
       <button id="clean" class="btn btn-danger" title="清空本地所有数据">清空</button>
@@ -429,10 +432,7 @@ function addSubject() {
 let _syncInFlight = false;
 function syncBtnState() {
   const linked = !!(localStorage.getItem(SYNC_SHORT_KEY) && localStorage.getItem(SYNC_TOKEN_KEY));
-  $("sync").style.display = linked ? "none" : "";
-  $("push").style.display = linked ? "" : "none";
-  $("pull").style.display = linked ? "" : "none";
-  $("unlink").style.display = linked ? "" : "none";
+  $("sync-set").textContent = linked ? "同步✓" : "同步";
 }
 
 function showSyncModal() {
@@ -552,8 +552,26 @@ function unlinkSync() {
 
 function triggerSync() {
   if (!(localStorage.getItem(SYNC_SHORT_KEY) && localStorage.getItem(SYNC_TOKEN_KEY))) return;
+  if (localStorage.getItem("banli_auto_sync") !== "1") return;  // 自动同步关闭就不推
   clearTimeout(window._st);
   window._st = setTimeout(pushSync, 1500);
+}
+
+function toggleAutoSync() {
+  const cur = localStorage.getItem("banli_auto_sync");
+  localStorage.setItem("banli_auto_sync", cur === "1" ? "" : "1");
+  refreshAutoSyncLabel();
+  showToast("自动同步: " + (localStorage.getItem("banli_auto_sync") === "1" ? "开" : "关"));
+  if (localStorage.getItem("banli_auto_sync") === "1") pushSync();  // 立刻同步一次
+}
+
+function refreshAutoSyncLabel() {
+  const on = localStorage.getItem("banli_auto_sync") === "1";
+  const btn = $("auto-sync");
+  if (btn) {
+    btn.textContent = "自动:" + (on ? "开" : "关");
+    btn.style.color = on ? "var(--accent)" : "var(--muted)";
+  }
 }
 
 // ============ 备份 / 导入 / 清空 ============
@@ -646,6 +664,8 @@ window.addEventListener("load", function() {
 
   $("prev-day").onclick = function() { viewISO = addDays(viewISO, -1); render(); };
   $("next-day").onclick = function() { viewISO = addDays(viewISO, 1); render(); };
+  $("open-cal").onclick = function() { $("cal-input").showPicker ? $("cal-input").showPicker() : $("cal-input").click(); };
+  $("cal-input").onchange = function(e) { if (e.target.value) { viewISO = e.target.value; render(); } };
   $("theme").onclick = function() {
     localStorage.setItem(THEME_KEY, localStorage.getItem(THEME_KEY) === "dark" ? "" : "dark");
     applyTheme();
@@ -654,11 +674,12 @@ window.addEventListener("load", function() {
   $("export").onclick = exportData;
   $("import").onclick = importData;
   $("clean").onclick = cleanAll;
-  $("sync").onclick = showSyncModal;
-  $("push").onclick = pushSync;
-  $("pull").onclick = pullSync;
-  $("unlink").onclick = unlinkSync;
+  $("push-btn").onclick = pushSync;
+  $("pull-btn").onclick = pullSync;
+  $("sync-set").onclick = showSyncModal;
+  $("auto-sync").onclick = toggleAutoSync;
   bindTitleEdit();
+  refreshAutoSyncLabel();
 });
 </script>
 </body>

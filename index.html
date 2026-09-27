@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1b1c1e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
 <title>板栗作业</title>
 <style>
   :root {
@@ -28,10 +33,13 @@
     --red: #ff6b6b;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { margin: 0; padding: 0; background-color: var(--bg); background: var(--bg); color: var(--ink);
+  html { background: var(--bg); }
+  body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
     min-height: 100vh; min-height: 100dvh;
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-    font-size: 17px; line-height: 1.5; }
+    font-size: 17px; line-height: 1.5;
+    background-attachment: fixed; }
+  body.dark { background-color: #1b1c1e; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 12px 14px 32px; }
   .header { display: flex; align-items: flex-start; justify-content: space-between; padding: 8px 4px; gap: 8px; flex-wrap: wrap; }
   .title-wrap { flex: 1 1 220px; min-width: 0; }

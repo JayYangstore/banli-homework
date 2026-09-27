@@ -1,8 +1,8 @@
 {
-  "_updated_at": "2026-09-27T11:56:37.567Z",
+  "_updated_at": "2026-09-27T12:03:58.226Z",
   "_updated_by": "Mac",
   "data": {
-    "banli_auto_sync": 1,
+    "banli_auto_sync": "",
     "banli_theme_v1": "dark",
     "banli_streak_banli_homework_2026-09-25": 0,
     "banli_homework_2026-09-24": {
@@ -14,12 +14,12 @@
             {
               "id": "mt9mjbqy",
               "text": "补P3-4",
-              "done": true
+              "done": false
             },
             {
               "id": "2j3lpfux",
               "text": "习作",
-              "done": true
+              "done": false
             }
           ]
         },
@@ -30,7 +30,7 @@
             {
               "id": "3k3csvnw",
               "text": "堂练P13",
-              "done": true
+              "done": false
             }
           ]
         },
@@ -41,17 +41,17 @@
             {
               "id": "6yrz1rm1",
               "text": "学评P3-4",
-              "done": true
+              "done": false
             },
             {
               "id": "51wxwvhm",
               "text": "E英语宝",
-              "done": true
+              "done": false
             },
             {
               "id": "lev5lsq5",
               "text": "抄写字母A到Z，每个两遍",
-              "done": true
+              "done": false
             }
           ]
         },
@@ -62,12 +62,12 @@
             {
               "id": "g28dqmi6",
               "text": "完成《练习》14页",
-              "done": true
+              "done": false
             },
             {
               "id": "wm36zdhi",
               "text": "复习练习册错题",
-              "done": true
+              "done": false
             }
           ]
         }

@@ -82,7 +82,7 @@
   .check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #d5d8dd; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center; }
   .item.done .check { background: var(--accent); border-color: var(--accent); }
-  .item.done .check::after { content: '\u2713'; color: white; font-size: 14px; font-weight: bold; }
+  .item.done .check::after { content: '✓'; color: white; font-size: 14px; font-weight: bold; }
   .text { flex: 1; word-break: break-word; min-width: 0; color: var(--ink); }
   .item.done .text { text-decoration: line-through; color: var(--muted); }
   .text[contenteditable="true"] { outline: 2px solid var(--accent); background: var(--card); border-radius: 4px; padding: 4px 6px; }
@@ -341,7 +341,11 @@ function renderItem(subj, item) {
   };
   row.appendChild(del);
 
-  row.onclick = function() { toggleItem(subj, item.id); };
+  check.onclick = function(e) { e.stopPropagation(); toggleItem(subj, item.id); };
+  row.onclick = function(e) {
+    if (e.target === check || e.target === del) return;
+    editText(text, subj, item);
+  };
   text.ondblclick = function(e) {
     e.stopPropagation();
     editText(text, subj, item);
@@ -581,6 +585,8 @@ async function pushSync() {
   if (_syncInFlight) return;
   _syncInFlight = true;
   try {
+    const token = localStorage.getItem(SYNC_TOKEN_KEY);
+    if (!token) { showToast("⚠️ 没关联,请点 [同步] 设置"); return; }
     const owner = localStorage.getItem(SYNC_OWNER_KEY) || "device";
     const data = {};
     for (let i = 0; i < localStorage.length; i++) {
@@ -757,7 +763,18 @@ window.addEventListener("load", function() {
 
   $("prev-day").onclick = function() { viewISO = addDays(viewISO, -1); render(); };
   $("next-day").onclick = function() { viewISO = addDays(viewISO, 1); render(); };
-  $("open-cal").onclick = function() { $("cal-input").showPicker ? $("cal-input").showPicker() : $("cal-input").click(); };
+  $("open-cal").onclick = function() {
+    const inp = $("cal-input");
+    if (inp.showPicker) {
+      try { inp.showPicker(); return; } catch(e) {}
+    }
+    inp.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;opacity:1;width:160px;height:40px";
+    inp.focus();
+    inp.click();
+    setTimeout(function() {
+      inp.style.cssText = "position:absolute;opacity:0;pointer-events:none;width:0;height:0";
+    }, 500);
+  };
   $("cal-input").onchange = function(e) { if (e.target.value) { viewISO = e.target.value; render(); } };
   $("theme").onclick = function() {
     localStorage.setItem(THEME_KEY, localStorage.getItem(THEME_KEY) === "dark" ? "" : "dark");

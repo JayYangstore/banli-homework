@@ -1,7 +1,92 @@
 {
-  "_updated_at": "2026-09-27T11:43:48.847Z",
-  "_updated_by": "ipad",
+  "_updated_at": "2026-09-27T11:55:45.044Z",
+  "_updated_by": "Mac",
   "data": {
-    "banli_theme": "dark"
+    "banli_auto_sync": 1,
+    "banli_theme_v1": "dark",
+    "banli_streak_banli_homework_2026-09-25": 0,
+    "banli_homework_2026-09-24": {
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "mt9mjbqy",
+              "text": "补P3-4",
+              "done": true
+            },
+            {
+              "id": "2j3lpfux",
+              "text": "习作",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "3k3csvnw",
+              "text": "堂练P13",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "6yrz1rm1",
+              "text": "学评P3-4",
+              "done": true
+            },
+            {
+              "id": "51wxwvhm",
+              "text": "E英语宝",
+              "done": true
+            },
+            {
+              "id": "lev5lsq5",
+              "text": "抄写字母A到Z，每个两遍",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "g28dqmi6",
+              "text": "完成《练习》14页",
+              "done": true
+            },
+            {
+              "id": "wm36zdhi",
+              "text": "复习练习册错题",
+              "done": true
+            }
+          ]
+        }
+      ],
+      "_initialized": true
+    },
+    "banli_streak_banli_homework_2026-09-26": 0,
+    "banli_homework_2026-09-25": {
+      "subjects": [],
+      "_initialized": true
+    },
+    "banli_homework_2026-09-27": {
+      "subjects": []
+    },
+    "banli_streak_banli_homework_2026-09-24": 0,
+    "banli_theme": "dark",
+    "banli_homework_2026-09-26": {
+      "subjects": [],
+      "_initialized": true
+    }
   }
 }

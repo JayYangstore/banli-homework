@@ -1,42 +1,104 @@
 {
-  "_updated_at": "2026-09-27T12:09:35.758Z",
-  "_updated_by": "mac",
+  "_updated_at": "2026-09-28T02:03:55.911Z",
+  "_updated_by": "phone",
   "data": {
-    "banli_homework_2026-09-24": {
+    "banli_streak_banli_homework_2026-09-28": 0,
+    "banli_homework_2026-09-25": {
       "subjects": [],
       "_initialized": true
     },
-    "banli_homework_2026-09-27": {
-      "subjects": [
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": []
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": []
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": []
-        },
-        {
-          "name": "科学",
-          "emoji": "🔬",
-          "items": []
-        }
-      ]
+    "banli_homework_2026-09-29": {
+      "subjects": [],
+      "_initialized": true
     },
-    "banli_theme_v1": "dark",
-    "banli_theme": "dark",
-    "banli_streak_banli_homework_2026-09-26": 0,
     "banli_homework_2026-09-26": {
       "subjects": [],
       "_initialized": true
     },
-    "banli_streak_banli_homework_2026-09-24": 0
+    "banli_streak_banli_homework_2026-09-25": 0,
+    "banli_streak_banli_homework_2026-09-24": 1,
+    "banli_homework_2026-09-24": {
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "753503822123",
+              "text": "补P3-4",
+              "done": true
+            },
+            {
+              "id": "535038286089",
+              "text": "习作",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "350383117273",
+              "text": "堂练P13",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "mufegatm3k1s",
+              "text": "学评P3-4",
+              "done": true
+            },
+            {
+              "id": "mufego4mrqzg",
+              "text": "E英语宝",
+              "done": true
+            },
+            {
+              "id": "mufei8extj6y",
+              "text": "抄写字母 A 到 Z两遍",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "muffgfnk5aqc",
+              "text": "完成《练》14页",
+              "done": true
+            },
+            {
+              "id": "muffgrkaesvf",
+              "text": "复习练习册错题",
+              "done": true
+            }
+          ]
+        }
+      ],
+      "_initialized": true,
+      "_celebrated": true
+    },
+    "banli_homework_2026-09-27": {
+      "subjects": [],
+      "_initialized": true
+    },
+    "banli_streak_banli_homework_2026-09-27": 0,
+    "banli_theme_v1": "dark",
+    "banli_theme": "dark",
+    "banli_streak_banli_homework_2026-09-26": 0,
+    "banli_homework_2026-09-28": {
+      "subjects": [],
+      "_initialized": true
+    },
+    "banli_streak_banli_homework_2026-09-29": 0
   }
 }

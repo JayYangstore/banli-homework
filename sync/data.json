@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-09-28T02:03:55.911Z",
+  "_updated_at": "2026-10-01T04:35:39.773Z",
   "_updated_by": "phone",
   "data": {
     "banli_streak_banli_homework_2026-09-28": 0,
@@ -8,7 +8,61 @@
       "_initialized": true
     },
     "banli_homework_2026-09-29": {
-      "subjects": [],
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "6sou5z2o",
+              "text": "语文堂练本 P14",
+              "done": false
+            },
+            {
+              "id": "en538eff",
+              "text": "1 号本写 K8 生字",
+              "done": false
+            },
+            {
+              "id": "3xpkrxrl",
+              "text": "看课外书",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "ldfvhpb0",
+              "text": "数学课本 P23、24",
+              "done": false
+            },
+            {
+              "id": "ukttfsr2",
+              "text": "堂练本 P14，订正",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "1z2g1hxx",
+              "text": "抄写 Unit One 单词 9~15，四英二中",
+              "done": false
+            },
+            {
+              "id": "z3ncjxxr",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        }
+      ],
       "_initialized": true
     },
     "banli_homework_2026-09-26": {
@@ -96,9 +150,115 @@
     "banli_theme": "dark",
     "banli_streak_banli_homework_2026-09-26": 0,
     "banli_homework_2026-09-28": {
-      "subjects": [],
+      "subjects": [
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "1z1eydvr",
+              "text": "堂练本14页，订正13页",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "9cjbwob6",
+              "text": "英语作业：1.抄写P71UNIT 1的单词第1--8个，一个一行四英2中；并尝试家听；2.熟读书P4的Role-play.",
+              "done": true
+            }
+          ]
+        }
+      ],
       "_initialized": true
     },
-    "banli_streak_banli_homework_2026-09-29": 0
+    "banli_streak_banli_homework_2026-09-29": 0,
+    "banli_homework_2026-09-30": {
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "3wfug58z",
+              "text": "补 P6-7",
+              "done": false
+            },
+            {
+              "id": "z7j5khjc",
+              "text": "默写 K4 古诗 3 首",
+              "done": false
+            },
+            {
+              "id": "1qrcp5s1",
+              "text": "写一篇日记作文",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "7hwtv5tv",
+              "text": "堂练本 P6、P7",
+              "done": false
+            },
+            {
+              "id": "u00emv2x",
+              "text": "做第二单元堂练本错题",
+              "done": false
+            },
+            {
+              "id": "6yyukvrg",
+              "text": "复习第二单元课本",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "6gi3olfi",
+              "text": "抄写 Unit One 单词，一行一个",
+              "done": false
+            },
+            {
+              "id": "ivwmswb7",
+              "text": "预习 Unit 2",
+              "done": false
+            },
+            {
+              "id": "yseisr3j",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "26tcvtdz",
+              "text": "订正小测卷子家签",
+              "done": false
+            },
+            {
+              "id": "pnr3cog6",
+              "text": "打印并默写群里发的知识点，第一单元 1~10 点",
+              "done": false
+            }
+          ]
+        }
+      ]
+    }
   }
 }

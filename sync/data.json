@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-01T04:35:39.773Z",
+  "_updated_at": "2026-10-06T04:20:37.479Z",
   "_updated_by": "phone",
   "data": {
     "banli_streak_banli_homework_2026-09-28": 0,
@@ -186,17 +186,17 @@
             {
               "id": "3wfug58z",
               "text": "补 P6-7",
-              "done": false
+              "done": true
             },
             {
               "id": "z7j5khjc",
               "text": "默写 K4 古诗 3 首",
-              "done": false
+              "done": true
             },
             {
               "id": "1qrcp5s1",
               "text": "写一篇日记作文",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -207,17 +207,17 @@
             {
               "id": "7hwtv5tv",
               "text": "堂练本 P6、P7",
-              "done": false
+              "done": true
             },
             {
               "id": "u00emv2x",
               "text": "做第二单元堂练本错题",
-              "done": false
+              "done": true
             },
             {
               "id": "6yyukvrg",
               "text": "复习第二单元课本",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -228,16 +228,21 @@
             {
               "id": "6gi3olfi",
               "text": "抄写 Unit One 单词，一行一个",
-              "done": false
+              "done": true
             },
             {
               "id": "ivwmswb7",
               "text": "预习 Unit 2",
-              "done": false
+              "done": true
             },
             {
               "id": "yseisr3j",
               "text": "E英语宝",
+              "done": true
+            },
+            {
+              "id": "onn1u9el",
+              "text": "英语手抄报",
               "done": false
             }
           ]
@@ -254,7 +259,7 @@
             {
               "id": "pnr3cog6",
               "text": "打印并默写群里发的知识点，第一单元 1~10 点",
-              "done": false
+              "done": true
             }
           ]
         }

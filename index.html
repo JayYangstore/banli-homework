@@ -448,10 +448,7 @@ function renderItem(subj, item) {
   row.appendChild(del);
 
   check.onclick = function(e) { e.stopPropagation(); toggleItem(subj, item.id); };
-  row.onclick = function(e) {
-    if (e.target === check || e.target === del) return;
-    editText(text, subj, item);
-  };
+  // 单击整行不编辑(避免误触/与勾选冲突),双击文字才进编辑
   text.ondblclick = function(e) {
     e.stopPropagation();
     editText(text, subj, item);
@@ -565,10 +562,9 @@ function editText(el, subj, item) {
   if (isFuture(viewISO)) return;
   el.setAttribute("contenteditable", "true");
   el.focus();
-  const range = document.createRange();
-  range.selectNodeContents(el);
+  // 把光标放到点击位置,不整段全选 → 可逐字删除/部分编辑
   const sel = window.getSelection();
-  sel.removeAllRanges(); sel.addRange(range);
+  sel.removeAllRanges();
   el.onblur = function() {
     el.removeAttribute("contenteditable");
     const data = loadDay(viewISO);
@@ -880,10 +876,9 @@ function bindTitleEdit() {
     if (isFuture(viewISO)) return;
     t.setAttribute("contenteditable", "true");
     t.focus();
-    const range = document.createRange();
-    range.selectNodeContents(t);
+    // 光标定位不全选,可逐字编辑
     const sel = window.getSelection();
-    sel.removeAllRanges(); sel.addRange(range);
+    sel.removeAllRanges();
     t.onblur = function() {
       t.removeAttribute("contenteditable");
       localStorage.setItem(TITLE_KEY, t.textContent.trim() || "\u677f\u6817\u4eca\u65e5\u4f5c\u4e1a");

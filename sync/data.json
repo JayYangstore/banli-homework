@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-10T09:39:08.932Z",
+  "_updated_at": "2026-10-10T10:21:13.271Z",
   "_updated_by": "phone",
   "data": {
     "banli_streak_banli_homework_2026-09-28": 0,
@@ -222,6 +222,17 @@
             {
               "id": "o9ethsee",
               "text": "3、 E 英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "sev4hdj2",
+              "text": "用红笔订正默写卷11到24点，先背知识清单，再默写25到35点。",
               "done": false
             }
           ]

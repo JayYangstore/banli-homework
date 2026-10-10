@@ -209,9 +209,13 @@ const SYNC_BRANCH = "main";
 
 function loadDay(iso) {
   const raw = localStorage.getItem(STORAGE_KEY + "_" + iso);
-  return raw ? JSON.parse(raw) : { subjects: [] };
+  if (!raw) return { subjects: [] };
+  try { const d = JSON.parse(raw); return d.subjects ? d : { subjects: [] }; }
+  catch (e) { return { subjects: [] }; }
 }
 function saveDay(iso, data) {
+  // 给该日数据包盖时间戳,供多端按时间取新
+  data._updated_at = Date.now();
   localStorage.setItem(STORAGE_KEY + "_" + iso, JSON.stringify(data));
   triggerSync();
 }
@@ -697,20 +701,41 @@ async function pushSync() {
         try { data[k] = JSON.parse(localStorage.getItem(k)); } catch { data[k] = localStorage.getItem(k); }
       }
     }
+
+    // 先看云端:如果有其他设备更新的数据包比本地新,先合并(用时间戳逐条取新)再推,
+    // 避免旧设备整包覆盖掉新设备刚写的数据
     let sha = null;
+    let merged = data;
     try {
       const cur = await ghApi("/repos/" + SYNC_REPO + "/contents/" + SYNC_PATH + "?ref=" + SYNC_BRANCH);
       sha = cur.sha;
-    } catch (e) { /* \u9996\u6b21 push \u53ef\u80fd\u6ca1\u6709 sha */ }
+      const bytes = new Uint8Array(atob(cur.content).split("").map(function(c) { return c.charCodeAt(0); }));
+      const remoteJson = JSON.parse(new TextDecoder("utf-8").decode(bytes));
+      const remote = remoteJson.data || {};
+      merged = {};
+      const keys = {};
+      for (const k in data) keys[k] = true;
+      for (const k in remote) if (!(k in keys)) keys[k] = true;
+      for (const k in keys) {
+        const lv = data[k], rv = remote[k];
+        if (lv === undefined) { merged[k] = rv; continue; }
+        if (rv === undefined) { merged[k] = lv; continue; }
+        // 两边都有:比较对象型数据的 _updated_at
+        let lt = (lv && typeof lv === "object" && lv._updated_at) || 0;
+        let rt = (rv && typeof rv === "object" && rv._updated_at) || 0;
+        merged[k] = rt > lt ? rv : lv;
+      }
+    } catch (e) { /* 首次 push 云端没有文件,merged 就是本地 */ }
+
     await ghApi("/repos/" + SYNC_REPO + "/contents/" + SYNC_PATH, "PUT", {
       message: "sync: " + owner,
-      content: b64encode(JSON.stringify({ _updated_at: new Date().toISOString(), _updated_by: owner, data: data }, null, 2)),
+      content: b64encode(JSON.stringify({ _updated_at: new Date().toISOString(), _updated_by: owner, data: merged }, null, 2)),
       sha: sha,
       branch: SYNC_BRANCH
     });
-    showToast("\u2705 \u5df2\u540c\u6b65");
+    showToast("✅ 已同步");
   } catch (e) {
-    showToast("\u26a0\ufe0f \u63a8\u9001\u5931\u8d25 " + e.message, 3500);
+    showToast("⚠️ 推送失败 " + e.message, 3500);
   } finally {
     _syncInFlight = false;
   }
@@ -728,7 +753,7 @@ async function pullSync() {
     const json = JSON.parse(new TextDecoder("utf-8").decode(bytes));
     const remote = json.data || {};
 
-    let added = 0, overwritten = 0, skipped = 0;
+    let added = 0, updated = 0, skipped = 0;
     for (const k in remote) {
       if (!k.startsWith("banli_")) continue;
       if (k.startsWith("banli_sync_")) continue;  // 不覆盖自己的 token/short/owner
@@ -739,16 +764,36 @@ async function pullSync() {
         // 本地没有 → 直接拉
         localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
         added++;
+        continue;
+      }
+
+      // 本地有 → 按 _updated_at 时间戳取新(对象型数据才比较)
+      let remoteTs = 0, localTs = 0;
+      try {
+        const rv = typeof v === "string" ? JSON.parse(v) : v;
+        if (rv && typeof rv === "object" && rv._updated_at) remoteTs = rv._updated_at;
+      } catch (e) {}
+      try {
+        const lv = JSON.parse(cur);
+        if (lv && typeof lv === "object" && lv._updated_at) localTs = lv._updated_at;
+      } catch (e) {}
+
+      if (remoteTs && localTs) {
+        // 两边都有时间戳 → 谁新用谁
+        if (remoteTs > localTs) {
+          localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+          updated++;
+        } else {
+          skipped++;  // 本地更新,保留
+        }
       } else {
-        // 本地有 → 看值
+        // 无时间戳(旧数据/非对象)→ 云端有就覆盖(保持旧行为兜底)
         const curVal = cur;
         const isEmpty = curVal === "" || curVal === "{}" || curVal === "[]" || curVal === "null";
-        if (isEmpty) {
-          // 本地是空值(清空后)→ 用云端覆盖
+        if (isEmpty || !localTs) {
           localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
-          overwritten++;
+          updated++;
         } else {
-          // 本地有真实数据 → 保留本地
           skipped++;
         }
       }
@@ -759,10 +804,10 @@ async function pullSync() {
     const ts = json._updated_at || "";
     const timeStr = ts ? new Date(ts).toLocaleString("zh-CN") : "";
 
-    let msg = "\u2705 \u4ece\u4e91\u7aef(" + owner + ") \u62c9\u53d6\u6210\u529f \u00b7 \u65b0\u589e " + added + " \u00b7 \u8986\u76d6\u7a7a\u503c " + overwritten + " \u00b7 \u4fdd\u7559\u672c\u5730 " + skipped;
+    let msg = "\u2705 \u4ece\u4e91\u7aef(" + owner + ") \u62c9\u53d6 \u00b7 \u65b0\u589e " + added + " \u00b7 \u66f4\u65b0 " + updated + " \u00b7 \u672c\u5730\u8f83\u65b0\u4fdd\u7559 " + skipped;
     showToast(msg, 4000);
-    console.log("pullSync:", { owner, time: ts, added, overwritten, skipped });
-    if (added > 0 || overwritten > 0) {
+    console.log("pullSync:", { owner, time: ts, added, updated, skipped });
+    if (added > 0 || updated > 0) {
       setTimeout(function() { location.reload(); }, 1500);
     }
   } catch (e) {

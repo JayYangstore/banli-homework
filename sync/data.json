@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-06T04:20:37.479Z",
+  "_updated_at": "2026-10-10T09:39:08.932Z",
   "_updated_by": "phone",
   "data": {
     "banli_streak_banli_homework_2026-09-28": 0,
@@ -146,6 +146,32 @@
       "_initialized": true
     },
     "banli_streak_banli_homework_2026-09-27": 0,
+    "banli_homework_2026-10-09": {
+      "subjects": [
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "ctwh4f92",
+              "text": "科学作业：订正默写卷1到10点，先背知识清单，再默写11到24点，还有部分孩子没有打印资料，请家长及时帮忙打印[抱拳]",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "19f1sm90",
+              "text": "1．抄写 U 、9-15号单词．并家听2背诵P53.E英语宝",
+              "done": false
+            }
+          ]
+        }
+      ]
+    },
     "banli_theme_v1": "dark",
     "banli_theme": "dark",
     "banli_streak_banli_homework_2026-09-26": 0,
@@ -177,6 +203,31 @@
       "_initialized": true
     },
     "banli_streak_banli_homework_2026-09-29": 0,
+    "banli_homework_2026-10-10": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "ryyzq69j",
+              "text": "1、家听 U 11-15号单词",
+              "done": false
+            },
+            {
+              "id": "gv3lh21k",
+              "text": "2.《学评》P7-9练习一～二",
+              "done": false
+            },
+            {
+              "id": "o9ethsee",
+              "text": "3、 E 英语宝",
+              "done": false
+            }
+          ]
+        }
+      ]
+    },
     "banli_homework_2026-09-30": {
       "subjects": [
         {

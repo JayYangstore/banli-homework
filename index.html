@@ -687,6 +687,47 @@ function b64encode(s) {
   return btoa(bin);
 }
 
+// 判断是否作业日数据对象 { subjects: [...] }
+function isDayObj(x) {
+  return x && typeof x === "object" && Array.isArray(x.subjects);
+}
+
+// 学科级合并:把 a 和 b 两个作业日合并,科学+英语共存,同学科 items 按 id 去重
+function mergeDays(a, b) {
+  const map = {};         // name -> subject
+  const order = [];       // 保持学科显示顺序
+  function addSub(s) {
+    if (!s || !s.name) return;
+    const name = String(s.name);
+    if (!(name in map)) {
+      map[name] = { name: name, emoji: s.emoji || "", items: [] };
+      order.push(name);
+    }
+    const t = map[name];
+    if (s.emoji) t.emoji = s.emoji;
+    // 同学科 items 按 id 去重合并
+    const items = t.items;
+    const ids = {};
+    for (const it of items) ids[it.id] = it;
+    for (const it of (s.items || [])) {
+      if (!it) continue;
+      if (it.id && it.id in ids) {
+        ids[it.id].done = (ids[it.id].done || it.done) ? true : false;
+        if (!ids[it.id].text && it.text) ids[it.id].text = it.text;
+      } else {
+        items.push({ id: it.id, text: it.text, done: !!it.done });
+        if (it.id) ids[it.id] = items[items.length - 1];
+      }
+    }
+  }
+  for (const s of (a.subjects || [])) addSub(s);
+  for (const s of (b.subjects || [])) addSub(s);
+  const out = { subjects: order.map(n => map[n]) };
+  const at = a && a._updated_at || 0, bt = b && b._updated_at || 0;
+  out._updated_at = Math.max(at, bt);
+  return out;
+}
+
 async function pushSync() {
   if (_syncInFlight) return;
   _syncInFlight = true;
@@ -720,7 +761,9 @@ async function pushSync() {
         const lv = data[k], rv = remote[k];
         if (lv === undefined) { merged[k] = rv; continue; }
         if (rv === undefined) { merged[k] = lv; continue; }
-        // 两边都有:比较对象型数据的 _updated_at
+        // 作业日 key → 学科级合并(科学+英语共存,同学科去重),不整包覆盖
+        if (isDayObj(lv) && isDayObj(rv)) { merged[k] = mergeDays(lv, rv); continue; }
+        // 其他(对象型)按 _updated_at 时间戳取新
         let lt = (lv && typeof lv === "object" && lv._updated_at) || 0;
         let rt = (rv && typeof rv === "object" && rv._updated_at) || 0;
         merged[k] = rt > lt ? rv : lv;
@@ -764,6 +807,22 @@ async function pullSync() {
         // 本地没有 → 直接拉
         localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
         added++;
+        continue;
+      }
+
+      // 本地有 → 先试作业日 key 学科级合并
+      let lvP = null;
+      try { lvP = JSON.parse(cur); } catch (e) { lvP = null; }
+      const rvP = (typeof v === "string" && v !== "") ? (function(){ try { return JSON.parse(v); } catch(e){ return null; } })() : v;
+      if (lvP && isDayObj(lvP) && rvP && isDayObj(rvP)) {
+        const m = mergeDays(lvP, rvP);
+        const s = JSON.stringify(m);
+        if (s !== JSON.stringify(lvP)) {
+          localStorage.setItem(k, s);
+          updated++;
+        } else {
+          skipped++;
+        }
         continue;
       }
 

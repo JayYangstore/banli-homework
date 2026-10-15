@@ -91,7 +91,11 @@
   .add-item-row input { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: 15px; background: var(--card); color: var(--ink); }
   .add-item-row button { background: var(--accent); color: white; border: none; border-radius: 8px; padding: 8px 14px; font-weight: bold; cursor: pointer; }
   .add-subject { background: var(--card); border: 2px dashed var(--line); border-radius: 14px; padding: 14px; text-align: center; color: var(--muted); font-size: 14px; cursor: pointer; margin-top: 4px; }
-  body.future .item, body.future .add-item-row, body.future .add-subject { pointer-events: none; opacity: 0.5; }
+  /* 未来日期仍允许编辑: 只做视觉提示(透明度),不去 pointer-events */
+  body.future .item, body.future .add-item-row, body.future .add-subject { opacity: 0.5; }
+  body.future .item.done { opacity: 0.85; }
+  /* 未来日期"预约"徽章 */
+  .future-badge { display: inline-block; margin-left: 8px; padding: 2px 8px; background: #ff9500; color: white; font-size: 12px; border-radius: 6px; font-weight: 500; vertical-align: middle; }
   .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px; }
   .modal { background: var(--card); border-radius: 12px; padding: 20px; max-width: 400px; width: 100%; }
   .modal h3 { margin: 0 0 14px; font-size: 18px; }
@@ -263,7 +267,8 @@ function render() {
     : (done === total ? "\u592a\u68d2\u4e86\uff01\u5168\u505a\u5b8c\ud83c\udf89" : done + " / " + total + " \u9879\u5b8c\u6210");
 
   document.body.classList.toggle("future", isFuture(viewISO));
-  $("date-label").textContent = viewISO.replace(/-/g, ".");
+  const futureBadge = isFuture(viewISO) ? '<span class="future-badge">\ud83d\udcc5 \u9884\u7ea6</span>' : '';
+  $("date-label").innerHTML = viewISO.replace(/-/g, ".") + futureBadge;
   $("date-sub").textContent = viewISO + " \u00b7 \u5468" + wkcn(new Date(viewISO));
   $("streak").textContent = "\ud83d\udd25 " + loadStreak() + " \u5929\u8fde\u80dc";
 }
@@ -461,7 +466,7 @@ function renderItem(subj, item) {
 }
 
 function toggleItem(subj, id) {
-  if (isFuture(viewISO)) return;
+  // 未来日期也允许登记(预约作业)
   const data = loadDay(viewISO);
   for (let i = 0; i < data.subjects.length; i++) {
     if (data.subjects[i].name !== subj.name) continue;
@@ -478,7 +483,7 @@ function toggleItem(subj, id) {
 }
 
 function addItem(subj, text) {
-  if (isFuture(viewISO)) return;
+  // 未来日期也允许登记
   const data = loadDay(viewISO);
   for (let i = 0; i < data.subjects.length; i++) {
     if (data.subjects[i].name !== subj.name) continue;
@@ -490,7 +495,7 @@ function addItem(subj, text) {
 }
 
 function deleteItem(subj, id) {
-  if (isFuture(viewISO)) return;
+  // 未来日期也允许编辑
   const data = loadDay(viewISO);
   for (let i = 0; i < data.subjects.length; i++) {
     if (data.subjects[i].name !== subj.name) continue;
@@ -511,7 +516,7 @@ function findSubjectByName(data, name) {
 }
 
 function editSubjectName(labelEl, subj) {
-  if (isFuture(viewISO)) return;
+  // 未来日期也允许编辑
   const oldName = subj.name;
   const next = prompt("改学科名字", oldName);
   if (next === null) return;  // 用户取消
@@ -534,7 +539,7 @@ function editSubjectName(labelEl, subj) {
 }
 
 function editSubjectEmoji(emojiEl, subj) {
-  if (isFuture(viewISO)) return;
+  // 未来日期也允许编辑
   const oldEmoji = subj.emoji || "📌";
   const next = prompt("改图标 emoji", oldEmoji);
   if (next === null) return;
@@ -552,7 +557,7 @@ function editSubjectEmoji(emojiEl, subj) {
 }
 
 function deleteSubject(subj) {
-  if (isFuture(viewISO)) return;
+  // 未来日期也允许编辑
   const n = subj.items.length;
   if (!confirm("删除学科『" + subj.name + "』？\n里面 " + n + " 项作业也会一起删除")) return;
   const data = loadDay(viewISO);
@@ -563,7 +568,7 @@ function deleteSubject(subj) {
 }
 
 function editText(el, subj, item) {
-  if (isFuture(viewISO)) return;
+  // 未来日期也允许编辑
   el.setAttribute("contenteditable", "true");
   el.focus();
   // 把光标放到点击位置,不整段全选 → 可逐字删除/部分编辑
@@ -591,7 +596,7 @@ function editText(el, subj, item) {
 }
 
 function addSubject() {
-  if (isFuture(viewISO)) return;
+  // 未来日期也允许添加学科
   const presets = [
     { name: "\u8bed\u6587", emoji: "\ud83d\udcd6" },
     { name: "\u6570\u5b66", emoji: "\ud83d\udd22" },
@@ -977,7 +982,7 @@ function cleanAll() {
 function bindTitleEdit() {
   const t = $("title");
   t.addEventListener("dblclick", function() {
-    if (isFuture(viewISO)) return;
+    // 未来日期也允许改标题
     t.setAttribute("contenteditable", "true");
     t.focus();
     // 光标定位不全选,可逐字编辑

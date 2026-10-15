@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-15T12:36:34.506Z",
+  "_updated_at": "2026-10-15T13:17:58.744Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -77,11 +77,11 @@
             {
               "id": "u3zu2shr",
               "text": "1.抄写P71 U2 1-6号",
-              "done": false
+              "done": true
             },
             {
               "id": "zr0zbis5",
-              "text": "2.制作单词卡",
+              "text": "2.制作单词卡，下周一交",
               "done": false
             },
             {
@@ -113,7 +113,7 @@
           ]
         }
       ],
-      "_updated_at": 1792067792348
+      "_updated_at": 1792070276101
     },
     "banli_homework_2026-09-26": {
       "subjects": [],

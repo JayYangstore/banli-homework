@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-15T13:17:58.744Z",
+  "_updated_at": "2026-10-15T13:19:38.943Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -92,7 +92,7 @@
             {
               "id": "7gmkvhw4",
               "text": "4.订正听写",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -113,7 +113,7 @@
           ]
         }
       ],
-      "_updated_at": 1792070276101
+      "_updated_at": 1792070376448
     },
     "banli_homework_2026-09-26": {
       "subjects": [],

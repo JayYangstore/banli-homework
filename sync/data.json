@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-16T08:44:42.306Z",
+  "_updated_at": "2026-10-16T13:26:30.086Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -70,12 +70,22 @@
     "banli_homework_2026-10-17": {
       "subjects": [
         {
+          "name": "t t",
+          "emoji": "📌",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": []
+        },
+        {
           "name": "x x",
           "emoji": "📌",
           "items": []
         }
       ],
-      "_updated_at": 1792140279707
+      "_updated_at": 1792140308753
     },
     "banli_streak_banli_homework_2026-09-24": 0,
     "banli_homework_2026-10-15": {
@@ -195,7 +205,7 @@
             {
               "id": "3cwn1r34",
               "text": "E英语宝",
-              "done": false
+              "done": true
             },
             {
               "id": "f4f20f2v",
@@ -277,7 +287,7 @@
           ]
         }
       ],
-      "_updated_at": 1792140178853
+      "_updated_at": 1792157187260
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",

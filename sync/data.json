@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-16T23:22:53.466Z",
+  "_updated_at": "2026-10-16T23:29:00.771Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -221,7 +221,7 @@
             {
               "id": "xzk2zy04",
               "text": "标点符号练习（双面）",
-              "done": false
+              "done": true
             },
             {
               "id": "urji8p2z",
@@ -252,7 +252,7 @@
             {
               "id": "jom5svxn",
               "text": "订《阳评》",
-              "done": false
+              "done": true
             },
             {
               "id": "hh6pghzd",
@@ -287,7 +287,7 @@
           ]
         }
       ],
-      "_updated_at": 1792192970697
+      "_updated_at": 1792193338350
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",

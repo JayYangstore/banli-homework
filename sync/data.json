@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-16T23:31:31.790Z",
+  "_updated_at": "2026-10-16T23:40:36.293Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -195,7 +195,7 @@
             {
               "id": "488li9uv",
               "text": "制作单词卡（下周一交）",
-              "done": false
+              "done": true
             },
             {
               "id": "y1tgy0h3",
@@ -287,7 +287,7 @@
           ]
         }
       ],
-      "_updated_at": 1792193489321
+      "_updated_at": 1792194033585
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",

@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-17T13:04:39.097Z",
+  "_updated_at": "2026-10-17T13:10:34.236Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -257,7 +257,7 @@
             {
               "id": "hh6pghzd",
               "text": "(61+2)÷9",
-              "done": false
+              "done": true
             },
             {
               "id": "aznjd590",
@@ -287,7 +287,7 @@
           ]
         }
       ],
-      "_updated_at": 1792242276397
+      "_updated_at": 1792242631887
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",

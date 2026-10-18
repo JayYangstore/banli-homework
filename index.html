@@ -122,6 +122,37 @@
   .cal-btn { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 8px 16px; color: var(--ink); cursor: pointer; font-size: 14px; }
   body.dark .add-item-row { background: #333438; }
   body.dark .check { border-color: #55585e; }
+  /* === Tab 切换 === */
+  .tabs { display: flex; gap: 6px; margin: 6px 4px 10px; background: var(--card); border-radius: 12px; padding: 4px; width: fit-content; }
+  .tab { padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--muted); transition: all 0.18s; user-select: none; }
+  .tab.active { background: var(--accent); color: white; }
+  .tab:not(.active):hover { color: var(--ink); background: rgba(127,127,127,0.06); }
+  /* === 打卡 section === */
+  .plan-card { background: var(--card); border-radius: 14px; margin-bottom: 10px; }
+  .plan-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .plan-name { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; flex: 1; min-width: 0; }
+  .plan-name .emoji { font-size: 22px; cursor: pointer; }
+  .plan-name .label { padding: 2px 4px; border-radius: 6px; cursor: pointer; }
+  .plan-name .label:hover { background: rgba(127,127,127,0.08); }
+  .plan-name .label[contenteditable="true"] { outline: 2px solid var(--accent); background: var(--card); }
+  .plan-count { font-size: 13px; color: var(--muted); font-weight: 500; flex-shrink: 0; }
+  .plan-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: 8px; }
+  .plan-del { color: var(--red); font-size: 22px; font-weight: bold; cursor: pointer; padding: 0 6px; line-height: 1; opacity: 0.7; }
+  .plan-del:hover { opacity: 1; }
+  .add-plan { background: var(--card); border: 2px dashed var(--line); border-radius: 14px; padding: 14px; text-align: center; color: var(--muted); font-size: 14px; cursor: pointer; margin-top: 4px; }
+  .check-item { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--line); cursor: pointer; }
+  .check-item:last-child { border-bottom: none; }
+  .check-item:active { background: rgba(127,127,127,0.05); }
+  .check-item.done .ci-text { text-decoration: line-through; color: var(--muted); }
+  .ci-text { flex: 1; word-break: break-word; min-width: 0; color: var(--ink); }
+  .ci-text[contenteditable="true"] { outline: 2px solid var(--accent); background: var(--card); border-radius: 4px; padding: 4px 6px; }
+  .ci-del { color: var(--muted); font-size: 18px; padding: 4px 8px; cursor: pointer; }
+  .check-item.done .check { background: var(--accent); border-color: var(--accent); }
+  .check-item.done .check::after { content: '✓'; color: white; font-size: 14px; font-weight: bold; }
+  /* 打卡 section 默认隐藏 */
+  #plans-wrap { display: none; }
+  body.tab-plans #plans-wrap { display: block; }
+  body.tab-plans #homework-wrap { display: none; }
 </style>
 </head>
 <body>
@@ -156,27 +187,43 @@
 </div>
     </div>
   </div>
-  <div class="progress-card">
-    <div class="progress-text-wide">
-      <div class="label">今日完成进度</div>
-      <div class="sub" id="progress-sub">还没有作业,先把今天的加上吧 \ud83d\udc47</div>
+  <div class="tabs" id="tabs">
+    <div class="tab active" id="tab-homework" data-tab="homework">📚 今日作业</div>
+    <div class="tab" id="tab-plans" data-tab="plans">🌙 日常打卡</div>
+  </div>
+  <div id="homework-wrap">
+    <div class="progress-card">
+      <div class="progress-text-wide">
+        <div class="label">今日完成进度</div>
+        <div class="sub" id="progress-sub">还没有作业,先把今天的加上吧 👇</div>
+      </div>
     </div>
+    <div class="toolbar">
+      <span class="streak" id="streak">🔥 0 天连胜</span>
+      <span class="toolbar-right">
+        <button id="push-btn" class="btn" title="把本地推送到云端">↑推</button>
+        <button id="pull-btn" class="btn" title="从云端拉到本地">↓拉</button>
+        <button id="sync-set" class="btn" title="关联/解绑同步">同步</button>
+        <button id="auto-sync" class="btn" title="自动同步开关" style="font-size:11px">自动:关</button>
+        <button id="export" class="btn" title="下载 JSON 备份">导出</button>
+        <button id="import" class="btn" title="从 JSON 备份恢复">还原</button>
+        <button id="clean" class="btn btn-danger" title="清空本地所有数据">清空</button>
+        <button id="theme" class="icon-btn" title="切换深色/浅色">🌙</button>
+      </span>
+    </div>
+    <div id="subjects"></div>
+    <div class="add-subject" id="add-subject">+ 添加学科</div>
   </div>
-  <div class="toolbar">
-    <span class="streak" id="streak">\ud83d\udd25 0 天连胜</span>
-    <span class="toolbar-right">
-      <button id="push-btn" class="btn" title="把本地推送到云端">↑推</button>
-      <button id="pull-btn" class="btn" title="从云端拉到本地">↓拉</button>
-      <button id="sync-set" class="btn" title="关联/解绑同步">同步</button>
-      <button id="auto-sync" class="btn" title="自动同步开关" style="font-size:11px">自动:关</button>
-      <button id="export" class="btn" title="下载 JSON 备份">导出</button>
-      <button id="import" class="btn" title="从 JSON 备份恢复">还原</button>
-      <button id="clean" class="btn btn-danger" title="清空本地所有数据">清空</button>
-      <button id="theme" class="icon-btn" title="切换深色/浅色">\ud83c\udf19</button>
-    </span>
+  <div id="plans-wrap">
+    <div class="progress-card">
+      <div class="progress-text-wide">
+        <div class="label">今日打卡进度</div>
+        <div class="sub" id="plans-progress-sub">先把打卡项目加上吧 👇</div>
+      </div>
+    </div>
+    <div id="plans"></div>
+    <div class="add-plan" id="add-plan">+ 新建打卡计划</div>
   </div>
-  <div id="subjects"></div>
-  <div class="add-subject" id="add-subject">+ 添加学科</div>
 </div>
 
 <script>
@@ -967,16 +1014,320 @@ function importData() {
 }
 
 function cleanAll() {
-  if (!confirm("\u26a0\ufe0f \u6e05\u7a7a\u6240\u6709\u672c\u5730 banli_ \u6570\u636e\uff1f\n\u5305\u62ec\u677f\u6817\u4f5c\u4e1a\u3001\u8fde\u80dc\u3001\u540c\u6b65\u914d\u7f6e\u3002\n\u4e91\u7aef\u6570\u636e\u4e0d\u53d7\u5f71\u54cd\u3002")) return;
+  if (!confirm("⚠️ 清空所有本地 banli_ 数据？\n包括板栗作业、连胜、同步配置。\n云端数据不受影响。")) return;
   const ks = [];
   for (let i = 0; i < localStorage.length; i++) {
     const k = localStorage.key(i);
     if (k && k.startsWith("banli_")) ks.push(k);
   }
   for (let i = 0; i < ks.length; i++) localStorage.removeItem(ks[i]);
-  showToast("\u2705 \u5df2\u6e05 " + ks.length + " \u9879,\u5237\u65b0\u4e2d...");
+  showToast("✅ 已清 " + ks.length + " 项,刷新中...");
   setTimeout(function() { location.reload(); }, 1200);
 }
+
+// ============ Tab 切换 ============
+let currentTab = localStorage.getItem("banli_active_tab") || "homework";
+function switchTab(name) {
+  currentTab = name;
+  localStorage.setItem("banli_active_tab", name);
+  document.body.classList.toggle("tab-plans", name === "plans");
+  $("tab-homework").classList.toggle("active", name === "homework");
+  $("tab-plans").classList.toggle("active", name === "plans");
+  if (name === "plans") renderPlans();
+}
+$("tab-homework").onclick = function() { switchTab("homework"); };
+$("tab-plans").onclick = function() { switchTab("plans"); };
+
+// ============ 打卡计划 数据 ============
+const PLANS_KEY = "banli_plans";           // 计划定义(跨日期共享)
+const CHECKS_KEY_PREFIX = "banli_checks_"; // 打卡记录按日期: banli_checks_YYYY-MM-DD
+
+function loadPlans() {
+  const raw = localStorage.getItem(PLANS_KEY);
+  if (!raw) return { plans: [] };
+  try { const d = JSON.parse(raw); return d.plans ? d : { plans: [] }; }
+  catch (e) { return { plans: [] }; }
+}
+function savePlans(d) {
+  d._updated_at = Date.now();
+  localStorage.setItem(PLANS_KEY, JSON.stringify(d));
+  triggerSync();
+}
+function loadChecks(iso) {
+  const raw = localStorage.getItem(CHECKS_KEY_PREFIX + iso);
+  if (!raw) return {};
+  try { return JSON.parse(raw) || {}; } catch (e) { return {}; }
+}
+function saveChecks(iso, data) {
+  data._updated_at = Date.now();
+  localStorage.setItem(CHECKS_KEY_PREFIX + iso, JSON.stringify(data));
+  triggerSync();
+}
+
+// 首次使用自动建一个"睡前准备"计划(无预置事项,板栗自己加)
+function ensureDefaultPlan() {
+  const d = loadPlans();
+  if (d.plans.length === 0) {
+    d.plans.push({
+      id: "plan_sleep",
+      name: "睡前准备",
+      emoji: "🌙",
+      items: []
+    });
+    savePlans(d);
+  }
+}
+ensureDefaultPlan();
+
+// ============ 渲染打卡 ============
+function renderPlans() {
+  const data = loadPlans();
+  const checks = loadChecks(viewISO);
+  const wrap = $("plans");
+  wrap.innerHTML = "";
+
+  if (data.plans.length === 0) {
+    $("plans-progress-sub").textContent = "还没有打卡计划,点下方 + 新建一个";
+    return;
+  }
+
+  let total = 0, done = 0;
+  for (let i = 0; i < data.plans.length; i++) {
+    const p = data.plans[i];
+    const c = checks[p.id] || [];
+    const t = p.items.length;
+    const d = c.length;
+    total += t; done += d;
+    wrap.appendChild(renderPlan(p, c));
+  }
+
+  $("plans-progress-sub").textContent = total === 0
+    ? "计划里还没有项目,点开计划加吧 👇"
+    : (done === total && total > 0 ? "🌟 今日全部打卡完成！" : done + " / " + total + " 项完成");
+}
+
+function renderPlan(plan, checkedIds) {
+  const card = document.createElement("div");
+  card.className = "plan-card";
+
+  const head = document.createElement("div");
+  head.className = "plan-head";
+
+  const name = document.createElement("div");
+  name.className = "plan-name";
+  const emoji = document.createElement("span");
+  emoji.className = "emoji";
+  emoji.textContent = plan.emoji || "🌙";
+  name.appendChild(emoji);
+  const label = document.createElement("span");
+  label.className = "label";
+  label.textContent = plan.name;
+  name.appendChild(label);
+
+  const count = document.createElement("div");
+  count.className = "plan-count";
+  count.textContent = checkedIds.length + " / " + plan.items.length;
+
+  const right = document.createElement("div");
+  right.className = "plan-right";
+  right.appendChild(count);
+  const del = document.createElement("div");
+  del.className = "plan-del";
+  del.textContent = "×";
+  del.title = "删除整个计划(及里面所有打卡项)";
+  del.onclick = function(e) {
+    e.stopPropagation();
+    if (confirm("删除计划『" + plan.name + "』？\n里面 " + plan.items.length + " 个打卡项也会一起删除")) {
+      deletePlan(plan.id);
+    }
+  };
+  right.appendChild(del);
+
+  head.appendChild(name);
+  head.appendChild(right);
+  card.appendChild(head);
+
+  emoji.title = "双击改 emoji";
+  emoji.ondblclick = function(e) {
+    e.stopPropagation();
+    const next = prompt("改图标 emoji", plan.emoji || "🌙");
+    if (next === null) return;
+    const trimmed = next.trim();
+    if (!trimmed) return;
+    plan.emoji = trimmed;
+    const d = loadPlans();
+    const p = d.plans.find(x => x.id === plan.id);
+    if (p) p.emoji = trimmed;
+    savePlans(d);
+    renderPlans();
+  };
+  label.title = "双击改名字";
+  label.ondblclick = function(e) {
+    e.stopPropagation();
+    label.setAttribute("contenteditable", "true");
+    label.focus();
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    label.onblur = function() {
+      label.removeAttribute("contenteditable");
+      const newName = label.textContent.trim() || plan.name;
+      label.textContent = newName;
+      const d = loadPlans();
+      const p = d.plans.find(x => x.id === plan.id);
+      if (p) p.name = newName;
+      savePlans(d);
+    };
+    label.onkeydown = function(e) {
+      if (e.key === "Enter") { e.preventDefault(); label.blur(); }
+      if (e.key === "Escape") { label.textContent = plan.name; label.blur(); }
+    };
+  };
+
+  const checkedSet = new Set(checkedIds);
+  for (let i = 0; i < plan.items.length; i++) {
+    card.appendChild(renderCheckItem(plan, plan.items[i], checkedSet.has(plan.items[i].id)));
+  }
+
+  // 添加新打卡项输入行
+  const addRow = document.createElement("div");
+  addRow.className = "add-item-row";
+  const input = document.createElement("input");
+  input.placeholder = "新打卡项…\u00a0回车存";
+  const btn = document.createElement("button");
+  btn.textContent = "+";
+  function addIt() {
+    const v = input.value.trim();
+    if (!v) return;
+    addCheckItem(plan.id, v);
+    input.value = "";
+  }
+  btn.onclick = addIt;
+  input.onkeydown = function(e) { if (e.key === "Enter") addIt(); };
+  addRow.appendChild(input);
+  addRow.appendChild(btn);
+  card.appendChild(addRow);
+
+  return card;
+}
+
+function renderCheckItem(plan, item, isDone) {
+  const row = document.createElement("div");
+  row.className = "check-item" + (isDone ? " done" : "");
+
+  const check = document.createElement("div");
+  check.className = "check";
+  row.appendChild(check);
+
+  const text = document.createElement("div");
+  text.className = "ci-text";
+  text.textContent = item.text;
+  row.appendChild(text);
+
+  const del = document.createElement("div");
+  del.className = "ci-del";
+  del.textContent = "×";
+  del.onclick = function(e) {
+    e.stopPropagation();
+    if (confirm("删除打卡项『" + item.text + "』？")) deleteCheckItem(plan.id, item.id);
+  };
+  row.appendChild(del);
+
+  check.onclick = function(e) { e.stopPropagation(); toggleCheck(plan.id, item.id); };
+  text.ondblclick = function(e) {
+    e.stopPropagation();
+    text.setAttribute("contenteditable", "true");
+    text.focus();
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    text.onblur = function() {
+      text.removeAttribute("contenteditable");
+      const newText = text.textContent.trim() || item.text;
+      text.textContent = newText;
+      const d = loadPlans();
+      const p = d.plans.find(x => x.id === plan.id);
+      if (p) {
+        const it = p.items.find(x => x.id === item.id);
+        if (it) it.text = newText;
+      }
+      savePlans(d);
+    };
+    text.onkeydown = function(e) {
+      if (e.key === "Enter") { e.preventDefault(); text.blur(); }
+      if (e.key === "Escape") { text.textContent = item.text; text.blur(); }
+    };
+  };
+  return row;
+}
+
+function toggleCheck(planId, itemId) {
+  const checks = loadChecks(viewISO);
+  if (!checks[planId]) checks[planId] = [];
+  const arr = checks[planId];
+  const i = arr.indexOf(itemId);
+  if (i >= 0) arr.splice(i, 1); else arr.push(itemId);
+  saveChecks(viewISO, checks);
+  renderPlans();
+}
+
+function addCheckItem(planId, text) {
+  const d = loadPlans();
+  const p = d.plans.find(x => x.id === planId);
+  if (!p) return;
+  p.items.push({ id: uid(), text: text });
+  savePlans(d);
+  renderPlans();
+}
+
+function deleteCheckItem(planId, itemId) {
+  const d = loadPlans();
+  const p = d.plans.find(x => x.id === planId);
+  if (!p) return;
+  p.items = p.items.filter(x => x.id !== itemId);
+  savePlans(d);
+  // 也清掉打卡记录
+  const checks = loadChecks(viewISO);
+  if (checks[planId]) {
+    checks[planId] = checks[planId].filter(x => x !== itemId);
+    saveChecks(viewISO, checks);
+  }
+  renderPlans();
+}
+
+function deletePlan(planId) {
+  const d = loadPlans();
+  d.plans = d.plans.filter(x => x.id !== planId);
+  savePlans(d);
+  // 清打卡记录
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith(CHECKS_KEY_PREFIX)) {
+      try {
+        const v = JSON.parse(localStorage.getItem(k));
+        if (v && v[planId]) {
+          delete v[planId];
+          v._updated_at = Date.now();
+          localStorage.setItem(k, JSON.stringify(v));
+        }
+      } catch (e) {}
+    }
+  }
+  showToast("✅ 已删除计划");
+  renderPlans();
+}
+
+function addPlan() {
+  const name = prompt("新建打卡计划名字", "新计划");
+  if (!name) return;
+  const trimmed = name.trim();
+  if (!trimmed) return;
+  const emoji = prompt("选个图标 emoji (留空默认 🌙)", "🌙") || "🌙";
+  const d = loadPlans();
+  const id = "plan_" + uid();
+  d.plans.push({ id: id, name: trimmed, emoji: emoji.trim() || "🌙", items: [] });
+  savePlans(d);
+  renderPlans();
+}
+$("add-plan").onclick = addPlan;
 
 // ============ 标题双击改名 ============
 function bindTitleEdit() {
@@ -1022,6 +1373,31 @@ window.addEventListener("load", function() {
   $("auto-sync").onclick = toggleAutoSync;
   bindTitleEdit();
   refreshAutoSyncLabel();
+  // URL 参数覆盖 tab(便于分享链接直接打开某个 tab)
+  const _urlTab = new URLSearchParams(location.search).get("tab");
+  if (_urlTab === "plans" || _urlTab === "homework") currentTab = _urlTab;
+  switchTab(currentTab);  // 恢复上次选中的 tab(默认 homework)
+  // 钩住日期切换:切到 plans tab 时也要刷
+  const _origPrev = $("prev-day").onclick;
+  $("prev-day").onclick = function() { viewISO = addDays(viewISO, -1); render(); if (currentTab === "plans") renderPlans(); };
+  const _origNext = $("next-day").onclick;
+  $("next-day").onclick = function() { viewISO = addDays(viewISO, 1); render(); if (currentTab === "plans") renderPlans(); };
+  $("open-cal").onclick = function() {
+    const _origOpen = openCalendar;
+    const modal = $("cal-modal");
+    const oldOnclick = modal.onclick;
+    modal.onclick = function(e) {
+      if (e.target.id === "cal-modal") { modal.style.display = "none"; render(); if (currentTab === "plans") renderPlans(); }
+    };
+    // 日历选日期会重渲染,选完切 tab 也得刷
+    _origOpen();
+    // 重写 cal-day 内部 onclick(因为 _renderCal 闭包,这里只能改全局)
+    // 简化:日历选完会调 render(), 我们改 render() 不行(会破坏作业), 所以用 listener
+  };
+  // 更简洁:监听 render() 之后 + 切 tab 后
+  // 直接包装 render()
+  const _origRender = render;
+  render = function() { _origRender(); if (currentTab === "plans") renderPlans(); };
 });
 </script>
 </body>

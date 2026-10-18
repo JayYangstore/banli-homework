@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-18T13:35:04.405Z",
+  "_updated_at": "2026-10-18T13:47:34.708Z",
   "_updated_by": "mac",
   "data": {
     "banli_homework_2026-10-11": {
@@ -112,10 +112,27 @@
           "id": "plan_sleep",
           "name": "睡前准备",
           "emoji": "🌙",
-          "items": []
+          "items": [
+            {
+              "id": "h40spgzi",
+              "text": "校服+队徽准备"
+            },
+            {
+              "id": "7t7qow61",
+              "text": "桌面整理"
+            },
+            {
+              "id": "zr1qayiw",
+              "text": "书包放外面"
+            },
+            {
+              "id": "mc6cpcnh",
+              "text": "作业登记本检查"
+            }
+          ]
         }
       ],
-      "_updated_at": 1792330501864
+      "_updated_at": 1792331252724
     },
     "banli_homework_2026-09-25": {
       "subjects": [],
@@ -704,7 +721,7 @@
       "_updated_at": 1791682325596
     },
     "banli_streak_banli_homework_2026-09-29": 0,
-    "banli_active_tab": "homework",
+    "banli_active_tab": "plans",
     "banli_homework_2026-09-30": {
       "subjects": [
         {

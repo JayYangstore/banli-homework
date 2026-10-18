@@ -1,6 +1,6 @@
 {
-  "_updated_at": "2026-10-18T13:49:43.813Z",
-  "_updated_by": "phone",
+  "_updated_at": "2026-10-18T14:01:24.223Z",
+  "_updated_by": "mac",
   "data": {
     "banli_homework_2026-10-11": {
       "subjects": [
@@ -117,6 +117,10 @@
       ],
       "_updated_at": 1792331347500
     },
+    "banli_homework_2026-09-25": {
+      "subjects": [],
+      "_updated_at": 0
+    },
     "banli_homework_2026-10-12": {
       "subjects": [
         {
@@ -165,10 +169,6 @@
       "_updated_at": 1791809484604
     },
     "banli_streak_banli_homework_2026-09-28": 0,
-    "banli_homework_2026-09-25": {
-      "subjects": [],
-      "_updated_at": 0
-    },
     "banli_homework_2026-09-29": {
       "subjects": [
         {
@@ -506,17 +506,6 @@
     "banli_homework_2026-10-14": {
       "subjects": [
         {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "7330up7a",
-              "text": "复习第二单元，熟读并默写本单元古诗和要求背诵的段落",
-              "done": false
-            }
-          ]
-        },
-        {
           "name": "数学",
           "emoji": "🔢",
           "items": [
@@ -526,29 +515,20 @@
               "done": false
             }
           ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "7330up7a",
+              "text": "复习第二单元，熟读并默写本单元古诗和要求背诵的段落",
+              "done": false
+            }
+          ]
         }
       ],
       "_updated_at": 1791978632385
-    },
-    "banli_homework_2026-10-17": {
-      "subjects": [
-        {
-          "name": "x x",
-          "emoji": "📌",
-          "items": []
-        },
-        {
-          "name": "t t",
-          "emoji": "📌",
-          "items": []
-        },
-        {
-          "name": "科学",
-          "emoji": "🔬",
-          "items": []
-        }
-      ],
-      "_updated_at": 1792240288156
     },
     "banli_theme_v1": "dark",
     "banli_homework_2026-10-13": {
@@ -681,6 +661,38 @@
       ],
       "_updated_at": 0
     },
+    "banli_plans_v2": {
+      "plans": [
+        {
+          "id": "plan_sleep",
+          "name": "睡前准备",
+          "emoji": "🌙",
+          "items": [
+            {
+              "id": "h40spgzi",
+              "text": "校服+队徽准备",
+              "lastDone": 0
+            },
+            {
+              "id": "7t7qow61",
+              "text": "桌面整理",
+              "lastDone": 0
+            },
+            {
+              "id": "zr1qayiw",
+              "text": "书包放外面",
+              "lastDone": 0
+            },
+            {
+              "id": "mc6cpcnh",
+              "text": "作业登记本检查",
+              "lastDone": 0
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1792332082168
+    },
     "banli_homework_2026-10-10": {
       "subjects": [
         {
@@ -740,7 +752,7 @@
       "_updated_at": 1791682325596
     },
     "banli_streak_banli_homework_2026-09-29": 0,
-    "banli_active_tab": "homework",
+    "banli_active_tab": "plans",
     "banli_homework_2026-09-30": {
       "subjects": [
         {
@@ -829,6 +841,26 @@
         }
       ],
       "_updated_at": 0
+    },
+    "banli_homework_2026-10-17": {
+      "subjects": [
+        {
+          "name": "x x",
+          "emoji": "📌",
+          "items": []
+        },
+        {
+          "name": "t t",
+          "emoji": "📌",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": []
+        }
+      ],
+      "_updated_at": 1792240288156
     }
   }
 }

@@ -850,7 +850,17 @@ async function pushSync() {
     });
     showToast("✅ 已同步");
   } catch (e) {
-    showToast("⚠️ 推送失败 " + e.message, 3500);
+    // 详细错误 + 401 引导重新关联
+    let msg = e.message || String(e);
+    if (msg.includes("401") || msg.includes("403")) {
+      msg = "Token 失效/权限不足,点 [同步] 重新关联";
+    } else if (msg.includes("409")) {
+      msg = "冲突(多端同时改),先 [↓拉] 再 [↑推]";
+    } else if (msg.includes("Network") || msg.includes("Failed to fetch")) {
+      msg = "网络问题,稍后再试";
+    }
+    showToast("⚠️ 推送失败 · " + msg, 4000);
+    console.error("pushSync err:", e);
   } finally {
     _syncInFlight = false;
   }
@@ -943,10 +953,15 @@ async function pullSync() {
     }
   } catch (e) {
     let msg = e.message || String(e);
-    if (msg.includes("401")) msg = "401 Token \u65e0\u6548";
-    else if (msg.includes("404")) msg = "404 \u4e91\u7aef\u6587\u4ef6\u4e0d\u5b58\u5728(\u5148\u63a8\u4e00\u6b21)";
+    if (msg.includes("401") || msg.includes("403")) {
+      msg = "401/403 Token 无效或权限不足,点 [同步] 重新关联";
+    } else if (msg.includes("404")) {
+      msg = "404 云端文件不存在(先推一次)或 Token 没 repo 权限";
+    } else if (msg.includes("Network") || msg.includes("Failed to fetch")) {
+      msg = "网络问题,稍后再试";
+    }
     console.error("pullSync err:", e);
-    showToast("\u26a0\ufe0f \u62c9\u53d6\u5931\u8d25: " + msg, 4000);
+    showToast("⚠️ 拉取失败 · " + msg, 4000);
   } finally {
     _syncInFlight = false;
   }

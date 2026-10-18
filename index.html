@@ -162,6 +162,10 @@
   .check-item.reset-hint .ci-text::after { content: " (长按取消)"; font-size: 11px; color: var(--muted); }
   /* 累计天数徽章 */
   .plan-badge { display: inline-block; margin-left: 6px; padding: 2px 8px; background: var(--accent); color: white; font-size: 11px; border-radius: 6px; font-weight: 600; vertical-align: middle; }
+  /* 全局工具条(已上移到 tabs 下方,作业/打卡 tab 都看得到) */
+  body.tab-plans .toolbar .streak { display: none; }
+  .toolbar .tb-sep { display: inline-block; width: 1px; height: 18px; background: var(--line); margin: 0 4px; vertical-align: middle; }
+  .toolbar .tb-group { display: inline-flex; align-items: center; gap: 4px; }
 </style>
 </head>
 <body>
@@ -200,25 +204,34 @@
     <div class="tab active" id="tab-homework" data-tab="homework">📚 今日作业</div>
     <div class="tab" id="tab-plans" data-tab="plans">🌙 日常打卡</div>
   </div>
+  <div class="toolbar">
+    <span class="streak" id="streak">🔥 0 天连胜</span>
+    <span class="toolbar-right">
+      <span class="tb-group">
+        <button id="push-btn" class="btn" title="把本地推送到云端">↑推</button>
+        <button id="pull-btn" class="btn" title="从云端拉到本地">↓拉</button>
+      </span>
+      <span class="tb-sep"></span>
+      <span class="tb-group">
+        <button id="sync-set" class="btn" title="关联/解绑同步">同步</button>
+        <button id="auto-sync" class="btn" title="自动同步开关" style="font-size:11px">自动:关</button>
+      </span>
+      <span class="tb-sep"></span>
+      <span class="tb-group">
+        <button id="export" class="btn" title="下载 JSON 备份">导出</button>
+        <button id="import" class="btn" title="从 JSON 备份恢复">还原</button>
+        <button id="clean" class="btn btn-danger" title="清空本地所有数据">清空</button>
+      </span>
+      <span class="tb-sep"></span>
+      <button id="theme" class="icon-btn" title="切换深色/浅色">🌙</button>
+    </span>
+  </div>
   <div id="homework-wrap">
     <div class="progress-card">
       <div class="progress-text-wide">
         <div class="label">今日完成进度</div>
         <div class="sub" id="progress-sub">还没有作业,先把今天的加上吧 👇</div>
       </div>
-    </div>
-    <div class="toolbar">
-      <span class="streak" id="streak">🔥 0 天连胜</span>
-      <span class="toolbar-right">
-        <button id="push-btn" class="btn" title="把本地推送到云端">↑推</button>
-        <button id="pull-btn" class="btn" title="从云端拉到本地">↓拉</button>
-        <button id="sync-set" class="btn" title="关联/解绑同步">同步</button>
-        <button id="auto-sync" class="btn" title="自动同步开关" style="font-size:11px">自动:关</button>
-        <button id="export" class="btn" title="下载 JSON 备份">导出</button>
-        <button id="import" class="btn" title="从 JSON 备份恢复">还原</button>
-        <button id="clean" class="btn btn-danger" title="清空本地所有数据">清空</button>
-        <button id="theme" class="icon-btn" title="切换深色/浅色">🌙</button>
-      </span>
     </div>
     <div id="subjects"></div>
     <div class="add-subject" id="add-subject">+ 添加学科</div>

@@ -1036,12 +1036,23 @@ function cleanAll() {
 
 // ============ Tab 切换 ============
 let currentTab = localStorage.getItem("banli_active_tab") || "homework";
+const TITLE_HOMEWORK_DEFAULT = "板栗今日作业";
+const TITLE_PLANS_DEFAULT = "板栗日常打卡";
 function switchTab(name) {
   currentTab = name;
   localStorage.setItem("banli_active_tab", name);
   document.body.classList.toggle("tab-plans", name === "plans");
   $("tab-homework").classList.toggle("active", name === "homework");
   $("tab-plans").classList.toggle("active", name === "plans");
+  // 标题按 tab 切换(只在用户没改过默认时)
+  const titleEl = $("title");
+  const savedTitle = localStorage.getItem(TITLE_KEY);
+  if (!savedTitle || savedTitle === TITLE_HOMEWORK_DEFAULT || savedTitle === TITLE_PLANS_DEFAULT) {
+    titleEl.textContent = name === "plans" ? TITLE_PLANS_DEFAULT : TITLE_HOMEWORK_DEFAULT;
+  }
+  // 隐藏/显示日期副标题(plan tab 不需要日期)
+  const dateSub = $("date-sub");
+  if (dateSub) dateSub.style.display = (name === "plans") ? "none" : "";
   if (name === "plans") renderPlans();
 }
 $("tab-homework").onclick = function() { switchTab("homework"); };

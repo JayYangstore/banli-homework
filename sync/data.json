@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-18T14:08:47.534Z",
+  "_updated_at": "2026-10-18T14:09:17.125Z",
   "_updated_by": "phone",
   "data": {
     "banli_homework_2026-10-11": {
@@ -127,31 +127,31 @@
             {
               "id": "j09lt74r",
               "text": "作业登记本检查",
-              "lastDone": 0,
-              "streak": 0
+              "lastDone": 1792332552952,
+              "streak": 1
             },
             {
               "id": "npl9l0xb",
               "text": "校服+队徽准备",
-              "lastDone": 0,
-              "streak": 0
+              "lastDone": 1792332553484,
+              "streak": 1
             },
             {
               "id": "50v3myf1",
               "text": "书包放客厅",
-              "lastDone": 0,
-              "streak": 0
+              "lastDone": 1792332554275,
+              "streak": 1
             },
             {
               "id": "d78wm4v0",
               "text": "收拾桌面",
-              "lastDone": 0,
-              "streak": 0
+              "lastDone": 1792332555047,
+              "streak": 1
             }
           ]
         }
       ],
-      "_updated_at": 1792332442965
+      "_updated_at": 1792332555047
     },
     "banli_homework_2026-10-12": {
       "subjects": [
@@ -776,7 +776,7 @@
       "_updated_at": 1791682325596
     },
     "banli_streak_banli_homework_2026-09-29": 0,
-    "banli_active_tab": "homework",
+    "banli_active_tab": "plans",
     "banli_homework_2026-09-30": {
       "subjects": [
         {

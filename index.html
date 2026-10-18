@@ -153,6 +153,15 @@
   #plans-wrap { display: none; }
   body.tab-plans #plans-wrap { display: block; }
   body.tab-plans #homework-wrap { display: none; }
+  /* 打卡 tab 下隐藏日期切换(长期固定清单,不需要切日期) */
+  body.tab-plans .date-nav { display: none; }
+  body.tab-plans .date-sub { color: var(--accent); }
+  body.tab-plans .header { flex-direction: column; align-items: flex-start; }
+  /* 打卡项:长按/右键 重置今日打卡 */
+  .check-item:active .ci-text { background: rgba(127,127,127,0.04); }
+  .check-item.reset-hint .ci-text::after { content: " (长按取消)"; font-size: 11px; color: var(--muted); }
+  /* 累计天数徽章 */
+  .plan-badge { display: inline-block; margin-left: 6px; padding: 2px 8px; background: var(--accent); color: white; font-size: 11px; border-radius: 6px; font-weight: 600; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -1039,8 +1048,9 @@ $("tab-homework").onclick = function() { switchTab("homework"); };
 $("tab-plans").onclick = function() { switchTab("plans"); };
 
 // ============ 打卡计划 数据 ============
-const PLANS_KEY = "banli_plans";           // 计划定义(跨日期共享)
-const CHECKS_KEY_PREFIX = "banli_checks_"; // 打卡记录按日期: banli_checks_YYYY-MM-DD
+const PLANS_KEY = "banli_plans_v2";        // 计划定义 + 打卡项(每项含 lastDone 时间戳,跨日期共享)
+const PLANS_KEY_OLD = "banli_plans";       // 旧版迁移源
+const CHECKS_KEY_PREFIX_OLD = "banli_checks_"; // 旧版按日期打卡记录(只用于迁移一次)
 
 function loadPlans() {
   const raw = localStorage.getItem(PLANS_KEY);
@@ -1053,19 +1063,46 @@ function savePlans(d) {
   localStorage.setItem(PLANS_KEY, JSON.stringify(d));
   triggerSync();
 }
-function loadChecks(iso) {
-  const raw = localStorage.getItem(CHECKS_KEY_PREFIX + iso);
-  if (!raw) return {};
-  try { return JSON.parse(raw) || {}; } catch (e) { return {}; }
-}
-function saveChecks(iso, data) {
-  data._updated_at = Date.now();
-  localStorage.setItem(CHECKS_KEY_PREFIX + iso, JSON.stringify(data));
-  triggerSync();
+// 一次性迁移:旧版 banli_plans(无 lastDone) + banli_checks_YYYY-MM-DD → 新版
+function migrateOldPlans() {
+  if (localStorage.getItem(PLANS_KEY)) return; // 新版已存在
+  const oldRaw = localStorage.getItem(PLANS_KEY_OLD);
+  if (!oldRaw) return;
+  let oldData = null;
+  try { oldData = JSON.parse(oldRaw); } catch (e) { return; }
+  if (!oldData || !Array.isArray(oldData.plans)) return;
+  // 收集所有旧版按日期打卡记录,合并到 plan.items[].lastDone
+  const checksByDate = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith(CHECKS_KEY_PREFIX_OLD)) {
+      try { checksByDate[k.slice(CHECKS_KEY_PREFIX_OLD.length)] = JSON.parse(localStorage.getItem(k)) || {}; }
+      catch (e) {}
+    }
+  }
+  // 新版:每个 item 加 lastDone(最近一次打卡的 timestamp)
+  const dates = Object.keys(checksByDate).sort().reverse(); // 从近到远
+  for (const plan of oldData.plans) {
+    for (const item of (plan.items || [])) {
+      item.lastDone = 0;
+      // 找最近一次 plan.id 含 item.id 的打卡
+      for (const d of dates) {
+        const rec = checksByDate[d];
+        if (rec && rec[plan.id] && rec[plan.id].indexOf(item.id) >= 0) {
+          item.lastDone = new Date(d + "T23:59:59").getTime();
+          break;
+        }
+      }
+    }
+    plan.items = plan.items || [];
+  }
+  savePlans(oldData);
+  // 不删旧数据(可手动清空,或下次升级再删)
 }
 
 // 首次使用自动建一个"睡前准备"计划(无预置事项,板栗自己加)
 function ensureDefaultPlan() {
+  migrateOldPlans();
   const d = loadPlans();
   if (d.plans.length === 0) {
     d.plans.push({
@@ -1079,10 +1116,16 @@ function ensureDefaultPlan() {
 }
 ensureDefaultPlan();
 
+// 今天 0 点的 timestamp(用于判定"今天是否完成")
+function todayStartTs() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+}
+
 // ============ 渲染打卡 ============
 function renderPlans() {
   const data = loadPlans();
-  const checks = loadChecks(viewISO);
+  const ts0 = todayStartTs();
   const wrap = $("plans");
   wrap.innerHTML = "";
 
@@ -1094,19 +1137,20 @@ function renderPlans() {
   let total = 0, done = 0;
   for (let i = 0; i < data.plans.length; i++) {
     const p = data.plans[i];
-    const c = checks[p.id] || [];
-    const t = p.items.length;
-    const d = c.length;
-    total += t; done += d;
-    wrap.appendChild(renderPlan(p, c));
+    let pdone = 0;
+    for (const it of p.items) {
+      if ((it.lastDone || 0) >= ts0) pdone++;
+    }
+    total += p.items.length; done += pdone;
+    wrap.appendChild(renderPlan(p, ts0));
   }
 
   $("plans-progress-sub").textContent = total === 0
     ? "计划里还没有项目,点开计划加吧 👇"
-    : (done === total && total > 0 ? "🌟 今日全部打卡完成！" : done + " / " + total + " 项完成");
+    : (done === total && total > 0 ? "🌟 今日全部打卡完成！板栗太棒了" : done + " / " + total + " 项完成（每天 0 点自动重置）");
 }
 
-function renderPlan(plan, checkedIds) {
+function renderPlan(plan, ts0) {
   const card = document.createElement("div");
   card.className = "plan-card";
 
@@ -1124,13 +1168,25 @@ function renderPlan(plan, checkedIds) {
   label.textContent = plan.name;
   name.appendChild(label);
 
+  // 已完成 N 项 / 总 N 项 + 累计天数徽章(取 plan 内最多连击的那个 item)
+  let pdone = 0, bestStreak = 0;
+  for (const it of plan.items) {
+    if ((it.lastDone || 0) >= ts0) pdone++;
+    if ((it.streak || 0) > bestStreak) bestStreak = it.streak;
+  }
   const count = document.createElement("div");
   count.className = "plan-count";
-  count.textContent = checkedIds.length + " / " + plan.items.length;
+  count.textContent = pdone + " / " + plan.items.length;
 
   const right = document.createElement("div");
   right.className = "plan-right";
   right.appendChild(count);
+  if (bestStreak > 0) {
+    const badge = document.createElement("span");
+    badge.className = "plan-badge";
+    badge.textContent = "🔥 " + bestStreak + " 天";
+    right.appendChild(badge);
+  }
   const del = document.createElement("div");
   del.className = "plan-del";
   del.textContent = "×";
@@ -1183,9 +1239,10 @@ function renderPlan(plan, checkedIds) {
     };
   };
 
-  const checkedSet = new Set(checkedIds);
   for (let i = 0; i < plan.items.length; i++) {
-    card.appendChild(renderCheckItem(plan, plan.items[i], checkedSet.has(plan.items[i].id)));
+    const it = plan.items[i];
+    const isDone = (it.lastDone || 0) >= ts0;
+    card.appendChild(renderCheckItem(plan, it, isDone));
   }
 
   // 添加新打卡项输入行
@@ -1228,11 +1285,22 @@ function renderCheckItem(plan, item, isDone) {
   del.textContent = "×";
   del.onclick = function(e) {
     e.stopPropagation();
-    if (confirm("删除打卡项『" + item.text + "』？")) deleteCheckItem(plan.id, item.id);
+    if (confirm("删除打卡项『" + item.text + "』？\n(累计 " + (item.streak || 0) + " 天也会清掉)")) deleteCheckItem(plan.id, item.id);
   };
   row.appendChild(del);
 
+  // 点圆圈:切换今天打卡状态
   check.onclick = function(e) { e.stopPropagation(); toggleCheck(plan.id, item.id); };
+  // 单击整行:也切换
+  row.onclick = function() { toggleCheck(plan.id, item.id); };
+  // 长按整行:取消(重置)
+  let longPressTimer = null;
+  row.addEventListener("touchstart", function() {
+    longPressTimer = setTimeout(function() { resetCheck(plan.id, item.id); longPressTimer = null; }, 600);
+  });
+  row.addEventListener("touchend", function() { if (longPressTimer) clearTimeout(longPressTimer); });
+  row.oncontextmenu = function(e) { e.preventDefault(); resetCheck(plan.id, item.id); return false; };
+
   text.ondblclick = function(e) {
     e.stopPropagation();
     text.setAttribute("contenteditable", "true");
@@ -1259,13 +1327,35 @@ function renderCheckItem(plan, item, isDone) {
   return row;
 }
 
+// 切换今日打卡:未打卡→打卡(设 lastDone = now,连击 +1),已打卡→重置
 function toggleCheck(planId, itemId) {
-  const checks = loadChecks(viewISO);
-  if (!checks[planId]) checks[planId] = [];
-  const arr = checks[planId];
-  const i = arr.indexOf(itemId);
-  if (i >= 0) arr.splice(i, 1); else arr.push(itemId);
-  saveChecks(viewISO, checks);
+  const d = loadPlans();
+  const p = d.plans.find(x => x.id === planId);
+  if (!p) return;
+  const it = p.items.find(x => x.id === itemId);
+  if (!it) return;
+  const ts0 = todayStartTs();
+  if ((it.lastDone || 0) >= ts0) {
+    // 已打卡 → 取消(回退连击)
+    it.lastDone = 0;
+    it.streak = Math.max(0, (it.streak || 0) - 1);
+  } else {
+    // 未打卡 → 完成
+    it.lastDone = Date.now();
+    it.streak = (it.streak || 0) + 1;
+  }
+  savePlans(d);
+  renderPlans();
+}
+function resetCheck(planId, itemId) {
+  const d = loadPlans();
+  const p = d.plans.find(x => x.id === planId);
+  if (!p) return;
+  const it = p.items.find(x => x.id === itemId);
+  if (!it) return;
+  it.lastDone = 0;
+  savePlans(d);
+  showToast("已重置");
   renderPlans();
 }
 
@@ -1273,7 +1363,7 @@ function addCheckItem(planId, text) {
   const d = loadPlans();
   const p = d.plans.find(x => x.id === planId);
   if (!p) return;
-  p.items.push({ id: uid(), text: text });
+  p.items.push({ id: uid(), text: text, lastDone: 0, streak: 0 });
   savePlans(d);
   renderPlans();
 }
@@ -1284,12 +1374,6 @@ function deleteCheckItem(planId, itemId) {
   if (!p) return;
   p.items = p.items.filter(x => x.id !== itemId);
   savePlans(d);
-  // 也清掉打卡记录
-  const checks = loadChecks(viewISO);
-  if (checks[planId]) {
-    checks[planId] = checks[planId].filter(x => x !== itemId);
-    saveChecks(viewISO, checks);
-  }
   renderPlans();
 }
 
@@ -1297,20 +1381,6 @@ function deletePlan(planId) {
   const d = loadPlans();
   d.plans = d.plans.filter(x => x.id !== planId);
   savePlans(d);
-  // 清打卡记录
-  for (let i = 0; i < localStorage.length; i++) {
-    const k = localStorage.key(i);
-    if (k && k.startsWith(CHECKS_KEY_PREFIX)) {
-      try {
-        const v = JSON.parse(localStorage.getItem(k));
-        if (v && v[planId]) {
-          delete v[planId];
-          v._updated_at = Date.now();
-          localStorage.setItem(k, JSON.stringify(v));
-        }
-      } catch (e) {}
-    }
-  }
   showToast("✅ 已删除计划");
   renderPlans();
 }

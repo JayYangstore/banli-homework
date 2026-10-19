@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-19T14:25:32.785Z",
+  "_updated_at": "2026-10-19T14:26:14.839Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -328,11 +328,29 @@
               "text": "书包放客厅",
               "lastDone": 0,
               "streak": 0
+            },
+            {
+              "id": "9wngzigc",
+              "text": "收拾桌子",
+              "lastDone": 0,
+              "streak": 0
+            },
+            {
+              "id": "qlzxc40p",
+              "text": "校服和对徽收好",
+              "lastDone": 1792419972706,
+              "streak": 1
+            },
+            {
+              "id": "mfagk5kg",
+              "text": "作业登记本检查",
+              "lastDone": 0,
+              "streak": 0
             }
           ]
         }
       ],
-      "_updated_at": 1792419931279
+      "_updated_at": 1792419972706
     },
     "banli_homework_2026-10-19": {
       "subjects": [

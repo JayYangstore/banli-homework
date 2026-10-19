@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-19T07:58:53.477Z",
+  "_updated_at": "2026-10-19T07:59:39.291Z",
   "_updated_by": "mac",
   "data": {
     "banli_homework_2026-10-11": {
@@ -350,12 +350,12 @@
           "items": [
             {
               "id": "ox8cr5tg",
-              "text": "抄写儿U213-19，英作本2，家听",
+              "text": "抄写儿U213-19，英4中2，家听",
               "done": false
             },
             {
               "id": "7h35w8aw",
-              "text": "背诵15",
+              "text": "背诵P5",
               "done": false
             },
             {
@@ -365,13 +365,13 @@
             },
             {
               "id": "pnl9fuc6",
-              "text": "订正听写粉词再重默",
+              "text": "订正听写,抄一行，再重默",
               "done": false
             }
           ]
         }
       ],
-      "_updated_at": 1792396731967
+      "_updated_at": 1792396777387
     },
     "banli_homework_2026-09-27": {
       "subjects": [

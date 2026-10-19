@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-19T12:13:32.761Z",
+  "_updated_at": "2026-10-19T12:26:49.063Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -334,11 +334,6 @@
           "emoji": "🔤",
           "items": [
             {
-              "id": "ox8cr5tg",
-              "text": "抄写儿U213-19，英4中2，家听",
-              "done": false
-            },
-            {
               "id": "7h35w8aw",
               "text": "背诵P5",
               "done": true
@@ -352,6 +347,11 @@
               "id": "pnl9fuc6",
               "text": "订正听写,抄一行，再重默",
               "done": true
+            },
+            {
+              "id": "ox8cr5tg",
+              "text": "抄写儿U213-19，英4中2，家听",
+              "done": false
             }
           ]
         },
@@ -413,7 +413,7 @@
             {
               "id": "lgnmcate",
               "text": "《补》P58",
-              "done": false
+              "done": true
             },
             {
               "id": "r193pyxu",
@@ -423,12 +423,12 @@
             {
               "id": "twe4lsjy",
               "text": "带一本课外书",
-              "done": false
+              "done": true
             }
           ]
         }
       ],
-      "_updated_at": 1792412010820
+      "_updated_at": 1792412806186
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",

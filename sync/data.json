@@ -1,7 +1,20 @@
 {
-  "_updated_at": "2026-10-19T12:27:53.681Z",
+  "_updated_at": "2026-10-19T12:33:02.225Z",
   "_updated_by": "ipad",
   "data": {
+    "banli_active_tab": "homework",
+    "banli_theme": "dark",
+    "banli_plans_v2": {
+      "plans": [
+        {
+          "id": "plan_sleep",
+          "name": "睡前准备",
+          "emoji": "🌙",
+          "items": []
+        }
+      ],
+      "_updated_at": 1792413006615
+    },
     "banli_homework_2026-10-10": {
       "subjects": [
         {
@@ -87,7 +100,6 @@
       ],
       "_updated_at": 0
     },
-    "banli_active_tab": "homework",
     "banli_streak_banli_homework_2026-09-27": 0,
     "banli_homework_2026-10-17": {
       "subjects": [
@@ -315,17 +327,6 @@
         }
       ],
       "_updated_at": 1792331382298
-    },
-    "banli_plans_v2": {
-      "plans": [
-        {
-          "id": "plan_sleep",
-          "name": "睡前准备",
-          "emoji": "🌙",
-          "items": []
-        }
-      ],
-      "_updated_at": 1792402700542
     },
     "banli_homework_2026-10-19": {
       "subjects": [
@@ -920,7 +921,6 @@
       ],
       "_updated_at": 1792331347500
     },
-    "banli_theme": "dark",
     "banli_streak_banli_homework_2026-09-28": 0,
     "banli_homework_2026-10-14": {
       "subjects": [

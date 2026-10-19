@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-19T14:16:44.809Z",
+  "_updated_at": "2026-10-19T14:25:32.785Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -87,7 +87,7 @@
       ],
       "_updated_at": 0
     },
-    "banli_active_tab": "homework",
+    "banli_active_tab": "plans",
     "banli_streak_banli_homework_2026-09-27": 0,
     "banli_homework_2026-10-17": {
       "subjects": [
@@ -322,10 +322,17 @@
           "id": "plan_sleep",
           "name": "睡前准备",
           "emoji": "🌙",
-          "items": []
+          "items": [
+            {
+              "id": "7npg4vdw",
+              "text": "书包放客厅",
+              "lastDone": 0,
+              "streak": 0
+            }
+          ]
         }
       ],
-      "_updated_at": 1792413006615
+      "_updated_at": 1792419931279
     },
     "banli_homework_2026-10-19": {
       "subjects": [

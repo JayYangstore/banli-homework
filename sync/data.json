@@ -1,20 +1,7 @@
 {
-  "_updated_at": "2026-10-19T12:33:02.225Z",
+  "_updated_at": "2026-10-19T14:16:44.809Z",
   "_updated_by": "ipad",
   "data": {
-    "banli_active_tab": "homework",
-    "banli_theme": "dark",
-    "banli_plans_v2": {
-      "plans": [
-        {
-          "id": "plan_sleep",
-          "name": "睡前准备",
-          "emoji": "🌙",
-          "items": []
-        }
-      ],
-      "_updated_at": 1792413006615
-    },
     "banli_homework_2026-10-10": {
       "subjects": [
         {
@@ -100,6 +87,7 @@
       ],
       "_updated_at": 0
     },
+    "banli_active_tab": "homework",
     "banli_streak_banli_homework_2026-09-27": 0,
     "banli_homework_2026-10-17": {
       "subjects": [
@@ -328,6 +316,17 @@
       ],
       "_updated_at": 1792331382298
     },
+    "banli_plans_v2": {
+      "plans": [
+        {
+          "id": "plan_sleep",
+          "name": "睡前准备",
+          "emoji": "🌙",
+          "items": []
+        }
+      ],
+      "_updated_at": 1792413006615
+    },
     "banli_homework_2026-10-19": {
       "subjects": [
         {
@@ -352,7 +351,12 @@
             {
               "id": "bx94d5bv",
               "text": "抄写U2，13-19",
-              "done": false
+              "done": true
+            },
+            {
+              "id": "54st2d2d",
+              "text": "听写13到19抄写13到19",
+              "done": true
             },
             {
               "id": "ox8cr5tg",
@@ -368,32 +372,32 @@
             {
               "id": "hip7rn9l",
               "text": "3×8+45",
-              "done": false
+              "done": true
             },
             {
               "id": "uj7ox2ob",
               "text": "60-6×8",
-              "done": false
+              "done": true
             },
             {
               "id": "kuarre5l",
               "text": "12×3-26",
-              "done": false
+              "done": true
             },
             {
               "id": "bgufo6cz",
               "text": "72÷9-4",
-              "done": false
+              "done": true
             },
             {
               "id": "33ms097u",
               "text": "29-12÷6",
-              "done": false
+              "done": true
             },
             {
               "id": "1eo68w8t",
               "text": "63÷(7+2)",
-              "done": false
+              "done": true
             },
             {
               "id": "pmrpoibt",
@@ -403,7 +407,7 @@
             {
               "id": "bb4jszw4",
               "text": "计算(上面6题目，用数学本抄写计算)",
-              "done": false
+              "done": true
             },
             {
               "id": "2dk8hgml",
@@ -424,7 +428,7 @@
             {
               "id": "r193pyxu",
               "text": "订标点、符号练习",
-              "done": false
+              "done": true
             },
             {
               "id": "twe4lsjy",
@@ -434,7 +438,7 @@
           ]
         }
       ],
-      "_updated_at": 1792412871253
+      "_updated_at": 1792419402065
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",
@@ -921,6 +925,7 @@
       ],
       "_updated_at": 1792331347500
     },
+    "banli_theme": "dark",
     "banli_streak_banli_homework_2026-09-28": 0,
     "banli_homework_2026-10-14": {
       "subjects": [

@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-19T09:28:32.562Z",
+  "_updated_at": "2026-10-19T09:29:42.303Z",
   "_updated_by": "Mac",
   "data": {
     "banli_streak_banli_homework_2026-09-26": 0,
@@ -153,12 +153,12 @@
             },
             {
               "id": "pmrpoibt",
-              "text": "唯结本P17",
+              "text": "订正堂练本P17",
               "done": false
             },
             {
               "id": "bb4jszw4",
-              "text": "计算",
+              "text": "计算(上面6题目，用数学本抄写计算)",
               "done": false
             },
             {
@@ -190,7 +190,7 @@
           ]
         }
       ],
-      "_updated_at": 1792402110572
+      "_updated_at": 1792402166798
     },
     "banli_homework_2026-10-17": {
       "subjects": [

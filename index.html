@@ -707,7 +707,10 @@ function addSubject() {
 let _syncInFlight = false;
 function syncBtnState() {
   const linked = !!(localStorage.getItem(SYNC_SHORT_KEY) && localStorage.getItem(SYNC_TOKEN_KEY));
-  $("sync-set").textContent = linked ? "同步✓" : "同步";
+  const tok = localStorage.getItem(SYNC_TOKEN_KEY) || "";
+  let warn = "";
+  if (linked && tok.length < 40) warn = "\u26a0\ufe0f";
+  $("sync-set").textContent = (warn || "") + (linked ? "\u540c\u6b65\u2713" : "\u540c\u6b65");
 }
 
 function showSyncModal() {
@@ -872,6 +875,7 @@ async function pullSync() {
   try {
     const token = localStorage.getItem(SYNC_TOKEN_KEY);
     if (!token) { showToast("\u26a0\ufe0f \u6ca1\u5173\u8054,\u8bf7\u70b9 [\u540c\u6b65] \u8bbe\u7f6e"); return; }
+    if (token.length < 40) { showToast("\u26a0\ufe0f Token \u4e22\u5931/\u88ab\u622a\u65ad(" + token.length + "\u5b57\u7b26),\u8bf7\u91cd\u65b0\u5173\u8054"); return; }
 
     const r = await ghApi("/repos/" + SYNC_REPO + "/contents/" + SYNC_PATH + "?ref=" + SYNC_BRANCH);
     const bytes = new Uint8Array(atob(r.content).split("").map(function(c) { return c.charCodeAt(0); }));

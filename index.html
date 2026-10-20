@@ -174,6 +174,12 @@
     .tabs, .toolbar, .add-subject, .add-plan, .add-item-row,
     .date-nav, .cal-modal-bg, .modal-bg, .toast, .item-del, .ci-del,
     .subject-del, .plan-del, .plan-right, .streak { display: none !important; }
+    /* 打印时用我加的 print-header,隐藏页面自带的 title-wrap(避免标题重复) */
+    .title-wrap { display: none !important; }
+    /* 打印隐藏进度卡(空状态那句"还没有作业"对打印没意义) */
+    .progress-card { display: none !important; }
+    /* 空状态/emoji 文案换成纯文字 */
+    .empty-print { display: none !important; }
     /* 卡片改为黑白打印友好 */
     .subject, .plan-card, .progress-card {
       background: #fff !important; border: 1px solid #999 !important;
@@ -267,6 +273,10 @@
     <div class="print-header">
       <div style="font-size:16pt;font-weight:700;margin-bottom:1mm" id="print-title">板栗今日作业</div>
       <div style="font-size:10pt;color:#444" id="print-meta"></div>
+      <div style="font-size:9.5pt;color:#555;margin-top:1.5mm;display:flex;justify-content:space-between">
+        <span id="print-stats"></span>
+        <span>家长签字：________________　　日期：____________</span>
+      </div>
     </div>
     <div class="progress-card">
       <div class="progress-text-wide">
@@ -1627,7 +1637,25 @@ function fillPrintHeader() {
     var t1 = document.getElementById("print-title");
     var m1 = document.getElementById("print-meta");
     if (t1) t1.textContent = localStorage.getItem(TITLE_KEY) || "板栗今日作业";
-    if (m1) m1.textContent = dateStr + "  ·  " + (document.getElementById("progress-sub") || {}).textContent;
+    if (m1) m1.textContent = dateStr;
+    // 完成度统计 + 学科数
+    var s1 = document.getElementById("print-stats");
+    if (s1) {
+      var data = loadDay(viewISO);
+      var tot = 0, dn = 0, names = [];
+      for (var i = 0; i < data.subjects.length; i++) {
+        var sb = data.subjects[i];
+        tot += sb.items.length;
+        var sd = 0;
+        for (var j = 0; j < sb.items.length; j++) if (sb.items[j].done) sd++;
+        dn += sd;
+        if (sd === sb.items.length && sb.items.length > 0) names.push(sb.name + "✓");
+      }
+      s1.textContent = tot === 0
+        ? "今日共 0 项作业"
+        : "共 " + tot + " 项,已完成 " + dn + " 项(" + Math.round(dn * 100 / tot) + "%)"
+          + (names.length ? "　已完成:" + names.join(" ") : "");
+    }
   }
 }
 function doPrint() {

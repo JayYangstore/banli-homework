@@ -287,11 +287,58 @@ function loadDay(iso) {
 function saveDay(iso, data) {
   // 给该日数据包盖时间戳,供多端按时间取新
   data._updated_at = Date.now();
-  localStorage.setItem(STORAGE_KEY + "_" + iso, JSON.stringify(data));
+  safeSetItem(STORAGE_KEY + "_" + iso, JSON.stringify(data));
   triggerSync();
 }
 function loadStreak() { return parseInt(localStorage.getItem(STREAK_KEY) || "0", 10); }
-function saveStreak(n) { localStorage.setItem(STREAK_KEY, String(n)); }
+function saveStreak(n) { safeSetItem(STREAK_KEY, String(n)); }
+
+// ============ localStorage 配额保护 ============
+// 浏览器 localStorage 单域名上限约 5MB;写满后 setItem 抛 QuotaExceededError,
+// 会让同步 push/pull 全线失败。写入前先清旧数据,写入失败则清更多。
+function safeSetItem(key, val) {
+  try {
+    localStorage.setItem(key, val);
+    return true;
+  } catch (e) {
+    // 配额爆了 → 先清 60 天前的旧作业,再试一次
+    gcOldHomework(60);
+    try {
+      localStorage.setItem(key, val);
+      return true;
+    } catch (e2) {
+      // 还是不行 → 清到 30 天,再试
+      gcOldHomework(30);
+      try {
+        localStorage.setItem(key, val);
+        return true;
+      } catch (e3) {
+        console.error("localStorage 配额已满,写入失败:", key, e3);
+        showToast("⚠️ 本地空间已满,点[导出]备份后点[清空]重置", 5000);
+        return false;
+      }
+    }
+  }
+}
+// 清理 N 天前的旧作业数据(保留打卡/同步/主题等非按日 key)
+function gcOldHomework(keepDays) {
+  if (!keepDays) keepDays = 60;
+  const cutoff = Date.now() - keepDays * 86400000;
+  const toRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (!k) continue;
+    // 只清按日的作业 key:banli_homework_YYYY-MM-DD
+    const m = k.match(/^banli_homework_(\d{4}-\d{2}-\d{2})$/);
+    if (!m) continue;
+    const t = new Date(m[1] + "T00:00:00").getTime();
+    if (isNaN(t)) continue;
+    if (t < cutoff) toRemove.push(k);
+  }
+  for (let i = 0; i < toRemove.length; i++) localStorage.removeItem(toRemove[i]);
+  if (toRemove.length) console.log("gcOldHomework: 清理了 " + toRemove.length + " 天前的旧作业数据");
+  return toRemove.length;
+}
 
 // ============ 日期导航 ============
 function todayISO() { return fmt(new Date()); }
@@ -907,7 +954,7 @@ async function pullSync() {
 
       if (!cur) {
         // 本地没有 → 直接拉
-        localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+        safeSetItem(k, typeof v === "string" ? v : JSON.stringify(v));
         added++;
         continue;
       }
@@ -920,7 +967,7 @@ async function pullSync() {
         const m = mergeDays(lvP, rvP);
         const s = JSON.stringify(m);
         if (s !== JSON.stringify(lvP)) {
-          localStorage.setItem(k, s);
+          safeSetItem(k, s);
           updated++;
         } else {
           skipped++;
@@ -942,7 +989,7 @@ async function pullSync() {
       if (remoteTs && localTs) {
         // 两边都有时间戳 → 谁新用谁
         if (remoteTs > localTs) {
-          localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+          safeSetItem(k, typeof v === "string" ? v : JSON.stringify(v));
           updated++;
         } else {
           skipped++;  // 本地更新,保留
@@ -952,7 +999,7 @@ async function pullSync() {
         const curVal = cur;
         const isEmpty = curVal === "" || curVal === "{}" || curVal === "[]" || curVal === "null";
         if (isEmpty || !localTs) {
-          localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+          safeSetItem(k, typeof v === "string" ? v : JSON.stringify(v));
           updated++;
         } else {
           skipped++;
@@ -1056,7 +1103,7 @@ function importData() {
         for (const k in d.keys) {
           if (!k.startsWith("banli_")) continue;
           const v = d.keys[k];
-          localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
+          safeSetItem(k, typeof v === "string" ? v : JSON.stringify(v));
           n++;
         }
         showToast("\u2705 \u5df2\u8fd8\u539f " + n + " \u9879,\u5237\u65b0\u4e2d...");
@@ -1511,13 +1558,9 @@ window.addEventListener("load", function() {
   const _urlTab = new URLSearchParams(location.search).get("tab");
   if (_urlTab === "plans" || _urlTab === "homework") currentTab = _urlTab;
   switchTab(currentTab);  // 恢复上次选中的 tab(默认 homework)
-  // 自动同步开着时,加载后主动拉一次云端(保证多端清单不丢)
-  if (localStorage.getItem("banli_auto_sync") === "1" && localStorage.getItem(SYNC_TOKEN_KEY)) {
-    setTimeout(function() {
-      if (currentTab === "plans") renderPlans();
-      pullSync();
-    }, 800);
-  }
+  // 注意:不要在加载时自动 pullSync —— 反复写 localStorage 会触发浏览器配额上限(quota exceeded)
+  // 改成首次加载只做一次"配额体检 + 清理 60 天前的旧作业数据"
+  setTimeout(function() { gcOldHomework(); }, 1200);
   // 钩住日期切换:切到 plans tab 时也要刷
   const _origPrev = $("prev-day").onclick;
   $("prev-day").onclick = function() { viewISO = addDays(viewISO, -1); render(); if (currentTab === "plans") renderPlans(); };

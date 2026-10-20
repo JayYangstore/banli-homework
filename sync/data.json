@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-20T09:08:50.520Z",
+  "_updated_at": "2026-10-20T09:10:53.749Z",
   "_updated_by": "Mac",
   "data": {
     "banli_streak_banli_homework_2026-09-26": 0,
@@ -913,10 +913,21 @@
         {
           "name": "科学",
           "emoji": "🔬",
-          "items": []
+          "items": [
+            {
+              "id": "flf4w77o",
+              "text": "水沸腾了P19-20",
+              "done": false
+            },
+            {
+              "id": "bltdjw0n",
+              "text": "背《知》第二单元第3课",
+              "done": false
+            }
+          ]
         }
       ],
-      "_updated_at": 1792487328104
+      "_updated_at": 1792487451597
     },
     "banli_homework_2026-09-28": {
       "subjects": [

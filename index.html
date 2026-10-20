@@ -1497,6 +1497,13 @@ window.addEventListener("load", function() {
   const _urlTab = new URLSearchParams(location.search).get("tab");
   if (_urlTab === "plans" || _urlTab === "homework") currentTab = _urlTab;
   switchTab(currentTab);  // 恢复上次选中的 tab(默认 homework)
+  // 自动同步开着时,加载后主动拉一次云端(保证多端清单不丢)
+  if (localStorage.getItem("banli_auto_sync") === "1" && localStorage.getItem(SYNC_TOKEN_KEY)) {
+    setTimeout(function() {
+      if (currentTab === "plans") renderPlans();
+      pullSync();
+    }, 800);
+  }
   // 钩住日期切换:切到 plans tab 时也要刷
   const _origPrev = $("prev-day").onclick;
   $("prev-day").onclick = function() { viewISO = addDays(viewISO, -1); render(); if (currentTab === "plans") renderPlans(); };

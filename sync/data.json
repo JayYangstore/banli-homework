@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-20T11:25:08.749Z",
+  "_updated_at": "2026-10-20T11:34:02.793Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -791,7 +791,7 @@
             {
               "id": "6lr6c59z",
               "text": "计算",
-              "done": false
+              "done": true
             },
             {
               "id": "sdnp805r",
@@ -852,7 +852,7 @@
           ]
         }
       ],
-      "_updated_at": 1792495506326
+      "_updated_at": 1792496040391
     },
     "banli_homework_2026-09-29": {
       "subjects": [

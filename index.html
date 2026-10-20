@@ -1093,11 +1093,20 @@ const PLANS_KEY = "banli_plans_v2";        // 计划定义 + 打卡项(每项含
 const PLANS_KEY_OLD = "banli_plans";       // 旧版迁移源
 const CHECKS_KEY_PREFIX_OLD = "banli_checks_"; // 旧版按日期打卡记录(只用于迁移一次)
 
+// 兜底:本地 _v2 为空时,把云端最新 banli_plans_v2 注入(防止多端同步漏拉导致清单"消失")
+const CLOUD_PLANS_FALLBACK = {"plans":[{"id":"plan_sleep","name":"睡前准备","emoji":"🌙","items":[{"id":"7npg4vdw","text":"书包放客厅","lastDone":0,"streak":0},{"id":"9wngzigc","text":"收拾桌子","lastDone":0,"streak":0},{"id":"mfagk5kg","text":"作业登记本检查","lastDone":0,"streak":0},{"id":"vc9d0ovi","text":"拿衣服和队徽","lastDone":0,"streak":0}]},{"id":"plan_wr9pvviv","name":"新计划","emoji":"🥸","items":[]}]};
+
 function loadPlans() {
   const raw = localStorage.getItem(PLANS_KEY);
-  if (!raw) return { plans: [] };
-  try { const d = JSON.parse(raw); return d.plans ? d : { plans: [] }; }
-  catch (e) { return { plans: [] }; }
+  if (raw) {
+    try {
+      const d = JSON.parse(raw);
+      if (d && Array.isArray(d.plans)) return d;
+    } catch (e) {}
+  }
+  // 本地空/损坏 → 兜底(云端拉到的同一份,lastDone 置 0 保证今天未完成)
+  localStorage.setItem(PLANS_KEY, JSON.stringify(CLOUD_PLANS_FALLBACK));
+  return JSON.parse(JSON.stringify(CLOUD_PLANS_FALLBACK));
 }
 function savePlans(d) {
   d._updated_at = Date.now();

@@ -164,6 +164,39 @@
   body.tab-plans .toolbar .streak { display: none; }
   .toolbar .tb-sep { display: inline-block; width: 1px; height: 18px; background: var(--line); margin: 0 4px; vertical-align: middle; }
   .toolbar .tb-group { display: inline-flex; align-items: center; gap: 4px; }
+  /* ============ 打印样式 ============ */
+  /* 目标:打印出来像一张干净的作业单,不要按钮/tab/工具条 */
+  @media print {
+    @page { size: A4; margin: 12mm 12mm; }
+    html, body { background: #fff !important; color: #000 !important; }
+    body { font-size: 12pt; }
+    /* 隐藏所有交互元素 */
+    .tabs, .toolbar, .add-subject, .add-plan, .add-item-row,
+    .date-nav, .cal-modal-bg, .modal-bg, .toast, .item-del, .ci-del,
+    .subject-del, .plan-del, .plan-right, .streak { display: none !important; }
+    /* 卡片改为黑白打印友好 */
+    .subject, .plan-card, .progress-card {
+      background: #fff !important; border: 1px solid #999 !important;
+      border-radius: 4px; box-shadow: none !important;
+      page-break-inside: avoid; margin-bottom: 6mm; padding: 0;
+    }
+    .subject-head, .plan-head { border-bottom: 1px solid #999 !important; padding: 3mm 4mm; }
+    .subject-name, .plan-name { font-size: 13pt; }
+    .subject-count, .plan-count { color: #444 !important; font-size: 10pt; }
+    /* 勾选框打印成方框,能看出打勾 */
+    .check { border: 1.5pt solid #000 !important; }
+    .item, .check-item { border-bottom: 1px dotted #bbb !important; padding: 2.5mm 4mm; }
+    .item.done .text, .check-item.done .ci-text { text-decoration: line-through; color: #666 !important; }
+    /* 打印页眉 */
+    .print-only { display: block !important; }
+    .wrap { max-width: 100%; padding: 0; }
+    a { text-decoration: none; color: #000 !important; }
+  }
+  .print-only { display: none; }
+  @media print {
+    .print-header { display: block !important; border-bottom: 2px solid #000; padding-bottom: 3mm; margin-bottom: 5mm; }
+  }
+  .print-header { display: none; }
 </style>
 </head>
 <body>
@@ -216,6 +249,11 @@
       </span>
       <span class="tb-sep"></span>
       <span class="tb-group">
+        <button id="print-btn" class="btn" title="打印当前 tab 的内容">🖨 打印</button>
+        <button id="pdf-btn" class="btn" title="导出当前 tab 为 PDF 文件">📄 PDF</button>
+      </span>
+      <span class="tb-sep"></span>
+      <span class="tb-group">
         <button id="diag-btn" class="btn" title="查看本地存储占用明细">📊 体检</button>
         <button id="export" class="btn" title="下载 JSON 备份">导出</button>
         <button id="import" class="btn" title="从 JSON 备份恢复">还原</button>
@@ -226,6 +264,10 @@
     </span>
   </div>
   <div id="homework-wrap">
+    <div class="print-header">
+      <div style="font-size:16pt;font-weight:700;margin-bottom:1mm" id="print-title">板栗今日作业</div>
+      <div style="font-size:10pt;color:#444" id="print-meta"></div>
+    </div>
     <div class="progress-card">
       <div class="progress-text-wide">
         <div class="label">今日完成进度</div>
@@ -236,6 +278,10 @@
     <div class="add-subject" id="add-subject">+ 添加学科</div>
   </div>
   <div id="plans-wrap">
+    <div class="print-header">
+      <div style="font-size:16pt;font-weight:700;margin-bottom:1mm" id="print-title-plans">板栗日常打卡</div>
+      <div style="font-size:10pt;color:#444" id="print-meta-plans"></div>
+    </div>
     <div class="progress-card">
       <div class="progress-text-wide">
         <div class="label">今日打卡进度</div>
@@ -1564,6 +1610,40 @@ function addPlan() {
 }
 $("add-plan").onclick = addPlan;
 
+// ============ 打印 / 导出 PDF ============
+// 原理:打印样式(@media print)已写好,浏览器点"打印"→另存为 PDF 就是 PDF。
+// 这里做两件事:1) 打印前把页眉填好 2) 导出 PDF 时开新窗口注入同样内容再调 print
+function fillPrintHeader() {
+  var isPlans = currentTab === "plans";
+  var d = new Date(viewISO + "T00:00:00");
+  var wk = ["日","一","二","三","四","五","六"][d.getDay()];
+  var dateStr = viewISO + " · 周" + wk;
+  if (isPlans) {
+    var t2 = document.getElementById("print-title-plans");
+    var m2 = document.getElementById("print-meta-plans");
+    if (t2) t2.textContent = "板栗日常打卡";
+    if (m2) m2.textContent = dateStr + "  ·  " + (document.getElementById("plans-progress-sub") || {}).textContent;
+  } else {
+    var t1 = document.getElementById("print-title");
+    var m1 = document.getElementById("print-meta");
+    if (t1) t1.textContent = localStorage.getItem(TITLE_KEY) || "板栗今日作业";
+    if (m1) m1.textContent = dateStr + "  ·  " + (document.getElementById("progress-sub") || {}).textContent;
+  }
+}
+function doPrint() {
+  fillPrintHeader();
+  window.print();
+}
+// 导出 PDF:新窗口打开当前页面(带 print=pdf 参数),等它加载完自动调 print → 用户选"另存为 PDF"
+function exportPDF() {
+  fillPrintHeader();
+  var isPlans = currentTab === "plans";
+  var url = location.pathname + "?tab=" + currentTab + "&print=1";
+  var w = window.open(url, "_blank");
+  if (!w) { showToast("⚠️ 浏览器拦截了新窗口,请允许弹窗后重试", 3000); return; }
+  showToast("📄 新窗口已打开 → 在打印面板选「另存为 PDF」", 5000);
+}
+
 // ============ 标题双击改名 ============
 function bindTitleEdit() {
   const t = $("title");
@@ -1603,6 +1683,8 @@ window.addEventListener("load", function() {
   $("import").onclick = importData;
   $("clean").onclick = cleanAll;
   $("diag-btn").onclick = diagStorage;
+  $("print-btn").onclick = doPrint;
+  $("pdf-btn").onclick = exportPDF;
   $("push-btn").onclick = pushSync;
   $("pull-btn").onclick = pullSync;
   $("sync-set").onclick = showSyncModal;
@@ -1616,6 +1698,15 @@ window.addEventListener("load", function() {
   // 注意:不要在加载时自动 pullSync —— 反复写 localStorage 会触发浏览器配额上限(quota exceeded)
   // 改成首次加载只做一次"配额体检 + 清理 60 天前的旧作业数据"
   setTimeout(function() { gcOldHomework(); }, 1200);
+  // ?print=1 → 导出 PDF 用的新窗口,加载完自动弹打印面板(用户选"另存为 PDF")
+  if (new URLSearchParams(location.search).get("print") === "1") {
+    setTimeout(function() {
+      fillPrintHeader();
+      window.print();
+      // 打印完成后清掉 print 参数(避免 F5 又弹)
+      setTimeout(function() { history.replaceState(null, "", location.pathname + "?tab=" + currentTab); }, 1500);
+    }, 700);
+  }
   // URL 带 ?reset=1 → 一键清空本地所有 banli_ 数据(修 localStorage 配额爆了的设备)
   if (new URLSearchParams(location.search).get("reset") === "1") {
     // 先把 ?reset=1 从地址栏去掉,否则 pullSync 结束会 location.reload(),

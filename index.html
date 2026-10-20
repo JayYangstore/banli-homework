@@ -2108,32 +2108,42 @@ function exportPDF() {
     useCORS: true,
     windowWidth: 794,               // A4 宽度(96dpi),保证分页宽度一致
     onclone: function(doc) {
-      // 克隆文档里,把要截的部分强制显示,并把 html/body 拉成 A4 宽度
+      // 关键:注入 !important 样式强制高对比度。
+      // 之前用 setProperty 改 CSS 变量无效,因为 :root 的定义优先级更高。
+      var forceStyle = doc.createElement("style");
+      forceStyle.textContent = [
+        "html,body{background:#fff !important;color:#000 !important;}",
+        "body.dark{background:#fff !important;color:#000 !important;}",
+        "body{background:#fff !important;}",
+        ".title,.title-wrap,.label,.text,.ci-text,.subject-name,.plan-name,",
+        ".item,.check-item,.subject,.plan-card,.progress-card{color:#000 !important;}",
+        ".subject-name .label,.plan-name .label{color:#000 !important;}",
+        ".subject-count,.plan-count{color:#222 !important;font-weight:700 !important;}",
+        ".emoji{color:#000 !important;}",
+        ".item.done .text,.check-item.done .ci-text{color:#555 !important;",
+        "  text-decoration:line-through !important;}",
+        ".check{border:2px solid #000 !important;}",
+        ".item.done .check,.check-item.done .check{background:#000 !important;border-color:#000 !important;}",
+        ".item.done .check::after,.check-item.done .check::after{color:#fff !important;}",
+        ".subject,.plan-card{background:#fff !important;border:1.5px solid #000 !important;",
+        "  box-shadow:none !important;border-radius:3px !important;margin-bottom:10px !important;}",
+        ".subject-head,.plan-head{border-bottom:1.5px solid #000 !important;}",
+        ".item,.check-item{border-bottom:1px solid #bbb !important;}",
+        ".print-header{display:block !important;border-bottom:2.5px solid #000 !important;",
+        "  padding-bottom:8px !important;margin-bottom:14px !important;}",
+        ".print-header *{color:#000 !important;}"
+      ].join("");
+      doc.head.appendChild(forceStyle);
+      doc.body.classList.remove("dark");
+      // 拉伸成 A4 宽度
       var w = doc.querySelector(".wrap");
       if (w) { w.style.maxWidth = "794px"; w.style.padding = "16px 18px"; }
-      var ph = doc.querySelectorAll(".print-header");
-      for (var i = 0; i < ph.length; i++) {
-        ph[i].style.display = "block";
-        ph[i].style.borderBottom = "2px solid #000";
-        ph[i].style.paddingBottom = "8px";
-        ph[i].style.marginBottom = "14px";
-      }
       // 隐藏不该出现在 PDF 里的元素
       var hideSel = ".tabs,.toolbar,.add-subject,.add-plan,.add-item-row,.date-nav," +
                     ".cal-modal-bg,.modal-bg,.toast,.item-del,.ci-del," +
                     ".subject-del,.plan-del,.plan-right,.streak,.progress-card,.title-wrap";
       var hs = doc.querySelectorAll(hideSel);
       for (var k = 0; k < hs.length; k++) hs[k].style.display = "none";
-      // 卡片改成打印样式
-      var cards = doc.querySelectorAll(".subject,.plan-card");
-      for (var m = 0; m < cards.length; m++) {
-        var c = cards[m];
-        c.style.background = "#fff";
-        c.style.border = "1px solid #999";
-        c.style.borderRadius = "4px";
-        c.style.boxShadow = "none";
-        c.style.marginBottom = "8px";
-      }
     }
   };
   html2canvas(wrap, opts).then(function(canvas) {

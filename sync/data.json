@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-20T13:46:41.275Z",
+  "_updated_at": "2026-10-20T13:47:52.287Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -459,11 +459,17 @@
               "text": "桌面整理",
               "lastDone": 1792503997502,
               "streak": 1
+            },
+            {
+              "id": "8cqhdnyt",
+              "text": "手表充电",
+              "lastDone": 0,
+              "streak": 0
             }
           ]
         }
       ],
-      "_updated_at": 1792503998085
+      "_updated_at": 1792504069909
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",

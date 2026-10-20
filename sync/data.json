@@ -1,6 +1,6 @@
 {
-  "_updated_at": "2026-10-19T00:00:00.000Z",
-  "_updated_by": "cleanup",
+  "_updated_at": "2026-10-20T07:37:19.125Z",
+  "_updated_by": "mac",
   "data": {
     "banli_homework_2026-10-11": {
       "subjects": [
@@ -773,11 +773,17 @@
               "text": "书包放客厅",
               "lastDone": 0,
               "streak": 0
+            },
+            {
+              "id": "5btsk3ki",
+              "text": "校服+队徽",
+              "lastDone": 0,
+              "streak": 0
             }
           ]
         }
       ],
-      "_updated_at": 1792479616167
+      "_updated_at": 1792481837616
     },
     "banli_homework_2026-10-10": {
       "subjects": [

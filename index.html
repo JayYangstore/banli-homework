@@ -216,6 +216,7 @@
       </span>
       <span class="tb-sep"></span>
       <span class="tb-group">
+        <button id="diag-btn" class="btn" title="查看本地存储占用明细">📊 体检</button>
         <button id="export" class="btn" title="下载 JSON 备份">导出</button>
         <button id="import" class="btn" title="从 JSON 备份恢复">还原</button>
         <button id="clean" class="btn btn-danger" title="清空本地所有数据">清空</button>
@@ -338,6 +339,48 @@ function gcOldHomework(keepDays) {
   for (let i = 0; i < toRemove.length; i++) localStorage.removeItem(toRemove[i]);
   if (toRemove.length) console.log("gcOldHomework: 清理了 " + toRemove.length + " 天前的旧作业数据");
   return toRemove.length;
+}
+// ============ 存储体检(?diag=1)============
+// 回答"我明明只加了几个字,怎么会空间不够"——把所有 key 逐个列出来按大小排序
+function diagStorage() {
+  let total = 0;
+  const rows = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (!k) continue;
+    const v = localStorage.getItem(k) || "";
+    const size = (k.length + v.length) * 2;  // UTF-16,一个字符 2 字节
+    total += size;
+    rows.push({ key: k, size: size, preview: v.slice(0, 40) });
+  }
+  rows.sort(function(a, b) { return b.size - a.size; });
+  const mb = (total / 1024 / 1024).toFixed(3);
+  let html = '<div class="modal-bg" id="diag-modal"><div class="modal" style="max-width:560px">' +
+    '<h3>📊 本地存储体检</h3>' +
+    '<div style="font-size:13px;color:var(--muted);margin-bottom:10px">' +
+      '共 <b>' + localStorage.length + '</b> 个 key,合计 <b>' + mb + ' MB</b> (浏览器上限约 5 MB)<br>' +
+      '中文/emoji 在 UTF-16 里占 3-4 字节/字,所以实际占用是"字符数"的 2-3 倍' +
+    '</div>' +
+    '<div style="max-height:340px;overflow:auto;font-size:11px;font-family:monospace">';
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i];
+    const kb = (r.size / 1024).toFixed(1);
+    const color = r.size > 100000 ? "var(--red)" : (r.size > 10000 ? "var(--orange)" : "var(--ink)");
+    html += '<div style="padding:4px 0;border-bottom:1px solid var(--line)">' +
+      '<span style="color:' + color + ';font-weight:600">' + kb + ' KB</span> ' +
+      '<span style="color:var(--muted)">' + r.key + '</span><br>' +
+      '<span style="color:var(--muted);font-size:10px">' + r.preview.replace(/[<>&]/g, '') + '…</span></div>';
+  }
+  html += '</div><div class="row"><button id="diag-close" class="primary">知道了</button></div></div></div>';
+  const holder = document.createElement("div");
+  holder.innerHTML = html;
+  document.body.appendChild(holder);
+  const m = document.getElementById("diag-modal");
+  document.getElementById("diag-close").onclick = function() { m.remove(); };
+  m.onclick = function(e) { if (e.target === m) m.remove(); };
+  console.log("=== localStorage 体检 ===", { totalChars: total, totalMB: mb, keyCount: rows.length, top: rows.slice(0, 5) });
+  // 同时打到 console,方便 F12 查看
+  console.table(rows.slice(0, 20));
 }
 // 一键清空本地所有 banli_ 数据(保留同步凭证 banli_sync_*,便于重置后仍能拉云端)
 function wipeAllLocal() {
@@ -1559,6 +1602,7 @@ window.addEventListener("load", function() {
   $("export").onclick = exportData;
   $("import").onclick = importData;
   $("clean").onclick = cleanAll;
+  $("diag-btn").onclick = diagStorage;
   $("push-btn").onclick = pushSync;
   $("pull-btn").onclick = pullSync;
   $("sync-set").onclick = showSyncModal;
@@ -1574,6 +1618,9 @@ window.addEventListener("load", function() {
   setTimeout(function() { gcOldHomework(); }, 1200);
   // URL 带 ?reset=1 → 一键清空本地所有 banli_ 数据(修 localStorage 配额爆了的设备)
   if (new URLSearchParams(location.search).get("reset") === "1") {
+    // 先把 ?reset=1 从地址栏去掉,否则 pullSync 结束会 location.reload(),
+    // 刷新后 URL 仍带 reset → 又清一次 → 无限刷新死循环
+    history.replaceState(null, "", location.pathname + "?tab=" + currentTab);
     const n = wipeAllLocal();
     setTimeout(function() {
       showToast("✅ 已清空本地 " + n + " 项,正在拉回云端数据...", 2500);

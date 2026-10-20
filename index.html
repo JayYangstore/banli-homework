@@ -314,7 +314,7 @@ function safeSetItem(key, val) {
         return true;
       } catch (e3) {
         console.error("localStorage 配额已满,写入失败:", key, e3);
-        showToast("⚠️ 本地空间已满,点[导出]备份后点[清空]重置", 5000);
+        showToast("⚠️ 本地空间已满 · 在网址后加 ?reset=1 回车即可重置", 6000);
         return false;
       }
     }
@@ -338,6 +338,17 @@ function gcOldHomework(keepDays) {
   for (let i = 0; i < toRemove.length; i++) localStorage.removeItem(toRemove[i]);
   if (toRemove.length) console.log("gcOldHomework: 清理了 " + toRemove.length + " 天前的旧作业数据");
   return toRemove.length;
+}
+// 一键清空本地所有 banli_ 数据(保留同步凭证 banli_sync_*,便于重置后仍能拉云端)
+function wipeAllLocal() {
+  const ks = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("banli_") && !k.startsWith("banli_sync_")) ks.push(k);
+  }
+  for (let i = 0; i < ks.length; i++) localStorage.removeItem(ks[i]);
+  console.log("wipeAllLocal: 清理了 " + ks.length + " 项");
+  return ks.length;
 }
 
 // ============ 日期导航 ============
@@ -1561,6 +1572,14 @@ window.addEventListener("load", function() {
   // 注意:不要在加载时自动 pullSync —— 反复写 localStorage 会触发浏览器配额上限(quota exceeded)
   // 改成首次加载只做一次"配额体检 + 清理 60 天前的旧作业数据"
   setTimeout(function() { gcOldHomework(); }, 1200);
+  // URL 带 ?reset=1 → 一键清空本地所有 banli_ 数据(修 localStorage 配额爆了的设备)
+  if (new URLSearchParams(location.search).get("reset") === "1") {
+    const n = wipeAllLocal();
+    setTimeout(function() {
+      showToast("✅ 已清空本地 " + n + " 项,正在拉回云端数据...", 2500);
+      pullSync();
+    }, 600);
+  }
   // 钩住日期切换:切到 plans tab 时也要刷
   const _origPrev = $("prev-day").onclick;
   $("prev-day").onclick = function() { viewISO = addDays(viewISO, -1); render(); if (currentTab === "plans") renderPlans(); };

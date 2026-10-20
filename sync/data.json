@@ -1,6 +1,6 @@
 {
-  "_updated_at": "2026-10-20T07:38:52.815Z",
-  "_updated_by": "mac",
+  "_updated_at": "2026-10-20T07:39:14.778Z",
+  "_updated_by": "phone",
   "data": {
     "banli_homework_2026-10-11": {
       "subjects": [
@@ -168,6 +168,7 @@
       ],
       "_updated_at": 1791809484604
     },
+    "banli_streak_banli_homework_2026-09-28": 0,
     "banli_homework_2026-09-29": {
       "subjects": [
         {
@@ -230,6 +231,8 @@
       "subjects": [],
       "_updated_at": 0
     },
+    "banli_streak_banli_homework_2026-09-25": 0,
+    "banli_streak_banli_homework_2026-09-24": 0,
     "banli_homework_2026-09-24": {
       "subjects": [
         {
@@ -585,6 +588,7 @@
       ],
       "_updated_at": 1792331382298
     },
+    "banli_streak_banli_homework_2026-09-27": 0,
     "banli_homework_2026-10-09": {
       "subjects": [
         {
@@ -612,6 +616,33 @@
       ],
       "_updated_at": 0
     },
+    "banli_homework_2026-10-14": {
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "7330up7a",
+              "text": "复习第二单元，熟读并默写本单元古诗和要求背诵的段落",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "4z1dyv6o",
+              "text": "j",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1791978632385
+    },
     "banli_homework_2026-10-17": {
       "subjects": [
         {
@@ -632,6 +663,7 @@
       ],
       "_updated_at": 1792401689378
     },
+    "banli_theme_v1": "dark",
     "banli_homework_2026-10-13": {
       "subjects": [
         {
@@ -686,6 +718,7 @@
       "_updated_at": 1791896598966
     },
     "banli_theme": "dark",
+    "banli_streak_banli_homework_2026-09-26": 0,
     "banli_auto_sync": 1,
     "banli_homework_2026-10-15": {
       "subjects": [
@@ -795,8 +828,9 @@
           ]
         }
       ],
-      "_updated_at": 1792481876344
+      "_updated_at": 1792481953224
     },
+    "banli_streak_banli_homework_2026-09-29": 0,
     "banli_homework_2026-10-10": {
       "subjects": [
         {
@@ -944,33 +978,6 @@
         }
       ],
       "_updated_at": 0
-    },
-    "banli_homework_2026-10-14": {
-      "subjects": [
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "4z1dyv6o",
-              "text": "j",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "7330up7a",
-              "text": "复习第二单元，熟读并默写本单元古诗和要求背诵的段落",
-              "done": false
-            }
-          ]
-        }
-      ],
-      "_updated_at": 1791978632385
     }
   }
 }

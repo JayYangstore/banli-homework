@@ -1168,12 +1168,12 @@ function loadPlans() {
     } catch (e) {}
   }
   // 本地空/损坏 → 兜底(云端拉到的同一份,lastDone 置 0 保证今天未完成)
-  localStorage.setItem(PLANS_KEY, JSON.stringify(CLOUD_PLANS_FALLBACK));
+  safeSetItem(PLANS_KEY, JSON.stringify(CLOUD_PLANS_FALLBACK));
   return JSON.parse(JSON.stringify(CLOUD_PLANS_FALLBACK));
 }
 function savePlans(d) {
   d._updated_at = Date.now();
-  localStorage.setItem(PLANS_KEY, JSON.stringify(d));
+  safeSetItem(PLANS_KEY, JSON.stringify(d));
   triggerSync();
 }
 // 一次性迁移:旧版 banli_plans(无 lastDone) + banli_checks_YYYY-MM-DD → 新版

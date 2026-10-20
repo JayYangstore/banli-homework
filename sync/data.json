@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-20T11:16:14.298Z",
+  "_updated_at": "2026-10-20T11:25:08.749Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -770,7 +770,7 @@
             {
               "id": "flf4w77o",
               "text": "水沸腾了P19-20",
-              "done": false
+              "done": true
             },
             {
               "id": "bltdjw0n",
@@ -796,7 +796,7 @@
             {
               "id": "sdnp805r",
               "text": "堂练本P19",
-              "done": false
+              "done": true
             },
             {
               "id": "amjl7xpg",
@@ -852,7 +852,7 @@
           ]
         }
       ],
-      "_updated_at": 1792494972786
+      "_updated_at": 1792495506326
     },
     "banli_homework_2026-09-29": {
       "subjects": [

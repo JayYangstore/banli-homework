@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-20T11:53:57.062Z",
+  "_updated_at": "2026-10-20T12:10:35.554Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -842,7 +842,7 @@
             {
               "id": "nwaveen7",
               "text": "E英语宝",
-              "done": false
+              "done": true
             },
             {
               "id": "hv1wl9ee",
@@ -852,7 +852,7 @@
           ]
         }
       ],
-      "_updated_at": 1792497234347
+      "_updated_at": 1792498232838
     },
     "banli_homework_2026-09-29": {
       "subjects": [

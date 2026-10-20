@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-20T12:23:38.261Z",
+  "_updated_at": "2026-10-20T12:24:59.358Z",
   "_updated_by": "phone",
   "data": {
     "banli_homework_2026-10-11": {
@@ -602,7 +602,7 @@
             {
               "id": "bltdjw0n",
               "text": "背《知》第二单元第3课",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -679,7 +679,7 @@
           ]
         }
       ],
-      "_updated_at": 1792499015230
+      "_updated_at": 1792499096564
     },
     "banli_streak_banli_homework_2026-09-27": 0,
     "banli_homework_2026-10-09": {

@@ -748,11 +748,27 @@ function showSyncModal() {
 async function ghApi(path, method, body) {
   if (!method) method = "GET";
   const token = localStorage.getItem(SYNC_TOKEN_KEY);
-  const opts = { method: method, headers: { "Authorization": "token " + token, "Accept": "application/vnd.github+json" } };
-  if (body) { opts.headers["Content-Type"] = "application/json"; opts.body = JSON.stringify(body); }
-  const r = await fetch("https://api.github.com" + path, opts);
-  if (!r.ok) throw new Error("HTTP " + r.status);
-  return await r.json();
+  // 网络慢(GitHub 国内访问不稳定)→ 自动重试 2 次,每次 15s 超时
+  let lastErr = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const opts = { method: method, headers: { "Authorization": "token " + token, "Accept": "application/vnd.github+json" } };
+      if (body) { opts.headers["Content-Type"] = "application/json"; opts.body = JSON.stringify(body); }
+      const ctrl = new AbortController();
+      const timer = setTimeout(function() { ctrl.abort(); }, 15000);
+      opts.signal = ctrl.signal;
+      const r = await fetch("https://api.github.com" + path, opts);
+      clearTimeout(timer);
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return await r.json();
+    } catch (e) {
+      lastErr = e;
+      // 4xx(除 429)不用重试,是权限/地址问题
+      if (e.message && e.message.indexOf("HTTP 4") >= 0 && e.message.indexOf("HTTP 429") < 0) throw e;
+      if (attempt < 2) await new Promise(function(res) { setTimeout(res, 1200 * (attempt + 1)); });
+    }
+  }
+  throw lastErr;
 }
 
 function b64encode(s) {
@@ -1341,8 +1357,6 @@ function renderCheckItem(plan, item, isDone) {
 
   // 点圆圈:切换今天打卡状态
   check.onclick = function(e) { e.stopPropagation(); toggleCheck(plan.id, item.id); };
-  // 单击整行:也切换
-  row.onclick = function() { toggleCheck(plan.id, item.id); };
   // 长按整行:取消(重置)
   let longPressTimer = null;
   row.addEventListener("touchstart", function() {

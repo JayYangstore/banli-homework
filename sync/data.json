@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-20T07:37:19.125Z",
+  "_updated_at": "2026-10-20T07:38:52.815Z",
   "_updated_by": "mac",
   "data": {
     "banli_homework_2026-10-11": {
@@ -779,11 +779,23 @@
               "text": "校服+队徽",
               "lastDone": 0,
               "streak": 0
+            },
+            {
+              "id": "v4b0bgmg",
+              "text": "作业登记本检查",
+              "lastDone": 0,
+              "streak": 0
+            },
+            {
+              "id": "08t7ch7o",
+              "text": "桌面整理",
+              "lastDone": 0,
+              "streak": 0
             }
           ]
         }
       ],
-      "_updated_at": 1792481837616
+      "_updated_at": 1792481876344
     },
     "banli_homework_2026-10-10": {
       "subjects": [

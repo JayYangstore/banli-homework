@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-21T11:24:55.220Z",
+  "_updated_at": "2026-10-21T13:19:36.521Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -891,12 +891,12 @@
             {
               "id": "49ygz44v",
               "text": "P28-1 P29-2",
-              "done": false
+              "done": true
             },
             {
               "id": "sdqesz5m",
               "text": "P29练习十六（全）",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -912,7 +912,7 @@
             {
               "id": "yq57kw79",
               "text": "问家长你名字的由来",
-              "done": false
+              "done": true
             },
             {
               "id": "c3es6rmk",
@@ -938,7 +938,7 @@
           ]
         }
       ],
-      "_updated_at": 1792581892349
+      "_updated_at": 1792588773802
     },
     "banli_homework_2026-09-29": {
       "subjects": [

@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-21T10:57:52.643Z",
+  "_updated_at": "2026-10-21T11:06:24.096Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -880,7 +880,7 @@
             {
               "id": "chzusen0",
               "text": "背诵重点知识总结第二单元6到12点",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -907,7 +907,7 @@
             {
               "id": "ap7g9ky9",
               "text": "修改病句练习（第一页）",
-              "done": false
+              "done": true
             },
             {
               "id": "yq57kw79",
@@ -917,7 +917,7 @@
             {
               "id": "c3es6rmk",
               "text": "复第三单元读卡K8.K9",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -928,7 +928,7 @@
             {
               "id": "xivrsf06",
               "text": "家听U2:11-19号单词",
-              "done": false
+              "done": true
             },
             {
               "id": "7crqm9mb",
@@ -938,7 +938,7 @@
           ]
         }
       ],
-      "_updated_at": null
+      "_updated_at": 1792580782137
     },
     "banli_homework_2026-09-29": {
       "subjects": [

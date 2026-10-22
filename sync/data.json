@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-22T10:31:20.782Z",
+  "_updated_at": "2026-10-22T10:33:10.002Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -1102,6 +1102,7 @@
       ],
       "_updated_at": 0
     },
+    "banli_title": "板栗今日作业",
     "banli_homework_2026-09-25": {
       "subjects": [],
       "_updated_at": 0
@@ -1196,7 +1197,7 @@
           ]
         }
       ],
-      "_updated_at": 1792665077858
+      "_updated_at": 1792665178413
     },
     "banli_streak_banli_homework_2026-09-28": 0,
     "banli_homework_2026-10-14": {

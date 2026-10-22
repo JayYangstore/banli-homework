@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-22T02:54:39.555Z",
+  "_updated_at": "2026-10-22T02:55:43.923Z",
   "_updated_by": "Mac",
   "data": {
     "banli_streak_banli_homework_2026-09-26": 0,
@@ -87,7 +87,7 @@
       ],
       "_updated_at": 0
     },
-    "banli_active_tab": "homework",
+    "banli_active_tab": "plans",
     "banli_streak_banli_homework_2026-09-27": 0,
     "banli_homework_2026-10-17": {
       "subjects": [
@@ -445,8 +445,8 @@
             {
               "id": "5btsk3ki",
               "text": "校服+队徽",
-              "lastDone": 1792625522234,
-              "streak": 2
+              "lastDone": 0,
+              "streak": 1
             },
             {
               "id": "v4b0bgmg",
@@ -475,7 +475,7 @@
           ]
         }
       ],
-      "_updated_at": 1792625522234
+      "_updated_at": 1792637742015
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",
@@ -845,7 +845,7 @@
           ]
         }
       ],
-      "_updated_at": null
+      "_updated_at": 0
     },
     "banli_homework_2026-09-29": {
       "subjects": [
@@ -1150,10 +1150,26 @@
         {
           "name": "英语",
           "emoji": "🔤",
-          "items": []
+          "items": [
+            {
+              "id": "2r2i6dfc",
+              "text": "1.家听U1 7-15单词",
+              "done": false
+            },
+            {
+              "id": "p9qr5tzt",
+              "text": "2.预习U3",
+              "done": false
+            },
+            {
+              "id": "7lgh6k2g",
+              "text": "3.背P13对话",
+              "done": false
+            }
+          ]
         }
       ],
-      "_updated_at": 1792637676897
+      "_updated_at": 1792637724692
     },
     "banli_streak_banli_homework_2026-09-28": 0,
     "banli_homework_2026-10-14": {

@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-22T10:08:46.117Z",
+  "_updated_at": "2026-10-22T10:31:20.782Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -1154,17 +1154,17 @@
             {
               "id": "2r2i6dfc",
               "text": "1.家听U1 7-15单词",
-              "done": false
+              "done": true
             },
             {
               "id": "p9qr5tzt",
               "text": "2.预习U3",
-              "done": false
+              "done": true
             },
             {
               "id": "7lgh6k2g",
               "text": "3.背P13对话",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -1175,12 +1175,28 @@
             {
               "id": "dxuct119",
               "text": "阳31页",
-              "done": false
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "fdz1vp1v",
+              "text": "语文园地词语",
+              "done": true
+            },
+            {
+              "id": "oow79v25",
+              "text": "日积月累",
+              "done": true
             }
           ]
         }
       ],
-      "_updated_at": 1792663723944
+      "_updated_at": 1792665077858
     },
     "banli_streak_banli_homework_2026-09-28": 0,
     "banli_homework_2026-10-14": {

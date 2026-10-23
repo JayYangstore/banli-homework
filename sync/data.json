@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-23T10:38:45.220Z",
+  "_updated_at": "2026-10-23T10:39:54.807Z",
   "_updated_by": "Mac",
   "data": {
     "banli_streak_banli_homework_2026-09-26": 0,
@@ -532,13 +532,29 @@
           "items": [
             {
               "id": "pnvmrcnu",
-              "text": "阳评P21(6,1,2,3,4)",
+              "text": "阳评P21(6,1,2,3,4)/P22-5",
+              "done": false
+            },
+            {
+              "id": "mua62dds",
+              "text": "计算",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "fiawneup",
+              "text": "订正《练》P21,22",
               "done": false
             }
           ]
         }
       ],
-      "_updated_at": 1792751923176
+      "_updated_at": 1792751992091
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",

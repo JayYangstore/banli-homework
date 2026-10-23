@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-23T10:00:00.356Z",
+  "_updated_at": "2026-10-23T10:37:27.517Z",
   "_updated_by": "Mac",
   "data": {
     "banli_streak_banli_homework_2026-09-26": 0,
@@ -500,13 +500,18 @@
             },
             {
               "id": "c8i9kaj4",
-              "text": "E英语报",
+              "text": "E英语宝",
               "done": false
             }
           ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
         }
       ],
-      "_updated_at": 1792749598262
+      "_updated_at": 1792751844926
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",
@@ -1164,6 +1169,7 @@
       "subjects": [],
       "_updated_at": 0
     },
+    "banli_title": "板栗今日作业",
     "banli_plans": {
       "plans": [
         {
@@ -1256,7 +1262,6 @@
         }
       ],
       "_updated_at": 1791978632385
-    },
-    "banli_title": "板栗今日作业"
+    }
   }
 }

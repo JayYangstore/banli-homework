@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-23T09:58:56.278Z",
+  "_updated_at": "2026-10-23T10:00:00.356Z",
   "_updated_by": "Mac",
   "data": {
     "banli_streak_banli_homework_2026-09-26": 0,
@@ -482,10 +482,31 @@
         {
           "name": "英语",
           "emoji": "🔤",
-          "items": []
+          "items": [
+            {
+              "id": "ll6b6hhr",
+              "text": "家听U1全部单词",
+              "done": false
+            },
+            {
+              "id": "lwxyjhwv",
+              "text": "《学评》P12-16",
+              "done": false
+            },
+            {
+              "id": "xcyqt0pt",
+              "text": "背书本P13",
+              "done": false
+            },
+            {
+              "id": "c8i9kaj4",
+              "text": "E英语报",
+              "done": false
+            }
+          ]
         }
       ],
-      "_updated_at": 1792749531905
+      "_updated_at": 1792749598262
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",

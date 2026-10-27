@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-27T11:34:57.173Z",
+  "_updated_at": "2026-10-27T11:38:47.738Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -110,7 +110,18 @@
         {
           "name": "语文",
           "emoji": "📖",
-          "items": []
+          "items": [
+            {
+              "id": "tqw0xmyo",
+              "text": "预习K 12",
+              "done": true
+            },
+            {
+              "id": "kszpczaz",
+              "text": "堂20 21",
+              "done": true
+            }
+          ]
         },
         {
           "name": "数学",
@@ -141,10 +152,16 @@
         {
           "name": "科学",
           "emoji": "📌",
-          "items": []
+          "items": [
+            {
+              "id": "sytim2mq",
+              "text": "ｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖｖ",
+              "done": false
+            }
+          ]
         }
       ],
-      "_updated_at": 1793100894633
+      "_updated_at": 1793101125156
     },
     "banli_homework_2026-10-10": {
       "subjects": [

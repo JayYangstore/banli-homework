@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-27T12:27:25.323Z",
+  "_updated_at": "2026-10-27T12:28:56.171Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -155,12 +155,12 @@
             {
               "id": "f9gfi243",
               "text": "22×3",
-              "done": false
+              "done": true
             },
             {
               "id": "p59zmb3s",
               "text": "11×5",
-              "done": false
+              "done": true
             },
             {
               "id": "8lepqkep",
@@ -191,7 +191,7 @@
           ]
         }
       ],
-      "_updated_at": 1793104043148
+      "_updated_at": 1793104133607
     },
     "banli_homework_2026-10-10": {
       "subjects": [

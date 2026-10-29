@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-29T12:40:22.892Z",
+  "_updated_at": "2026-10-29T12:41:35.510Z",
   "_updated_by": "phone",
   "data": {
     "banli_homework_2026-10-11": {
@@ -1273,7 +1273,18 @@
         {
           "name": "语文",
           "emoji": "📌",
-          "items": []
+          "items": [
+            {
+              "id": "96o1yoxu",
+              "text": "补 P60-61",
+              "done": false
+            },
+            {
+              "id": "v5948pfj",
+              "text": "预 K13",
+              "done": false
+            }
+          ]
         },
         {
           "name": "Ftcrvtfrfrrfcrhdxyrxyxssxyxssxry red. Red and",
@@ -1298,7 +1309,7 @@
           ]
         }
       ],
-      "_updated_at": 1793277621266
+      "_updated_at": 1793277691930
     },
     "banli_homework_2026-10-23": {
       "subjects": [

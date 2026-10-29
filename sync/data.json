@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-29T11:01:59.698Z",
+  "_updated_at": "2026-10-29T11:42:44.511Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -537,7 +537,7 @@
             {
               "id": "w97ilf4p",
               "text": "学评，P18-19",
-              "done": false
+              "done": true
             },
             {
               "id": "ipdpqay1",
@@ -558,12 +558,12 @@
             {
               "id": "2xqktdrw",
               "text": "背诵知识清单第二单元第6课",
-              "done": false
+              "done": true
             },
             {
               "id": "aqvrx43a",
               "text": "练习25.26页",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -571,9 +571,31 @@
           "name": "语文",
           "emoji": "📌",
           "items": []
+        },
+        {
+          "name": "体育",
+          "emoji": "⚽",
+          "items": [
+            {
+              "id": "x090nddh",
+              "text": "Go嗯嗯",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "Ftcrvtfrfrrfcrhdxyrxyxssxyxssxry red. Red and",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "ui686760",
+              "text": "T",
+              "done": true
+            }
+          ]
         }
       ],
-      "_updated_at": 1793271717396
+      "_updated_at": 1793274151632
     },
     "banli_homework_2026-10-16": {
       "subjects": [

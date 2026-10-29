@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-29T10:16:06.111Z",
+  "_updated_at": "2026-10-29T10:20:25.288Z",
   "_updated_by": "Mac",
   "data": {
     "banli_homework_2026-10-26": {
@@ -559,11 +559,16 @@
               "id": "2xqktdrw",
               "text": "背诵知识清单第二单元第6课",
               "done": false
+            },
+            {
+              "id": "aqvrx43a",
+              "text": "练习25.26页",
+              "done": false
             }
           ]
         }
       ],
-      "_updated_at": 1793268963839
+      "_updated_at": 1793268974386
     },
     "banli_homework_2026-10-16": {
       "subjects": [

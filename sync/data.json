@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-29T10:14:58.673Z",
+  "_updated_at": "2026-10-29T10:16:06.111Z",
   "_updated_by": "Mac",
   "data": {
     "banli_homework_2026-10-26": {
@@ -533,10 +533,37 @@
         {
           "name": "英语",
           "emoji": "🔤",
-          "items": []
+          "items": [
+            {
+              "id": "w97ilf4p",
+              "text": "学评，P18-19",
+              "done": false
+            },
+            {
+              "id": "ipdpqay1",
+              "text": "家听U3 1-8号单词",
+              "done": false
+            },
+            {
+              "id": "ra078ep8",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "2xqktdrw",
+              "text": "背诵知识清单第二单元第6课",
+              "done": false
+            }
+          ]
         }
       ],
-      "_updated_at": 1793268896323
+      "_updated_at": 1793268963839
     },
     "banli_homework_2026-10-16": {
       "subjects": [

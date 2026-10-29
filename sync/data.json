@@ -1,6 +1,6 @@
 {
-  "_updated_at": "2026-10-29T10:20:25.288Z",
-  "_updated_by": "Mac",
+  "_updated_at": "2026-10-29T10:46:20.417Z",
+  "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
       "subjects": [
@@ -253,42 +253,12 @@
     },
     "banli_streak_banli_homework_2026-09-26": 0,
     "banli_streak_banli_homework_2026-09-29": 0,
-    "banli_homework_2026-09-27": {
-      "subjects": [
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": []
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": []
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": []
-        },
-        {
-          "name": "科学",
-          "emoji": "🔬",
-          "items": []
-        }
-      ],
-      "_updated_at": 0
-    },
     "banli_homework_2026-10-19": {
       "subjects": [
         {
           "name": "英语",
           "emoji": "🔤",
           "items": [
-            {
-              "id": "ox8cr5tg",
-              "text": "抄写儿U213-19，英4中2，家听",
-              "done": false
-            },
             {
               "id": "7h35w8aw",
               "text": "背诵P5",
@@ -313,6 +283,11 @@
               "id": "54st2d2d",
               "text": "听写13到19抄写13到19",
               "done": true
+            },
+            {
+              "id": "ox8cr5tg",
+              "text": "抄写儿U213-19，英4中2，家听",
+              "done": false
             }
           ]
         },
@@ -391,6 +366,7 @@
       ],
       "_updated_at": 1792419402065
     },
+    "banli_active_tab": "homework",
     "banli_streak_banli_homework_2026-09-27": 0,
     "banli_homework_2026-10-17": {
       "subjects": [
@@ -412,8 +388,31 @@
       ],
       "_updated_at": 1792401689378
     },
-    "banli_active_tab": "homework",
-    "banli_streak_banli_homework_2026-09-24": 0,
+    "banli_homework_2026-09-27": {
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": []
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": []
+        }
+      ],
+      "_updated_at": 0
+    },
     "banli_homework_2026-10-15": {
       "subjects": [
         {
@@ -427,7 +426,7 @@
             },
             {
               "id": "zr0zbis5",
-              "text": "2.制作单词卡",
+              "text": "2.制作单词卡，下周一交",
               "done": false
             },
             {
@@ -461,6 +460,7 @@
       ],
       "_updated_at": 1792070567215
     },
+    "banli_streak_banli_homework_2026-09-24": 0,
     "banli_homework_2026-09-26": {
       "subjects": [],
       "_updated_at": 0
@@ -511,64 +511,6 @@
         }
       ],
       "_updated_at": 1791809484604
-    },
-    "banli_homework_2026-10-29": {
-      "subjects": [
-        {
-          "name": "家庭作业",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "i8fairj0",
-              "text": "数学：家卫老师乘法计算课+数学计算题",
-              "done": false
-            },
-            {
-              "id": "u1d1hrdt",
-              "text": "语文：日记+成语",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "w97ilf4p",
-              "text": "学评，P18-19",
-              "done": false
-            },
-            {
-              "id": "ipdpqay1",
-              "text": "家听U3 1-8号单词",
-              "done": false
-            },
-            {
-              "id": "ra078ep8",
-              "text": "E英语宝",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "科学",
-          "emoji": "🔬",
-          "items": [
-            {
-              "id": "2xqktdrw",
-              "text": "背诵知识清单第二单元第6课",
-              "done": false
-            },
-            {
-              "id": "aqvrx43a",
-              "text": "练习25.26页",
-              "done": false
-            }
-          ]
-        }
-      ],
-      "_updated_at": 1793268974386
     },
     "banli_homework_2026-10-16": {
       "subjects": [
@@ -688,43 +630,43 @@
             {
               "id": "fx5qoayz",
               "text": "书包放客厅",
-              "lastDone": 1793110799167,
-              "streak": 4
+              "lastDone": 1793194636399,
+              "streak": 5
             },
             {
               "id": "5btsk3ki",
               "text": "校服+队徽",
-              "lastDone": 1793110739576,
-              "streak": 3
+              "lastDone": 1793194637448,
+              "streak": 4
             },
             {
               "id": "v4b0bgmg",
               "text": "作业登记本检查",
-              "lastDone": 1793110740658,
-              "streak": 5
+              "lastDone": 1793194650081,
+              "streak": 6
             },
             {
               "id": "08t7ch7o",
               "text": "桌面整理",
-              "lastDone": 1793110743158,
-              "streak": 5
+              "lastDone": 1793194650665,
+              "streak": 6
             },
             {
               "id": "8cqhdnyt",
               "text": "手表充电",
-              "lastDone": 1793110744258,
-              "streak": 4
+              "lastDone": 0,
+              "streak": 5
             },
             {
               "id": "x2yy0odt",
               "text": "上厕所",
-              "lastDone": 1793110797436,
-              "streak": 6
+              "lastDone": 1793194652064,
+              "streak": 7
             }
           ]
         }
       ],
-      "_updated_at": 1793110799168
+      "_updated_at": 1793270777522
     },
     "banli_homework_2026-10-23": {
       "subjects": [
@@ -842,381 +784,6 @@
     },
     "banli_auto_sync": 1,
     "banli_theme_v1": "dark",
-    "banli_homework_2026-10-20": {
-      "subjects": [
-        {
-          "name": "科学",
-          "emoji": "🔬",
-          "items": [
-            {
-              "id": "flf4w77o",
-              "text": "水沸腾了P19-20",
-              "done": true
-            },
-            {
-              "id": "bltdjw0n",
-              "text": "背《知》第二单元第3课",
-              "done": true
-            },
-            {
-              "id": "jsbqhgzw",
-              "text": "订正练习水沸腾了的错题",
-              "done": false
-            },
-            {
-              "id": "tockn8ag",
-              "text": "背诵重点知识总结第二单元6到12点",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "ehb619v9",
-              "text": "订正堂练本P18",
-              "done": true
-            },
-            {
-              "id": "6lr6c59z",
-              "text": "计算",
-              "done": true
-            },
-            {
-              "id": "sdnp805r",
-              "text": "堂练本P19",
-              "done": true
-            },
-            {
-              "id": "amjl7xpg",
-              "text": "100-(29+24)",
-              "done": true
-            },
-            {
-              "id": "xa36603g",
-              "text": "7×4+52",
-              "done": true
-            },
-            {
-              "id": "xu0inb3s",
-              "text": "96-48÷8",
-              "done": true
-            },
-            {
-              "id": "ifxjwtjo",
-              "text": "57+8×5",
-              "done": true
-            },
-            {
-              "id": "6dwudqst",
-              "text": "63÷(12-3)",
-              "done": true
-            },
-            {
-              "id": "u5tkvhux",
-              "text": "8×7-15",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "me0xhevb",
-              "text": "生抄写p7 tip，句子抄2遍，短语抄4遍",
-              "done": true
-            },
-            {
-              "id": "nwaveen7",
-              "text": "E英语宝",
-              "done": true
-            },
-            {
-              "id": "hv1wl9ee",
-              "text": "家听U1 1-10单词",
-              "done": true
-            },
-            {
-              "id": "c5eh2f26",
-              "text": "家听U2:11-19号单词",
-              "done": false
-            }
-          ]
-        }
-      ],
-      "_updated_at": 1792499445779
-    },
-    "banli_plans": {
-      "plans": [
-        {
-          "id": "plan_sleep",
-          "name": "睡前准备",
-          "emoji": "🌙",
-          "items": []
-        }
-      ],
-      "_updated_at": 1792331347500
-    },
-    "banli_streak_banli_homework_2026-09-25": 0,
-    "banli_homework_2026-10-13": {
-      "subjects": [
-        {
-          "name": "科学",
-          "emoji": "🔬",
-          "items": [
-            {
-              "id": "a5xveqld",
-              "text": "完成练习水到哪里去15.16页",
-              "done": true
-            },
-            {
-              "id": "7v2933x2",
-              "text": "背诵知识清单第二单元第1课",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "am47txc7",
-              "text": "1.默写字母Aa--Zz.",
-              "done": true
-            },
-            {
-              "id": "1vxvzgrl",
-              "text": "2.E英语宝.",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "q0rx7va5",
-              "text": "堂练本P 17",
-              "done": true
-            },
-            {
-              "id": "07joqe8z",
-              "text": "默写望洞庭，山行",
-              "done": true
-            }
-          ]
-        }
-      ],
-      "_updated_at": 1791896598966
-    },
-    "banli_title": "板栗今日作业",
-    "banli_homework_2026-10-28": {
-      "subjects": [
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "6lik7dt4",
-              "text": "家听U2部单词",
-              "done": true
-            },
-            {
-              "id": "jzubyfcw",
-              "text": "E英语宝",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "lqqmho4g",
-              "text": "复习第三单元，明天写练习卷",
-              "done": true
-            },
-            {
-              "id": "3lux85q4",
-              "text": "第44页生字词",
-              "done": true
-            },
-            {
-              "id": "lccfzjjf",
-              "text": "三单元日积月累默",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "ipvmktpp",
-              "text": "不滚滚滚滚滚滚滚滚滚滚滚滚滚滚滚",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "科学",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "7ydisurt",
-              "text": "订正联系23-24",
-              "done": true
-            },
-            {
-              "id": "9ym6jrlh",
-              "text": "先背后默写第二单元17-21点",
-              "done": true
-            }
-          ]
-        }
-      ],
-      "_updated_at": 1793200000000
-    },
-    "banli_homework_2026-09-29": {
-      "subjects": [
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "6sou5z2o",
-              "text": "语文堂练本 P14",
-              "done": false
-            },
-            {
-              "id": "en538eff",
-              "text": "1 号本写 K8 生字",
-              "done": false
-            },
-            {
-              "id": "3xpkrxrl",
-              "text": "看课外书",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "ldfvhpb0",
-              "text": "数学课本 P23、24",
-              "done": false
-            },
-            {
-              "id": "ukttfsr2",
-              "text": "堂练本 P14，订正",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "1z2g1hxx",
-              "text": "抄写 Unit One 单词 9~15，四英二中",
-              "done": false
-            },
-            {
-              "id": "z3ncjxxr",
-              "text": "E英语宝",
-              "done": false
-            }
-          ]
-        }
-      ],
-      "_updated_at": 0
-    },
-    "banli_homework_2026-10-21": {
-      "subjects": [
-        {
-          "name": "科学",
-          "emoji": "🔬",
-          "items": [
-            {
-              "id": "y2p5s5fc",
-              "text": "订正练习水沸腾了的错题",
-              "done": true
-            },
-            {
-              "id": "chzusen0",
-              "text": "背诵重点知识总结第二单元6到12点",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "49ygz44v",
-              "text": "P28-1 P29-2",
-              "done": true
-            },
-            {
-              "id": "sdqesz5m",
-              "text": "P29练习十六（全）",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "ap7g9ky9",
-              "text": "修改病句练习（第一页）",
-              "done": true
-            },
-            {
-              "id": "yq57kw79",
-              "text": "问家长你名字的由来",
-              "done": true
-            },
-            {
-              "id": "c3es6rmk",
-              "text": "复第三单元读卡K8.K9",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "xivrsf06",
-              "text": "家听U2:11-19号单词",
-              "done": true
-            },
-            {
-              "id": "7crqm9mb",
-              "text": "E英语宝",
-              "done": true
-            }
-          ]
-        }
-      ],
-      "_updated_at": 1792588773802
-    },
     "banli_homework_2026-10-09": {
       "subjects": [
         {
@@ -1238,199 +805,6 @@
               "id": "19f1sm90",
               "text": "1．抄写 U 、9-15号单词．并家听2背诵P53.E英语宝",
               "done": false
-            }
-          ]
-        }
-      ],
-      "_updated_at": 0
-    },
-    "banli_homework_2026-09-28": {
-      "subjects": [
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "1z1eydvr",
-              "text": "堂练本14页，订正13页",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "9cjbwob6",
-              "text": "英语作业：1.抄写P71UNIT 1的单词第1--8个，一个一行四英2中；并尝试家听；2.熟读书P4的Role-play.",
-              "done": true
-            }
-          ]
-        }
-      ],
-      "_updated_at": 0
-    },
-    "banli_homework_2026-10-22": {
-      "subjects": [
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "2r2i6dfc",
-              "text": "1.家听U1 7-15单词",
-              "done": true
-            },
-            {
-              "id": "p9qr5tzt",
-              "text": "2.预习U3",
-              "done": true
-            },
-            {
-              "id": "7lgh6k2g",
-              "text": "3.背P13对话",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "dxuct119",
-              "text": "阳31页",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "fdz1vp1v",
-              "text": "语文园地词语",
-              "done": true
-            },
-            {
-              "id": "oow79v25",
-              "text": "日积月累",
-              "done": true
-            }
-          ]
-        }
-      ],
-      "_updated_at": 1792665178413
-    },
-    "banli_homework_2026-09-25": {
-      "subjects": [],
-      "_updated_at": 0
-    },
-    "banli_homework_2026-09-24": {
-      "subjects": [
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "mt9mjbqy",
-              "text": "补P3-4",
-              "done": false
-            },
-            {
-              "id": "2j3lpfux",
-              "text": "习作",
-              "done": false
-            },
-            {
-              "id": "753503822123",
-              "text": "补P3-4",
-              "done": true
-            },
-            {
-              "id": "535038286089",
-              "text": "习作",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "3k3csvnw",
-              "text": "堂练P13",
-              "done": false
-            },
-            {
-              "id": "350383117273",
-              "text": "堂练P13",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "6yrz1rm1",
-              "text": "学评P3-4",
-              "done": false
-            },
-            {
-              "id": "51wxwvhm",
-              "text": "E英语宝",
-              "done": false
-            },
-            {
-              "id": "lev5lsq5",
-              "text": "抄写字母A到Z，每个两遍",
-              "done": false
-            },
-            {
-              "id": "mufegatm3k1s",
-              "text": "学评P3-4",
-              "done": true
-            },
-            {
-              "id": "mufego4mrqzg",
-              "text": "E英语宝",
-              "done": true
-            },
-            {
-              "id": "mufei8extj6y",
-              "text": "抄写字母 A 到 Z两遍",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "科学",
-          "emoji": "🔬",
-          "items": [
-            {
-              "id": "g28dqmi6",
-              "text": "完成《练习》14页",
-              "done": false
-            },
-            {
-              "id": "wm36zdhi",
-              "text": "复习练习册错题",
-              "done": false
-            },
-            {
-              "id": "muffgfnk5aqc",
-              "text": "完成《练》14页",
-              "done": true
-            },
-            {
-              "id": "muffgrkaesvf",
-              "text": "复习练习册错题",
-              "done": true
             }
           ]
         }
@@ -1541,6 +915,302 @@
       ],
       "_updated_at": 1791682312516
     },
+    "banli_streak_banli_homework_2026-09-25": 0,
+    "banli_homework_2026-10-13": {
+      "subjects": [
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "a5xveqld",
+              "text": "完成练习水到哪里去15.16页",
+              "done": true
+            },
+            {
+              "id": "7v2933x2",
+              "text": "背诵知识清单第二单元第1课",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "am47txc7",
+              "text": "1.默写字母Aa--Zz.",
+              "done": true
+            },
+            {
+              "id": "1vxvzgrl",
+              "text": "2.E英语宝.",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "q0rx7va5",
+              "text": "堂练本P 17",
+              "done": true
+            },
+            {
+              "id": "07joqe8z",
+              "text": "默写望洞庭，山行",
+              "done": true
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1791896598966
+    },
+    "banli_homework_2026-09-24": {
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "753503822123",
+              "text": "补P3-4",
+              "done": true
+            },
+            {
+              "id": "535038286089",
+              "text": "习作",
+              "done": true
+            },
+            {
+              "id": "mt9mjbqy",
+              "text": "补P3-4",
+              "done": false
+            },
+            {
+              "id": "2j3lpfux",
+              "text": "习作",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "350383117273",
+              "text": "堂练P13",
+              "done": true
+            },
+            {
+              "id": "3k3csvnw",
+              "text": "堂练P13",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "mufegatm3k1s",
+              "text": "学评P3-4",
+              "done": true
+            },
+            {
+              "id": "mufego4mrqzg",
+              "text": "E英语宝",
+              "done": true
+            },
+            {
+              "id": "mufei8extj6y",
+              "text": "抄写字母 A 到 Z两遍",
+              "done": true
+            },
+            {
+              "id": "6yrz1rm1",
+              "text": "学评P3-4",
+              "done": false
+            },
+            {
+              "id": "51wxwvhm",
+              "text": "E英语宝",
+              "done": false
+            },
+            {
+              "id": "lev5lsq5",
+              "text": "抄写字母A到Z，每个两遍",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "muffgfnk5aqc",
+              "text": "完成《练》14页",
+              "done": true
+            },
+            {
+              "id": "muffgrkaesvf",
+              "text": "复习练习册错题",
+              "done": true
+            },
+            {
+              "id": "g28dqmi6",
+              "text": "完成《练习》14页",
+              "done": false
+            },
+            {
+              "id": "wm36zdhi",
+              "text": "复习练习册错题",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "_updated_at": 0
+    },
+    "banli_homework_2026-10-21": {
+      "subjects": [
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "y2p5s5fc",
+              "text": "订正练习水沸腾了的错题",
+              "done": true
+            },
+            {
+              "id": "chzusen0",
+              "text": "背诵重点知识总结第二单元6到12点",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "49ygz44v",
+              "text": "P28-1 P29-2",
+              "done": true
+            },
+            {
+              "id": "sdqesz5m",
+              "text": "P29练习十六（全）",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "ap7g9ky9",
+              "text": "修改病句练习（第一页）",
+              "done": true
+            },
+            {
+              "id": "yq57kw79",
+              "text": "问家长你名字的由来",
+              "done": true
+            },
+            {
+              "id": "c3es6rmk",
+              "text": "复第三单元读卡K8.K9",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "xivrsf06",
+              "text": "家听U2:11-19号单词",
+              "done": true
+            },
+            {
+              "id": "7crqm9mb",
+              "text": "E英语宝",
+              "done": true
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1792588773802
+    },
+    "banli_title": "板栗今日作业",
+    "banli_homework_2026-09-29": {
+      "subjects": [
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "6sou5z2o",
+              "text": "语文堂练本 P14",
+              "done": false
+            },
+            {
+              "id": "en538eff",
+              "text": "1 号本写 K8 生字",
+              "done": false
+            },
+            {
+              "id": "3xpkrxrl",
+              "text": "看课外书",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "ldfvhpb0",
+              "text": "数学课本 P23、24",
+              "done": false
+            },
+            {
+              "id": "ukttfsr2",
+              "text": "堂练本 P14，订正",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "1z2g1hxx",
+              "text": "抄写 Unit One 单词 9~15，四英二中",
+              "done": false
+            },
+            {
+              "id": "z3ncjxxr",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "_updated_at": 0
+    },
     "banli_homework_2026-09-30": {
       "subjects": [
         {
@@ -1630,21 +1300,282 @@
       ],
       "_updated_at": 0
     },
-    "banli_theme": "dark",
-    "banli_streak_banli_homework_2026-09-28": 0,
-    "banli_homework_2026-10-14": {
+    "banli_homework_2026-10-20": {
       "subjects": [
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "flf4w77o",
+              "text": "水沸腾了P19-20",
+              "done": true
+            },
+            {
+              "id": "bltdjw0n",
+              "text": "背《知》第二单元第3课",
+              "done": true
+            },
+            {
+              "id": "jsbqhgzw",
+              "text": "订正练习水沸腾了的错题",
+              "done": false
+            },
+            {
+              "id": "tockn8ag",
+              "text": "背诵重点知识总结第二单元6到12点",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "ehb619v9",
+              "text": "订正堂练本P18",
+              "done": true
+            },
+            {
+              "id": "6lr6c59z",
+              "text": "计算",
+              "done": true
+            },
+            {
+              "id": "sdnp805r",
+              "text": "堂练本P19",
+              "done": true
+            },
+            {
+              "id": "amjl7xpg",
+              "text": "100-(29+24)",
+              "done": true
+            },
+            {
+              "id": "xa36603g",
+              "text": "7×4+52",
+              "done": true
+            },
+            {
+              "id": "xu0inb3s",
+              "text": "96-48÷8",
+              "done": true
+            },
+            {
+              "id": "ifxjwtjo",
+              "text": "57+8×5",
+              "done": true
+            },
+            {
+              "id": "6dwudqst",
+              "text": "63÷(12-3)",
+              "done": true
+            },
+            {
+              "id": "u5tkvhux",
+              "text": "8×7-15",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "me0xhevb",
+              "text": "生抄写p7 tip，句子抄2遍，短语抄4遍",
+              "done": true
+            },
+            {
+              "id": "nwaveen7",
+              "text": "E英语宝",
+              "done": true
+            },
+            {
+              "id": "hv1wl9ee",
+              "text": "家听U1 1-10单词",
+              "done": true
+            },
+            {
+              "id": "c5eh2f26",
+              "text": "家听U2:11-19号单词",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1792499445779
+    },
+    "banli_homework_2026-09-25": {
+      "subjects": [],
+      "_updated_at": 0
+    },
+    "banli_homework_2026-09-28": {
+      "subjects": [
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "1z1eydvr",
+              "text": "堂练本14页，订正13页",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "9cjbwob6",
+              "text": "英语作业：1.抄写P71UNIT 1的单词第1--8个，一个一行四英2中；并尝试家听；2.熟读书P4的Role-play.",
+              "done": true
+            }
+          ]
+        }
+      ],
+      "_updated_at": 0
+    },
+    "banli_homework_2026-10-28": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "6lik7dt4",
+              "text": "家听U2部单词",
+              "done": true
+            },
+            {
+              "id": "jzubyfcw",
+              "text": "E英语宝",
+              "done": true
+            }
+          ]
+        },
         {
           "name": "语文",
           "emoji": "📖",
           "items": [
             {
-              "id": "7330up7a",
-              "text": "复习第二单元，熟读并默写本单元古诗和要求背诵的段落",
+              "id": "lqqmho4g",
+              "text": "复习第三单元，明天写练习卷",
+              "done": true
+            },
+            {
+              "id": "3lux85q4",
+              "text": "第44页生字词",
+              "done": true
+            },
+            {
+              "id": "lccfzjjf",
+              "text": "三单元日积月累默",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "ipvmktpp",
+              "text": "不滚滚滚滚滚滚滚滚滚滚滚滚滚滚滚",
               "done": false
             }
           ]
         },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "7ydisurt",
+              "text": "订正联系23-24",
+              "done": true
+            },
+            {
+              "id": "9ym6jrlh",
+              "text": "先背后默写第二单元17-21点",
+              "done": true
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1793200000000
+    },
+    "banli_plans": {
+      "plans": [
+        {
+          "id": "plan_sleep",
+          "name": "睡前准备",
+          "emoji": "🌙",
+          "items": []
+        }
+      ],
+      "_updated_at": 1792331347500
+    },
+    "banli_theme": "dark",
+    "banli_homework_2026-10-22": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "2r2i6dfc",
+              "text": "1.家听U1 7-15单词",
+              "done": true
+            },
+            {
+              "id": "p9qr5tzt",
+              "text": "2.预习U3",
+              "done": true
+            },
+            {
+              "id": "7lgh6k2g",
+              "text": "3.背P13对话",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "dxuct119",
+              "text": "阳31页",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "fdz1vp1v",
+              "text": "语文园地词语",
+              "done": true
+            },
+            {
+              "id": "oow79v25",
+              "text": "日积月累",
+              "done": true
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1792665178413
+    },
+    "banli_streak_banli_homework_2026-09-28": 0,
+    "banli_homework_2026-10-14": {
+      "subjects": [
         {
           "name": "数学",
           "emoji": "🔢",
@@ -1655,9 +1586,78 @@
               "done": false
             }
           ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "7330up7a",
+              "text": "复习第二单元，熟读并默写本单元古诗和要求背诵的段落",
+              "done": false
+            }
+          ]
         }
       ],
       "_updated_at": 1791978632385
+    },
+    "banli_homework_2026-10-29": {
+      "subjects": [
+        {
+          "name": "家庭作业",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "i8fairj0",
+              "text": "数学：家卫老师乘法计算课+数学计算题",
+              "done": false
+            },
+            {
+              "id": "u1d1hrdt",
+              "text": "语文：日记+成语",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "w97ilf4p",
+              "text": "学评，P18-19",
+              "done": false
+            },
+            {
+              "id": "ipdpqay1",
+              "text": "家听U3 1-8号单词",
+              "done": false
+            },
+            {
+              "id": "ra078ep8",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "🔬",
+          "items": [
+            {
+              "id": "2xqktdrw",
+              "text": "背诵知识清单第二单元第6课",
+              "done": false
+            },
+            {
+              "id": "aqvrx43a",
+              "text": "练习25.26页",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1793268974386
     }
   }
 }

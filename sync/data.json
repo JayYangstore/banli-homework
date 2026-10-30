@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-30T23:44:02.449Z",
+  "_updated_at": "2026-10-30T23:54:51.958Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -820,7 +820,7 @@
             {
               "id": "sdms82dw",
               "text": "堂练本P23",
-              "done": false
+              "done": true
             },
             {
               "id": "wxu9ypfd",

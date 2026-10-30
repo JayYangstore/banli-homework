@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-30T14:37:06.421Z",
+  "_updated_at": "2026-10-30T23:44:02.449Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -788,7 +788,7 @@
             {
               "id": "6lbxfvls",
               "text": "E英语宝",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -809,7 +809,7 @@
             {
               "id": "8huasuz6",
               "text": "读K12两遍",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -861,7 +861,7 @@
             {
               "id": "zoa5e91v",
               "text": "订正《练》P25、26",
-              "done": false
+              "done": true
             },
             {
               "id": "rs8ei5yh",

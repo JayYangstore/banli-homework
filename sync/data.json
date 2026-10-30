@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-30T23:54:51.958Z",
+  "_updated_at": "2026-10-30T23:57:48.717Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -825,7 +825,7 @@
             {
               "id": "wxu9ypfd",
               "text": "743×2",
-              "done": false
+              "done": true
             },
             {
               "id": "k01y8qld",
@@ -866,7 +866,7 @@
             {
               "id": "rs8ei5yh",
               "text": "背《知》第二单元4、5课",
-              "done": false
+              "done": true
             }
           ]
         }

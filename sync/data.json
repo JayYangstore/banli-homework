@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-30T14:16:37.018Z",
+  "_updated_at": "2026-10-30T14:37:06.421Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -799,12 +799,12 @@
             {
               "id": "h9yg1a5x",
               "text": "《补》P62",
-              "done": false
+              "done": true
             },
             {
               "id": "kwazxr72",
               "text": "《堂》P22-23",
-              "done": false
+              "done": true
             },
             {
               "id": "8huasuz6",

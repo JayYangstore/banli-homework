@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-30T23:59:09.655Z",
+  "_updated_at": "2026-10-31T00:00:19.378Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -835,12 +835,12 @@
             {
               "id": "x9y078pq",
               "text": "25×7",
-              "done": false
+              "done": true
             },
             {
               "id": "xuwxrj6x",
               "text": "33×4",
-              "done": false
+              "done": true
             },
             {
               "id": "lta76ffb",

@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-10-31T00:01:36.550Z",
+  "_updated_at": "2026-10-31T00:20:34.079Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -773,7 +773,7 @@
             {
               "id": "q8g5w3u5",
               "text": "抄写U3 16--22号单词，一个一行，家听",
-              "done": false
+              "done": true
             },
             {
               "id": "2b8hohz5",

@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-01T06:20:34.532Z",
+  "_updated_at": "2026-11-02T11:20:51.192Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-26": {
@@ -413,6 +413,52 @@
       "_updated_at": 1792401689378
     },
     "banli_active_tab": "homework",
+    "banli_homework_2026-11-02": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "bb7d8d46",
+              "text": "制作英语名卡片 A4纸",
+              "done": true
+            },
+            {
+              "id": "88f2241b",
+              "text": "预习P21",
+              "done": true
+            },
+            {
+              "id": "a2dedfd3",
+              "text": "默写U3 1-8",
+              "done": true
+            },
+            {
+              "id": "ccdd6900",
+              "text": "E英语宝",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": []
+        }
+      ],
+      "_updated_at": 1793618449667
+    },
     "banli_streak_banli_homework_2026-09-24": 0,
     "banli_homework_2026-10-15": {
       "subjects": [
@@ -1805,51 +1851,6 @@
         }
       ],
       "_updated_at": 1791978632385
-    },
-    "banli_homework_2026-11-02": {
-      "subjects": [
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "bb7d8d46",
-              "text": "制作英语名卡片 A4纸",
-              "done": false
-            },
-            {
-              "id": "88f2241b",
-              "text": "预习P21",
-              "done": false
-            },
-            {
-              "id": "a2dedfd3",
-              "text": "默写U3 1-8",
-              "done": false
-            },
-            {
-              "id": "ccdd6900",
-              "text": "E英语宝",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": []
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": []
-        },
-        {
-          "name": "科学",
-          "emoji": "📌",
-          "items": []
-        }
-      ]
     }
   }
 }

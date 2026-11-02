@@ -1805,6 +1805,51 @@
         }
       ],
       "_updated_at": 1791978632385
+    },
+    "banli_homework_2026-11-02": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "bb7d8d46",
+              "text": "制作英语名片（A4纸）",
+              "done": false
+            },
+            {
+              "id": "88f2241b",
+              "text": "预习P21",
+              "done": false
+            },
+            {
+              "id": "a2dedfd3",
+              "text": "默写U3 1-8",
+              "done": false
+            },
+            {
+              "id": "ccdd6900",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": []
+        }
+      ]
     }
   }
 }

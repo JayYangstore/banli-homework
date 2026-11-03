@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-03T09:58:00.685Z",
+  "_updated_at": "2026-11-03T10:21:06.508Z",
   "_updated_by": "Mac",
   "data": {
     "banli_homework_2026-10-14": {
@@ -1862,16 +1862,27 @@
               "id": "udaf887g",
               "text": "快乐读书吧-《安徒生童话》 《格林童话》《稻草人》",
               "done": false
+            },
+            {
+              "id": "ane31xo6",
+              "text": "堂练本 P24",
+              "done": false
             }
           ]
         },
         {
           "name": "英语",
           "emoji": "🔤",
-          "items": []
+          "items": [
+            {
+              "id": "wkr66itu",
+              "text": "默写字母，默写单词",
+              "done": false
+            }
+          ]
         }
       ],
-      "_updated_at": 1793699878057
+      "_updated_at": 1793701263731
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-03T10:56:34.880Z",
+  "_updated_at": "2026-11-03T11:10:47.291Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-11-03": {
@@ -11,22 +11,22 @@
             {
               "id": "udaf887g",
               "text": "快乐读书吧-《安徒生童话》 《格林童话》《稻草人》",
-              "done": false
+              "done": true
             },
             {
               "id": "ane31xo6",
               "text": "堂练本 P24",
-              "done": false
+              "done": true
             },
             {
               "id": "zizxv4le",
               "text": "1号本写书P55 生字",
-              "done": false
+              "done": true
             },
             {
               "id": "i3rs46wd",
               "text": "读书P55-56 两遍",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -48,17 +48,17 @@
             {
               "id": "xyyc42fy",
               "text": "阳评 P35",
-              "done": false
+              "done": true
             },
             {
               "id": "fahls98p",
               "text": "课本P46-47",
-              "done": false
+              "done": true
             }
           ]
         }
       ],
-      "_updated_at": 1793701332616
+      "_updated_at": 1793704243734
     },
     "banli_homework_2026-10-26": {
       "subjects": [

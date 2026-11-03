@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-03T10:21:06.508Z",
+  "_updated_at": "2026-11-03T10:22:14.524Z",
   "_updated_by": "Mac",
   "data": {
     "banli_homework_2026-10-14": {
@@ -1867,6 +1867,16 @@
               "id": "ane31xo6",
               "text": "堂练本 P24",
               "done": false
+            },
+            {
+              "id": "zizxv4le",
+              "text": "1号本写书P55 生字",
+              "done": false
+            },
+            {
+              "id": "i3rs46wd",
+              "text": "读书P55-56 两遍",
+              "done": false
             }
           ]
         },
@@ -1880,9 +1890,25 @@
               "done": false
             }
           ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "xyyc42fy",
+              "text": "阳评 P35",
+              "done": false
+            },
+            {
+              "id": "fahls98p",
+              "text": "课本P46-47",
+              "done": false
+            }
+          ]
         }
       ],
-      "_updated_at": 1793701263731
+      "_updated_at": 1793701332616
     }
   }
 }

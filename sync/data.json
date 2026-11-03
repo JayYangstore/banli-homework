@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-03T11:29:30.172Z",
+  "_updated_at": "2026-11-03T14:18:50.521Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-11-03": {
@@ -311,6 +311,69 @@
     },
     "banli_streak_banli_homework_2026-09-26": 0,
     "banli_streak_banli_homework_2026-09-29": 0,
+    "banli_homework_2026-11-02": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "bb7d8d46",
+              "text": "制作英语名卡片 A4纸",
+              "done": true
+            },
+            {
+              "id": "88f2241b",
+              "text": "预习P21",
+              "done": true
+            },
+            {
+              "id": "a2dedfd3",
+              "text": "默写U3 1-8",
+              "done": true
+            },
+            {
+              "id": "ccdd6900",
+              "text": "E英语宝",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "de1y44c5",
+              "text": "预习语文园地",
+              "done": true
+            },
+            {
+              "id": "et7rg885",
+              "text": "补充练习第63页",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "rytyiqah",
+              "text": "计算",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": []
+        }
+      ],
+      "_updated_at": 1793623113141
+    },
     "banli_homework_2026-09-27": {
       "subjects": [
         {
@@ -450,6 +513,7 @@
       "_updated_at": 1792419402065
     },
     "banli_streak_banli_homework_2026-09-27": 0,
+    "banli_active_tab": "plans",
     "banli_homework_2026-10-17": {
       "subjects": [
         {
@@ -469,70 +533,6 @@
         }
       ],
       "_updated_at": 1792401689378
-    },
-    "banli_active_tab": "homework",
-    "banli_homework_2026-11-02": {
-      "subjects": [
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "bb7d8d46",
-              "text": "制作英语名卡片 A4纸",
-              "done": true
-            },
-            {
-              "id": "88f2241b",
-              "text": "预习P21",
-              "done": true
-            },
-            {
-              "id": "a2dedfd3",
-              "text": "默写U3 1-8",
-              "done": true
-            },
-            {
-              "id": "ccdd6900",
-              "text": "E英语宝",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": [
-            {
-              "id": "de1y44c5",
-              "text": "预习语文园地",
-              "done": true
-            },
-            {
-              "id": "et7rg885",
-              "text": "补充练习第63页",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "rytyiqah",
-              "text": "计算",
-              "done": true
-            }
-          ]
-        },
-        {
-          "name": "科学",
-          "emoji": "📌",
-          "items": []
-        }
-      ],
-      "_updated_at": 1793623113141
     },
     "banli_streak_banli_homework_2026-09-24": 0,
     "banli_homework_2026-10-15": {
@@ -847,26 +847,26 @@
             {
               "id": "fx5qoayz",
               "text": "书包放客厅",
-              "lastDone": 1793194636399,
-              "streak": 5
+              "lastDone": 1793715524833,
+              "streak": 6
             },
             {
               "id": "5btsk3ki",
               "text": "校服+队徽",
-              "lastDone": 1793194637448,
-              "streak": 4
+              "lastDone": 1793715525702,
+              "streak": 5
             },
             {
               "id": "v4b0bgmg",
               "text": "作业登记本检查",
-              "lastDone": 1793194650081,
-              "streak": 6
+              "lastDone": 1793715526786,
+              "streak": 7
             },
             {
               "id": "08t7ch7o",
               "text": "桌面整理",
-              "lastDone": 1793194650665,
-              "streak": 6
+              "lastDone": 1793715527636,
+              "streak": 7
             },
             {
               "id": "8cqhdnyt",
@@ -883,7 +883,7 @@
           ]
         }
       ],
-      "_updated_at": 1793270777522
+      "_updated_at": 1793715527636
     },
     "banli_homework_2026-10-30": {
       "subjects": [

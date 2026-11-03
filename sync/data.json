@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-03T11:12:27.926Z",
+  "_updated_at": "2026-11-03T11:29:30.172Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-11-03": {
@@ -37,7 +37,7 @@
             {
               "id": "wkr66itu",
               "text": "默写字母9’15",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -58,7 +58,7 @@
           ]
         }
       ],
-      "_updated_at": 1793704339794
+      "_updated_at": 1793705367440
     },
     "banli_homework_2026-10-26": {
       "subjects": [

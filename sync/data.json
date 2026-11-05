@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-05T02:29:52.289Z",
+  "_updated_at": "2026-11-05T07:50:04.624Z",
   "_updated_by": "Mac",
   "data": {
     "banli_homework_2026-10-14": {
@@ -1939,10 +1939,31 @@
         {
           "name": "英语",
           "emoji": "🔤",
+          "items": [
+            {
+              "id": "njq32ok3",
+              "text": "抄写U4 1-5单词，一行一个，4英2中",
+              "done": false
+            },
+            {
+              "id": "g6c31t19",
+              "text": "家听U4 1-5单词",
+              "done": false
+            },
+            {
+              "id": "2reafz23",
+              "text": "预习U4",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "家庭作业",
+          "emoji": "📌",
           "items": []
         }
       ],
-      "_updated_at": 1793845789638
+      "_updated_at": 1793865001811
     },
     "banli_title": "板栗今日作业",
     "banli_streak_banli_homework_2026-09-28": 0,

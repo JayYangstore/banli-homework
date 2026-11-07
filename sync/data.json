@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-07T10:02:08.325Z",
+  "_updated_at": "2026-11-07T10:03:15.051Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -258,12 +258,12 @@
             {
               "id": "ruo1rn5h",
               "text": "l",
-              "done": false
+              "done": true
             }
           ]
         }
       ],
-      "_updated_at": 1794045725929
+      "_updated_at": 1794045727782
     },
     "banli_homework_2026-10-16": {
       "subjects": [
@@ -1574,7 +1574,7 @@
             {
               "id": "ef366f90",
               "text": "学评→P22-25（包括听力）",
-              "done": false
+              "done": true
             },
             {
               "id": "04d0546e",
@@ -1652,7 +1652,7 @@
           "items": []
         }
       ],
-      "_updated_at": 1793957512043
+      "_updated_at": 1794045792193
     },
     "banli_homework_2026-10-09": {
       "subjects": [

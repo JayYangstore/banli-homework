@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-07T10:03:15.051Z",
+  "_updated_at": "2026-11-07T10:25:56.241Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -1584,7 +1584,7 @@
             {
               "id": "394778ed",
               "text": "E英语宝",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -1595,17 +1595,17 @@
             {
               "id": "b8ae1479",
               "text": "写《小蚂蚁历险记》（作文）",
-              "done": false
+              "done": true
             },
             {
               "id": "8d8af9a9",
               "text": "预K14",
-              "done": false
+              "done": true
             },
             {
               "id": "20bb3409",
               "text": "书写作品（周日前）",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -1616,12 +1616,12 @@
             {
               "id": "b1ea5163",
               "text": "课本P52",
-              "done": false
+              "done": true
             },
             {
               "id": "c12ebbac",
               "text": "订堂练本P25",
-              "done": false
+              "done": true
             },
             {
               "id": "65b0a668",
@@ -1652,7 +1652,7 @@
           "items": []
         }
       ],
-      "_updated_at": 1794045792193
+      "_updated_at": 1794046638033
     },
     "banli_homework_2026-10-09": {
       "subjects": [

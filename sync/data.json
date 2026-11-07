@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-07T10:02:03.229Z",
+  "_updated_at": "2026-11-07T10:02:08.325Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-10-10": {
@@ -254,10 +254,16 @@
         {
           "name": "音乐",
           "emoji": "🎵",
-          "items": []
+          "items": [
+            {
+              "id": "ruo1rn5h",
+              "text": "l",
+              "done": false
+            }
+          ]
         }
       ],
-      "_updated_at": 1794045721715
+      "_updated_at": 1794045725929
     },
     "banli_homework_2026-10-16": {
       "subjects": [

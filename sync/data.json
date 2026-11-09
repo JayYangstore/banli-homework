@@ -1,6 +1,6 @@
 {
-  "_updated_at": "2026-11-07T12:32:06.962Z",
-  "_updated_by": "phone",
+  "_updated_at": "2026-11-09T10:34:05.000Z",
+  "_updated_by": "hermes",
   "data": {
     "banli_homework_2026-10-11": {
       "subjects": [
@@ -2150,6 +2150,42 @@
         }
       ],
       "_updated_at": 0
+    },
+    "banli_homework_2026-11-09": {
+      "_updated_at": 1794220445906,
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "e63ylon1",
+              "text": "家听U3 1--11号单词",
+              "done": false
+            },
+            {
+              "id": "z7xb5uvu",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": []
+        }
+      ]
     }
   }
 }

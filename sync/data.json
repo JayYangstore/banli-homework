@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-10T09:42:30.000Z",
+  "_updated_at": "2026-11-10T09:43:28.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_homework_2026-10-10": {
@@ -2188,7 +2188,7 @@
       "_updated_at": 1793705367440
     },
     "banli_homework_2026-11-10": {
-      "_updated_at": 1794303750586,
+      "_updated_at": 1794303808909,
       "subjects": [
         {
           "name": "英语",
@@ -2224,7 +2224,18 @@
         {
           "name": "科学",
           "emoji": "📌",
-          "items": []
+          "items": [
+            {
+              "id": "65rh76p6",
+              "text": "背诵知识清单第二单元第7课",
+              "done": false
+            },
+            {
+              "id": "633t8o31",
+              "text": "完成练习加快溶解27.28页",
+              "done": false
+            }
+          ]
         }
       ]
     }

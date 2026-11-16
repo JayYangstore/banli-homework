@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-13T07:11:31.000Z",
+  "_updated_at": "2026-11-16T07:42:55.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_homework_2026-11-11": {
@@ -2284,6 +2284,47 @@
             },
             {
               "id": "iuj6fpl8",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": []
+        }
+      ]
+    },
+    "banli_homework_2026-11-16": {
+      "_updated_at": 1794814975604,
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "z79ud79s",
+              "text": "默写Aa--Zz",
+              "done": false
+            },
+            {
+              "id": "nfiio76r",
+              "text": "订正期中大练习",
+              "done": false
+            },
+            {
+              "id": "ne36b5pi",
               "text": "E英语宝",
               "done": false
             }

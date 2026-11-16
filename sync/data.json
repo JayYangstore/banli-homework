@@ -1,16 +1,74 @@
 {
-  "_updated_at": "2026-11-16T07:42:55.000Z",
-  "_updated_by": "hermes",
+  "_updated_at": "2026-11-16T08:01:29.179Z",
+  "_updated_by": "Mac",
   "data": {
     "banli_homework_2026-11-11": {
       "subjects": [
         {
           "name": "英语",
           "emoji": "🔤",
+          "items": [
+            {
+              "id": "6dj1xbul",
+              "text": "复习U1-4，加上字母，明天练习",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": [
+            {
+              "id": "iztkn0sl",
+              "text": "复习第四单元，明天第四单元练习，",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1794393833591
+    },
+    "banli_homework_2026-11-13": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "cuamv3cx",
+              "text": "抄写U3 13-19号单词，一个一行，英4中文，并家听",
+              "done": false
+            },
+            {
+              "id": "b55wih14",
+              "text": "字母练习（自行打印）",
+              "done": false
+            },
+            {
+              "id": "iuj6fpl8",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
           "items": []
         }
       ],
-      "_updated_at": 1794393796464
+      "_updated_at": 1794553891711
     },
     "banli_homework_2026-10-10": {
       "subjects": [
@@ -382,6 +440,52 @@
         }
       ],
       "_updated_at": 1792331382298
+    },
+    "banli_homework_2026-11-16": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "z79ud79s",
+              "text": "默写Aa--Zz",
+              "done": false
+            },
+            {
+              "id": "nfiio76r",
+              "text": "订正期中大练习",
+              "done": false
+            },
+            {
+              "id": "ne36b5pi",
+              "text": "E英语宝",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": []
+        },
+        {
+          "name": "家庭作业",
+          "emoji": "📌",
+          "items": []
+        }
+      ],
+      "_updated_at": 1794816087671
     },
     "banli_homework_2026-10-23": {
       "subjects": [
@@ -2264,88 +2368,6 @@
         }
       ],
       "_updated_at": 1793705367440
-    },
-    "banli_homework_2026-11-13": {
-      "_updated_at": 1794553891711,
-      "subjects": [
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "cuamv3cx",
-              "text": "抄写U3 13-19号单词，一个一行，英4中文，并家听",
-              "done": false
-            },
-            {
-              "id": "b55wih14",
-              "text": "字母练习（自行打印）",
-              "done": false
-            },
-            {
-              "id": "iuj6fpl8",
-              "text": "E英语宝",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": []
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": []
-        },
-        {
-          "name": "科学",
-          "emoji": "📌",
-          "items": []
-        }
-      ]
-    },
-    "banli_homework_2026-11-16": {
-      "_updated_at": 1794814975604,
-      "subjects": [
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": [
-            {
-              "id": "z79ud79s",
-              "text": "默写Aa--Zz",
-              "done": false
-            },
-            {
-              "id": "nfiio76r",
-              "text": "订正期中大练习",
-              "done": false
-            },
-            {
-              "id": "ne36b5pi",
-              "text": "E英语宝",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": []
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": []
-        },
-        {
-          "name": "科学",
-          "emoji": "📌",
-          "items": []
-        }
-      ]
     }
   }
 }

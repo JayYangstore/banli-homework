@@ -2368,7 +2368,7 @@
       "_updated_at": 1793705367440
     },
     "banli_homework_2026-11-17": {
-      "_updated_at": 1794908445958,
+      "_updated_at": 1794908801590,
       "subjects": [
         {
           "name": "英语",
@@ -2399,7 +2399,18 @@
         {
           "name": "科学",
           "emoji": "📌",
-          "items": []
+          "items": [
+            {
+              "id": "v4aw03qx",
+              "text": "先背知识清单，再默写卷第二单元21到37点",
+              "done": false
+            },
+            {
+              "id": "1lmuns60",
+              "text": "复习第二单元",
+              "done": false
+            }
+          ]
         },
         {
           "name": "家庭作业",

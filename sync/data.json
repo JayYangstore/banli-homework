@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-20T08:21:48.000Z",
+  "_updated_at": "2026-11-20T10:10:57.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_homework_2026-11-11": {
@@ -2454,7 +2454,7 @@
       "_updated_at": 1793705367440
     },
     "banli_homework_2026-11-20": {
-      "_updated_at": 1795162908698,
+      "_updated_at": 1795169457847,
       "subjects": [
         {
           "name": "英语",
@@ -2464,7 +2464,23 @@
         {
           "name": "语文",
           "emoji": "📖",
-          "items": []
+          "items": [
+            {
+              "id": "k33vaeki",
+              "text": "观察记录单",
+              "done": false
+            },
+            {
+              "id": "pvdyfwsi",
+              "text": "《补》14-15",
+              "done": false
+            },
+            {
+              "id": "ro3m72hi",
+              "text": "每天看课外书15分钟",
+              "done": false
+            }
+          ]
         },
         {
           "name": "数学",

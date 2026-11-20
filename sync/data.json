@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-20T10:11:39.000Z",
+  "_updated_at": "2026-11-20T10:20:31.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_homework_2026-11-11": {
@@ -2454,7 +2454,7 @@
       "_updated_at": 1793705367440
     },
     "banli_homework_2026-11-20": {
-      "_updated_at": 1795169499866,
+      "_updated_at": 1795170031994,
       "subjects": [
         {
           "name": "英语",
@@ -2526,6 +2526,27 @@
             {
               "id": "w1jqhizx",
               "text": "背诵第一单元知识清单1到10点，签",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "家庭作业",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "y7gpkkol",
+              "text": "语文：成语+日记",
+              "done": false
+            },
+            {
+              "id": "at6i0p2l",
+              "text": "数学：混合计算练习+校内外",
+              "done": false
+            },
+            {
+              "id": "l3jhdhpa",
+              "text": "英语：ABCReading",
               "done": false
             }
           ]

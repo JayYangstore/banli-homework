@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-21T05:11:11.327Z",
+  "_updated_at": "2026-11-21T05:29:10.065Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-11-11": {
@@ -580,8 +580,8 @@
           "items": [
             {
               "id": "at6i0p2l",
-              "text": "数学：混合计算练习+校内外",
-              "done": false
+              "text": "校内外",
+              "done": true
             },
             {
               "id": "y7gpkkol",
@@ -596,7 +596,7 @@
           ]
         }
       ],
-      "_updated_at": 1795237868687
+      "_updated_at": 1795238946683
     },
     "banli_homework_2026-10-23": {
       "subjects": [

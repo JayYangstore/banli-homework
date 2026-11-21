@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-21T04:44:48.209Z",
+  "_updated_at": "2026-11-21T05:11:11.327Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-11-11": {
@@ -528,17 +528,17 @@
             {
               "id": "k33vaeki",
               "text": "观察记录单",
-              "done": false
+              "done": true
             },
             {
               "id": "pvdyfwsi",
               "text": "《补》14-15",
-              "done": false
+              "done": true
             },
             {
               "id": "ro3m72hi",
               "text": "每天看课外书15分钟",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -549,12 +549,12 @@
             {
               "id": "4035kugs",
               "text": "课本P56",
-              "done": false
+              "done": true
             },
             {
               "id": "9mwe1r1f",
               "text": "堂练P29",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -579,13 +579,13 @@
           "emoji": "📌",
           "items": [
             {
-              "id": "y7gpkkol",
-              "text": "语文：成语+日记",
+              "id": "at6i0p2l",
+              "text": "数学：混合计算练习+校内外",
               "done": false
             },
             {
-              "id": "at6i0p2l",
-              "text": "数学：混合计算练习+校内外",
+              "id": "y7gpkkol",
+              "text": "语文：成语+日记",
               "done": false
             },
             {
@@ -596,7 +596,7 @@
           ]
         }
       ],
-      "_updated_at": 1795236286690
+      "_updated_at": 1795237868687
     },
     "banli_homework_2026-10-23": {
       "subjects": [

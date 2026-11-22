@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-22T00:40:22.468Z",
+  "_updated_at": "2026-11-22T01:26:47.330Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-11-11": {
@@ -515,6 +515,11 @@
               "done": true
             },
             {
+              "id": "sozaln29",
+              "text": "阳",
+              "done": false
+            },
+            {
               "id": "v1cml1uu",
               "text": "《学评》25-28",
               "done": true
@@ -596,7 +601,7 @@
           ]
         }
       ],
-      "_updated_at": 1795308019409
+      "_updated_at": 1795310804430
     },
     "banli_homework_2026-10-23": {
       "subjects": [

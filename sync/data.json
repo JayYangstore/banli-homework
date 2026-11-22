@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-21T05:29:10.065Z",
+  "_updated_at": "2026-11-22T00:40:22.468Z",
   "_updated_by": "ipad",
   "data": {
     "banli_homework_2026-11-11": {
@@ -505,11 +505,6 @@
           "emoji": "🔤",
           "items": [
             {
-              "id": "v1cml1uu",
-              "text": "《学评》25-28",
-              "done": true
-            },
-            {
               "id": "z9nbberh",
               "text": "家听U4 1-11号单词",
               "done": true
@@ -517,6 +512,11 @@
             {
               "id": "pt5al5ti",
               "text": "E英语宝",
+              "done": true
+            },
+            {
+              "id": "v1cml1uu",
+              "text": "《学评》25-28",
               "done": true
             }
           ]
@@ -596,7 +596,7 @@
           ]
         }
       ],
-      "_updated_at": 1795238946683
+      "_updated_at": 1795308019409
     },
     "banli_homework_2026-10-23": {
       "subjects": [

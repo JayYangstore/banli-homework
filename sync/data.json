@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-23T10:25:20.000Z",
+  "_updated_at": "2026-11-23T10:31:36.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_homework_2026-11-11": {
@@ -2559,7 +2559,7 @@
       "_updated_at": 1793705367440
     },
     "banli_homework_2026-11-23": {
-      "_updated_at": 1795429520953,
+      "_updated_at": 1795429896979,
       "subjects": [
         {
           "name": "英语",
@@ -2580,7 +2580,18 @@
         {
           "name": "语文",
           "emoji": "📖",
-          "items": []
+          "items": [
+            {
+              "id": "oczk4u6j",
+              "text": "预K16",
+              "done": false
+            },
+            {
+              "id": "ekq6psds",
+              "text": "写一种你熟悉、喜爱的水果(作文本)",
+              "done": false
+            }
+          ]
         },
         {
           "name": "数学",

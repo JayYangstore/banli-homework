@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-23T10:31:36.000Z",
+  "_updated_at": "2026-11-23T10:31:46.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_homework_2026-11-11": {
@@ -2559,7 +2559,7 @@
       "_updated_at": 1793705367440
     },
     "banli_homework_2026-11-23": {
-      "_updated_at": 1795429896979,
+      "_updated_at": 1795429906804,
       "subjects": [
         {
           "name": "英语",
@@ -2596,7 +2596,18 @@
         {
           "name": "数学",
           "emoji": "🔢",
-          "items": []
+          "items": [
+            {
+              "id": "oaiw033u",
+              "text": "课本P64 ①②③(练习十二)",
+              "done": false
+            },
+            {
+              "id": "efa51awq",
+              "text": "带一把圆规",
+              "done": false
+            }
+          ]
         },
         {
           "name": "科学",

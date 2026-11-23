@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-23T10:31:46.000Z",
+  "_updated_at": "2026-11-23T10:32:12.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_homework_2026-11-11": {
@@ -2559,7 +2559,7 @@
       "_updated_at": 1793705367440
     },
     "banli_homework_2026-11-23": {
-      "_updated_at": 1795429906804,
+      "_updated_at": 1795429932306,
       "subjects": [
         {
           "name": "英语",
@@ -2613,6 +2613,22 @@
           "name": "科学",
           "emoji": "📌",
           "items": []
+        },
+        {
+          "name": "家庭作业",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "p0y3vybj",
+              "text": "语文：日记，成语",
+              "done": false
+            },
+            {
+              "id": "qmxive21",
+              "text": "数学：校内外+计算题",
+              "done": false
+            }
+          ]
         }
       ]
     }

@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-23T11:50:55.446Z",
+  "_updated_at": "2026-11-23T11:52:16.680Z",
   "_updated_by": "ipad",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
@@ -1029,7 +1029,7 @@
             {
               "id": "v20xkw4e",
               "text": "熟读P50",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -1040,12 +1040,12 @@
             {
               "id": "oczk4u6j",
               "text": "预K16",
-              "done": false
+              "done": true
             },
             {
               "id": "ekq6psds",
               "text": "写一种你熟悉、喜爱的水果(作文本)",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -1056,7 +1056,7 @@
             {
               "id": "oaiw033u",
               "text": "课本P64 ①②③(练习十二)",
-              "done": false
+              "done": true
             },
             {
               "id": "efa51awq",
@@ -1087,7 +1087,7 @@
           ]
         }
       ],
-      "_updated_at": 1795434653925
+      "_updated_at": 1795434734128
     },
     "banli_homework_2026-10-11": {
       "subjects": [

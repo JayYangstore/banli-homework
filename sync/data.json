@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-24T10:30:21.000Z",
+  "_updated_at": "2026-11-24T10:32:11.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
@@ -2633,7 +2633,7 @@
       "_updated_at": 0
     },
     "banli_homework_2026-11-24": {
-      "_updated_at": 1795516221556,
+      "_updated_at": 1795516331196,
       "subjects": [
         {
           "name": "英语",
@@ -2673,6 +2673,22 @@
             {
               "id": "foet0xll",
               "text": "完成练习运动和位置第1页",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "家庭作业",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "97yeullh",
+              "text": "语文：日记，成语",
+              "done": false
+            },
+            {
+              "id": "450ynqhl",
+              "text": "数学：校内外+计算题",
               "done": false
             }
           ]

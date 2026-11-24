@@ -1,6 +1,6 @@
 {
-  "_updated_at": "2026-11-24T10:32:11.000Z",
-  "_updated_by": "hermes",
+  "_updated_at": "2026-11-24T13:23:47.252Z",
+  "_updated_by": "ipad",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
     "banli_homework_2026-11-03": {
@@ -1061,7 +1061,7 @@
             {
               "id": "efa51awq",
               "text": "带一把圆规",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -1087,7 +1087,7 @@
           ]
         }
       ],
-      "_updated_at": 1795434734128
+      "_updated_at": 1795434747269
     },
     "banli_homework_2026-10-11": {
       "subjects": [
@@ -1564,6 +1564,69 @@
       ],
       "_updated_at": 1792070567215
     },
+    "banli_homework_2026-11-24": {
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": []
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": [
+            {
+              "id": "ecloo1mh",
+              "text": "堂练本32页",
+              "done": true
+            },
+            {
+              "id": "qyr5nzip",
+              "text": "跳绳",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "9tfnm2m5",
+              "text": "背诵知识清单第三单元第1课",
+              "done": false
+            },
+            {
+              "id": "foet0xll",
+              "text": "完成练习运动和位置第1页",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "家庭作业",
+          "emoji": "📌",
+          "items": [
+            {
+              "id": "97yeullh",
+              "text": "语文：日记，成语",
+              "done": false
+            },
+            {
+              "id": "450ynqhl",
+              "text": "数学：校内外+计算题",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "_updated_at": 1795526624690
+    },
     "banli_active_tab": "homework",
     "banli_homework_2026-11-05": {
       "subjects": [
@@ -1876,10 +1939,6 @@
         }
       ],
       "_updated_at": 1791809484604
-    },
-    "banli_homework_2026-09-25": {
-      "subjects": [],
-      "_updated_at": 0
     },
     "banli_title": "板栗今日作业",
     "banli_homework_2026-10-30": {
@@ -2523,6 +2582,10 @@
       ],
       "_updated_at": 1793018594093
     },
+    "banli_homework_2026-09-25": {
+      "subjects": [],
+      "_updated_at": 0
+    },
     "banli_homework_2026-09-24": {
       "subjects": [
         {
@@ -2631,69 +2694,6 @@
         }
       ],
       "_updated_at": 0
-    },
-    "banli_homework_2026-11-24": {
-      "_updated_at": 1795516331196,
-      "subjects": [
-        {
-          "name": "英语",
-          "emoji": "🔤",
-          "items": []
-        },
-        {
-          "name": "语文",
-          "emoji": "📖",
-          "items": []
-        },
-        {
-          "name": "数学",
-          "emoji": "🔢",
-          "items": [
-            {
-              "id": "ecloo1mh",
-              "text": "堂练本32页",
-              "done": false
-            },
-            {
-              "id": "qyr5nzip",
-              "text": "跳绳",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "科学",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "9tfnm2m5",
-              "text": "背诵知识清单第三单元第1课",
-              "done": false
-            },
-            {
-              "id": "foet0xll",
-              "text": "完成练习运动和位置第1页",
-              "done": false
-            }
-          ]
-        },
-        {
-          "name": "家庭作业",
-          "emoji": "📌",
-          "items": [
-            {
-              "id": "97yeullh",
-              "text": "语文：日记，成语",
-              "done": false
-            },
-            {
-              "id": "450ynqhl",
-              "text": "数学：校内外+计算题",
-              "done": false
-            }
-          ]
-        }
-      ]
     }
   }
 }

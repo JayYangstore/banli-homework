@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-25T13:49:08.932Z",
+  "_updated_at": "2026-11-25T13:50:10.921Z",
   "_updated_by": "ipad",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
@@ -2140,14 +2140,14 @@
             {
               "id": "fx5qoayz",
               "text": "书包放客厅",
-              "lastDone": 1793715524833,
-              "streak": 6
+              "lastDone": 1795614552834,
+              "streak": 7
             },
             {
               "id": "5btsk3ki",
               "text": "校服+队徽",
-              "lastDone": 1793715525702,
-              "streak": 5
+              "lastDone": 1795614553560,
+              "streak": 6
             },
             {
               "id": "v4b0bgmg",
@@ -2158,8 +2158,8 @@
             {
               "id": "08t7ch7o",
               "text": "桌面整理",
-              "lastDone": 1793715527636,
-              "streak": 7
+              "lastDone": 1795614554310,
+              "streak": 8
             },
             {
               "id": "8cqhdnyt",
@@ -2170,13 +2170,19 @@
             {
               "id": "x2yy0odt",
               "text": "上厕所",
-              "lastDone": 0,
-              "streak": 8
+              "lastDone": 1795614549130,
+              "streak": 9
             }
           ]
+        },
+        {
+          "id": "plan_dqpsmb2l",
+          "name": "🚀",
+          "emoji": "🌙",
+          "items": []
         }
       ],
-      "_updated_at": 1795614546780
+      "_updated_at": 1795614608187
     },
     "banli_homework_2026-11-17": {
       "subjects": [

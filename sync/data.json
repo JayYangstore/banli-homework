@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-25T13:46:35.785Z",
+  "_updated_at": "2026-11-25T13:48:09.526Z",
   "_updated_by": "ipad",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
@@ -1198,7 +1198,13 @@
         {
           "name": "英语",
           "emoji": "🔤",
-          "items": []
+          "items": [
+            {
+              "id": "jppo0duw",
+              "text": "E宝",
+              "done": true
+            }
+          ]
         },
         {
           "name": "语文",
@@ -1212,17 +1218,17 @@
             {
               "id": "7u2ayztz",
               "text": "订正堂练本32",
-              "done": false
+              "done": true
             },
             {
               "id": "wwuhojus",
               "text": "堂练本33",
-              "done": false
+              "done": true
             },
             {
               "id": "jzepsqad",
               "text": "跳绳",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -1253,7 +1259,7 @@
           ]
         }
       ],
-      "_updated_at": 1795614393642
+      "_updated_at": 1795614486832
     },
     "banli_streak_banli_homework_2026-09-26": 0,
     "banli_homework_2026-10-14": {

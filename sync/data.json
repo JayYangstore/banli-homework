@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-25T13:50:10.921Z",
+  "_updated_at": "2026-11-25T13:51:13.211Z",
   "_updated_by": "ipad",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
@@ -1214,7 +1214,13 @@
         {
           "name": "语文",
           "emoji": "📖",
-          "items": []
+          "items": [
+            {
+              "id": "xu8zq0kp",
+              "text": "堂p30,31",
+              "done": false
+            }
+          ]
         },
         {
           "name": "数学",
@@ -1264,7 +1270,7 @@
           ]
         }
       ],
-      "_updated_at": 1795614526645
+      "_updated_at": 1795614670667
     },
     "banli_streak_banli_homework_2026-09-26": 0,
     "banli_homework_2026-10-14": {
@@ -1711,7 +1717,7 @@
       ],
       "_updated_at": 1795614372162
     },
-    "banli_active_tab": "plans",
+    "banli_active_tab": "homework",
     "banli_homework_2026-11-05": {
       "subjects": [
         {
@@ -2158,7 +2164,7 @@
             {
               "id": "08t7ch7o",
               "text": "桌面整理",
-              "lastDone": 1795614554310,
+              "lastDone": 0,
               "streak": 8
             },
             {
@@ -2182,7 +2188,7 @@
           "items": []
         }
       ],
-      "_updated_at": 1795614608187
+      "_updated_at": 1795614609698
     },
     "banli_homework_2026-11-17": {
       "subjects": [

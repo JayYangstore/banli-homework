@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-25T13:48:09.526Z",
+  "_updated_at": "2026-11-25T13:49:08.932Z",
   "_updated_by": "ipad",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
@@ -1203,6 +1203,11 @@
               "id": "jppo0duw",
               "text": "E宝",
               "done": true
+            },
+            {
+              "id": "wxa5gn7n",
+              "text": "U2 抄11—19",
+              "done": true
             }
           ]
         },
@@ -1259,7 +1264,7 @@
           ]
         }
       ],
-      "_updated_at": 1795614486832
+      "_updated_at": 1795614526645
     },
     "banli_streak_banli_homework_2026-09-26": 0,
     "banli_homework_2026-10-14": {
@@ -1706,7 +1711,7 @@
       ],
       "_updated_at": 1795614372162
     },
-    "banli_active_tab": "homework",
+    "banli_active_tab": "plans",
     "banli_homework_2026-11-05": {
       "subjects": [
         {
@@ -2147,8 +2152,8 @@
             {
               "id": "v4b0bgmg",
               "text": "作业登记本检查",
-              "lastDone": 1793715526786,
-              "streak": 7
+              "lastDone": 1795614546780,
+              "streak": 8
             },
             {
               "id": "08t7ch7o",
@@ -2159,8 +2164,8 @@
             {
               "id": "8cqhdnyt",
               "text": "手表充电",
-              "lastDone": 1793715535720,
-              "streak": 6
+              "lastDone": 1795614538232,
+              "streak": 7
             },
             {
               "id": "x2yy0odt",
@@ -2171,7 +2176,7 @@
           ]
         }
       ],
-      "_updated_at": 1793715730972
+      "_updated_at": 1795614546780
     },
     "banli_homework_2026-11-17": {
       "subjects": [

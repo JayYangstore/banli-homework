@@ -1,6 +1,6 @@
 {
-  "_updated_at": "2026-11-25T10:12:47.000Z",
-  "_updated_by": "hermes",
+  "_updated_at": "2026-11-25T13:45:35.904Z",
+  "_updated_by": "ipad",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
     "banli_homework_2026-11-03": {
@@ -1569,7 +1569,13 @@
         {
           "name": "英语",
           "emoji": "🔤",
-          "items": []
+          "items": [
+            {
+              "id": "h0525rpp",
+              "text": "Unit to 11到19单词抄写四英二中",
+              "done": false
+            }
+          ]
         },
         {
           "name": "语文",
@@ -1597,13 +1603,13 @@
           "emoji": "📌",
           "items": [
             {
-              "id": "9tfnm2m5",
-              "text": "背诵知识清单第三单元第1课",
+              "id": "foet0xll",
+              "text": "完成练习运动和位置第1页",
               "done": false
             },
             {
-              "id": "foet0xll",
-              "text": "完成练习运动和位置第1页",
+              "id": "9tfnm2m5",
+              "text": "背诵知识清单第三单元第1课",
               "done": false
             }
           ]
@@ -1625,7 +1631,7 @@
           ]
         }
       ],
-      "_updated_at": 1795526624690
+      "_updated_at": 1795614333141
     },
     "banli_active_tab": "homework",
     "banli_homework_2026-11-05": {

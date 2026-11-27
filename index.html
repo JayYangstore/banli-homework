@@ -1304,10 +1304,37 @@ function showSyncModal() {
     + "<div class=\"hint\">\ud83d\udca1 \u53bb github.com/settings/tokens \u590d\u5236\u5b8c\u6574 PAT\uff0c\u4e0d\u8981\u7528 gh CLI \u7684\uff08\u90a3\u4e2a\u622a\u65ad\uff09</div>"
     + "<label>\u8bbe\u5907\u540d</label>"
     + "<input id=\"mo\" value=\"" + prevOwner + "\" placeholder=\"ipad / dad / phone\">"
-    + "<div class=\"row\"><button id=\"mc\">\u53d6\u6d88</button><button id=\"mok\" class=\"primary\">\u786e\u8ba4\u5173\u8054</button></div>"
+    + "<div class=\"row\"><button id=\"mc\">取消</button><button id=\"mok\" class=\"primary\">确认关联</button></div>"
+    + "<div class=\"row\"><button id=\"mexp\">📤 生成迁移码</button><button id=\"mimp\">📥 导入迁移码</button></div>"
+    + "<div class=\"hint\">💡 迁移码用于跨浏览器/桌面 App 搬配置：老设备点「生成」，新设备点「导入」粘贴即可，不用重填短码和 Token</div>"
     + "</div>";
   document.body.appendChild(m);
   m.querySelector("#mc").onclick = function() { m.remove(); };
+  m.querySelector("#mexp").onclick = function() {
+    const s = localStorage.getItem(SYNC_SHORT_KEY), t = localStorage.getItem(SYNC_TOKEN_KEY), o = localStorage.getItem(SYNC_OWNER_KEY) || "device";
+    if (!s || !t) { showToast("⚠️ 本机还没关联过，无配置可导出"); return; }
+    const code = "BM1." + b64encode(JSON.stringify({ s: s, t: t, o: o }));
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).catch(function(){});
+    prompt("迁移码已生成并复制到剪贴板（复制失败可手动全选）：", code);
+  };
+  m.querySelector("#mimp").onclick = function() {
+    const code = prompt("粘贴老设备生成的迁移码（BM1. 开头）：");
+    if (!code) return;
+    try {
+      const raw = code.trim().replace(/^BM1\./, "");
+      const bin = atob(raw);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const obj = JSON.parse(new TextDecoder().decode(bytes));
+      if (!obj.s || !obj.t) throw new Error("bad");
+      localStorage.setItem(SYNC_SHORT_KEY, obj.s);
+      localStorage.setItem(SYNC_TOKEN_KEY, obj.t);
+      localStorage.setItem(SYNC_OWNER_KEY, obj.o || "device");
+      m.remove();
+      showToast("✅ 已导入配置，无需重填");
+      syncBtnState();
+    } catch (e) { showToast("❌ 迁移码无效"); }
+  };
   m.querySelector("#mok").onclick = function() {
     const short = m.querySelector("#ms").value.trim();
     const token = m.querySelector("#mt").value.trim();

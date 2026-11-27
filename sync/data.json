@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-27T16:27:54.000Z",
+  "_updated_at": "2026-11-27T16:27:58.000Z",
   "_updated_by": "hermes",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
@@ -2792,7 +2792,7 @@
       "_updated_at": 0
     },
     "banli_homework_2026-11-27": {
-      "_updated_at": 1795796874485,
+      "_updated_at": 1795796878258,
       "subjects": [
         {
           "name": "英语",
@@ -2823,7 +2823,28 @@
         {
           "name": "语文",
           "emoji": "📖",
-          "items": []
+          "items": [
+            {
+              "id": "c1ctsnkk",
+              "text": "①号本 K17 六个字（课文生字抄写）",
+              "done": false
+            },
+            {
+              "id": "x402pf56",
+              "text": "动物观察单",
+              "done": false
+            },
+            {
+              "id": "073ya2sr",
+              "text": "读 K17 两遍",
+              "done": false
+            },
+            {
+              "id": "2kgvc3zd",
+              "text": "每天阅读 30 分钟（建议读《安徒生童话》《格林童话》《稻草人》）",
+              "done": false
+            }
+          ]
         },
         {
           "name": "数学",

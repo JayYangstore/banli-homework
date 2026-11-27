@@ -1,6 +1,6 @@
 {
-  "_updated_at": "2026-11-25T13:51:13.211Z",
-  "_updated_by": "ipad",
+  "_updated_at": "2026-11-27T16:27:54.000Z",
+  "_updated_by": "hermes",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
     "banli_homework_2026-11-03": {
@@ -2790,6 +2790,52 @@
         }
       ],
       "_updated_at": 0
+    },
+    "banli_homework_2026-11-27": {
+      "_updated_at": 1795796874485,
+      "subjects": [
+        {
+          "name": "英语",
+          "emoji": "🔤",
+          "items": [
+            {
+              "id": "w2l9wa9n",
+              "text": "抄写 U1–U2 全部单词，英文抄一遍、中文抄一遍",
+              "done": false
+            },
+            {
+              "id": "5fadcfig",
+              "text": "默写纸 U1–2（需自行打印）",
+              "done": false
+            },
+            {
+              "id": "j0ca8qqp",
+              "text": "熟读书本 P5、P13",
+              "done": false
+            },
+            {
+              "id": "p9du1x4t",
+              "text": "E英语宝（APP 打卡）",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "语文",
+          "emoji": "📖",
+          "items": []
+        },
+        {
+          "name": "数学",
+          "emoji": "🔢",
+          "items": []
+        },
+        {
+          "name": "科学",
+          "emoji": "📌",
+          "items": []
+        }
+      ]
     }
   }
 }

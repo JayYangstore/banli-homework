@@ -1,5 +1,5 @@
 {
-  "_updated_at": "2026-11-28T00:30:10.438Z",
+  "_updated_at": "2026-11-28T00:42:47.271Z",
   "_updated_by": "ipad",
   "data": {
     "banli_streak_banli_homework_2026-09-25": 0,
@@ -232,7 +232,7 @@
             {
               "id": "w2l9wa9n",
               "text": "抄写 U1–U2 全部单词，英文抄一遍、中文抄一遍",
-              "done": false
+              "done": true
             },
             {
               "id": "5fadcfig",
@@ -242,12 +242,12 @@
             {
               "id": "j0ca8qqp",
               "text": "熟读书本 P5、P13",
-              "done": false
+              "done": true
             },
             {
               "id": "p9du1x4t",
               "text": "E英语宝（APP 打卡）",
-              "done": false
+              "done": true
             }
           ]
         },
@@ -299,7 +299,7 @@
           "items": []
         }
       ],
-      "_updated_at": 1795825808917
+      "_updated_at": 1795826564083
     },
     "banli_homework_2026-10-19": {
       "subjects": [
